@@ -313,7 +313,7 @@ header svg {
         display: grid;
     }
     .nav-site{
-        height: 57px;
+        height: 50px;
         position: fixed;
         z-index: 3;
         background: rgba(0,0,0,.4);
@@ -324,7 +324,6 @@ header svg {
     .nav-site .logo-mobile{
         display: flex;
         width: 200px;
-        padding: 8px 0;
     }
     .nav-site .float-top-ad{
         display: block !important;

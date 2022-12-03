@@ -36,13 +36,13 @@
 }
 
 .match_card .match_header .match_title {
-    font-weight: 700;
     font-family: "Raleway", sans-serif;
-    font-size: 13px;
+    font-size: 12px;
     line-height: 20px;
     max-width: 209px;
     min-height: 42px;
     padding-top: 10px;
+    color: #dbfd21;
 }
 
 .match_card .match_header .match_time {
@@ -53,9 +53,9 @@
     background: #e11d23;
     border-radius: 2px;
     padding: 3px 8px;
-    position: absolute;
-    right: 42px;
     border-radius: 8px;
+    align-items: center;
+    margin-top: 5px;
 }
 
 .match_card .match_body>div:nth-child(1), .match_card .match_body>div:nth-child(3) {

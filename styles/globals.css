@@ -249,7 +249,6 @@ a:hover {
   height: 35px;
   line-height: 35px;
   overflow: hidden;
-  margin-right: 20px;
 }
 #homepage .home-live{
   max-width: 1585px;
@@ -382,9 +381,9 @@ button:focus{
   .chat-message iframe{
     height: 600px ;
   }
-  .app-live, #highlight-page{
+  /* .app-live, #highlight-page{
     padding: 0 10px;
-  }
+  } */
   #highlight-page .highlight-container .highlight-item{
     display: block !important;
   }
