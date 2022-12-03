@@ -5,6 +5,7 @@ import axios from "../utility/axios";
 import ReactJWPlayer from "react-jw-player";
 // import ReactDOM from "react-dom";
 import { urlAmination } from "../data/ip";
+import SkLivetream from "./Skeleton/SkLivetream";
 export default function LiveHome(props) {
   const { data } = props;
   const [promotionalVideo, setPromotionalVideo] = useState(null);
@@ -14,6 +15,7 @@ export default function LiveHome(props) {
   const timerId = useRef();
   const [timer, setTimer] = useState(5);
   const userAgent = typeof navigator === "undefined" ? "SSR" : navigator.userAgent;
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     if (!Boolean(promotionalVideo) && !Boolean(timer)) {
       getLiveStream();
@@ -49,32 +51,33 @@ export default function LiveHome(props) {
     };
   }, [timer, promotionalVideo, playing]);
 
-  const getPromotionalVideo = async () => {
-    try {
-      const res = await axios.get(`${ip}/website/setting/promotional-video`);
-      if (res?.data?.data) {
-        setPromotionalVideo(res.data.data);
-        // setPlaying(true);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  // const getPromotionalVideo = async () => {
+  //   try {
+  //     const res = await axios.get(`${ip}/website/setting/promotional-video`);
+  //     if (res?.data?.data) {
+  //       setPromotionalVideo(res.data.data);
+  //       // setPlaying(true);
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
   const getLiveStream = async (isLiveStream) => {
     isLiveStream && setLivestream(data?.livestream ?? []);
     isLiveStream && setLinkLivestream((data?.livestream ?? [])?.[0]?.link ?? "");
+    setLoading(false);
   };
 
-  const handlePromotionalVideoClick = async (url) => {
-    url && window.open(url);
-  };
+  // const handlePromotionalVideoClick = async (url) => {
+  //   url && window.open(url);
+  // };
 
-  const handleReady = async () => {
-    setTimeout(() => {
-      setPlaying(true);
-    }, 1000);
-  };
+  // const handleReady = async () => {
+  //   setTimeout(() => {
+  //     setPlaying(true);
+  //   }, 1000);
+  // };
   const onEnterFullScreen = () => {
     const myElement = `  <div class="button-odd2" id="odd2">
     <a href="/chi-tiet-tran-dau/${data?.slug ?? ""}-${data?.id}">
@@ -92,13 +95,14 @@ export default function LiveHome(props) {
   </div>`;
     document.getElementById("livePlayer").insertAdjacentHTML("beforeend", myElement);
   };
-  // console.log(linkLivestream);
   const handleError = (e) => {
     setLinkLivestream("https://keovip.b-cdn.net/worldCup_2022.812323cc77452e7fc8171c31b25aad69.mp4");
   };
   return (
     <>
-      {data.livestream.length > 0 ? (
+      {loading ? (
+        <SkLivetream />
+      ) : data.livestream.length > 0 ? (
         <>
           <ReactJWPlayer
             playerId="livePlayer"
@@ -143,31 +147,6 @@ export default function LiveHome(props) {
           height="700"
         ></iframe>
       )}
-      {/* {Boolean(promotionalVideo) && (
-        <>
-          <ReactPlayer
-            width="100%"
-            height="100%"
-            muted={isIOS}
-            volume={1}
-            playing={playing}
-            url={promotionalVideo.filename}
-            onReady={handleReady}
-            playsinline
-          />
-          <div className="action-video" onClick={() => handlePromotionalVideoClick(promotionalVideo.url)} />
-          {Boolean(timer) && (
-            <div className="timeout" onClick={() => handlePromotionalVideoClick(promotionalVideo.url)}>
-              Quảng cáo sau {timer}s
-            </div>
-          )}
-          {!Boolean(timer) && (
-            <div className="skip" onClick={() => setPromotionalVideo(null)}>
-              Bỏ qua quảng cáo
-            </div>
-          )}
-        </>
-      )} */}
     </>
   );
 }

@@ -139,12 +139,6 @@ export default function Home({ matchList }) {
           </picture>
           <div className="home-live">
             <Marquee />
-            {/* <div className="banner">
-              <Banner />
-            </div> */}
-            {/* <h3 className="page-title mt-4 text-center" style={{ color: "black" }}>
-              LINK XEM BÓNG ĐÁ TRỰC TUYẾN TỐC ĐỘ CAO, TRỰC TIẾP BÓNG ĐÁ HÔM NAY
-            </h3> */}
             <div className="main-live">
               <div className="main-live-app">
                 <div className="action-hot-live">
@@ -188,142 +182,12 @@ export default function Home({ matchList }) {
                 </PerfectScrollbar>
               </div>
             </div>
-
-            {/* <div className="row mb-3">
-              <div className="col-12">
-                <button className="w-100 load-more" onClick={() => setLimit(limit + 10)}>
-                  Xem thêm lịch trực tiếp
-                </button>
-              </div>
-            </div>
-            <div className="row mb-3">
-              <div className="col-12 d-flex justify-content-between">
-                <div className="title-sub-section">
-                  <span>soi kèo</span>
-                  <span>Bóng đá hôm nay</span>
-                </div>
-                <Link href="/soi-keo">
-                  <a>Tất cả</a>
-                </Link>
-              </div>
-            </div>
-            <div className="row post-list p-3">
-              {match &&
-                match.length > 0 &&
-                match.map((item, index) => {
-                  return index == 0 ? (
-                    <div className="col-12 col-lg-6 mb-3" key={item.id} style={{ padding: 0 }}>
-                      <PostCard data={item} isBig={true} first={true} homepage={true} url="soi-keo" index={index} />
-                    </div>
-                  ) : (
-                    <div
-                      className="col-12 col-lg-3 mb-3"
-                      key={item.id}
-                      style={{
-                        padding: 0,
-                      }}
-                    >
-                      <PostCard data={item} homepage={true} url="soi-keo" index={index} />
-                    </div>
-                  );
-                })}
-            </div>
-
-            <div className="row mb-3">
-              <div className="col-12 d-flex justify-content-between">
-                <div className="title-sub-section">
-                  <span>Tin tức</span>
-                  <span>Bóng đá hôm nay</span>
-                </div>
-                <Link href="/tin-tuc">
-                  <a>Tất cả</a>
-                </Link>
-              </div>
-            </div>
-            <div className="row post-list p-3">
-              {news &&
-                news.length > 0 &&
-                news.map((item, index) => {
-                  return index == 0 ? (
-                    <div className="col-12 col-lg-6 p-0 mb-3 mb-lg-2 mt-lg-2 pr-2 pl-2" key={item.id}>
-                      <PostCard data={item} isBig={true} first={true} homepage={true} />
-                    </div>
-                  ) : (
-                    <div className="col-12 col-lg-3 p-0 mb-3 mb-lg-2 mt-lg-2 pr-2 pl-2" key={item.id}>
-                      <PostCard data={item} homepage={true} index={index} />
-                    </div>
-                  );
-                })}
-            </div>
-
-            <div className="row mb-3">
-              <div className="col-12 d-flex justify-content-between">
-                <div className="title-sub-section">
-                  <span>Video</span>
-                  <span>highlight</span>
-                </div>
-                <Link href="/highlight">
-                  <a>Tất cả</a>
-                </Link>
-              </div>
-            </div>
-
-            <div className="row highlight-list p-3">
-              {highlight && highlight.length > 0 && (
-                <div
-                  className="col-12 col-lg-6 p-0 mb-3 mb-lg-2 mt-lg-2 pr-2 pl-2"
-                  key={highlight[0].id}
-                  style={{ padding: "0px !important", margin: "0px !important" }}
-                >
-                  <PostVideoCard data={highlight[0]} isBig={true} />
-                </div>
-              )}
-              <div className="col-12 col-lg-6" style={{ minHeight: 450 }}>
-                <div className="row">
-                  {highlight &&
-                    highlight.length > 0 &&
-                    highlight.map((item, index) => {
-                      return (
-                        index != 0 && (
-                          <div
-                            className="col-12 col-lg-4 p-0 mb-3 mb-lg-2 mt-lg-2 pr-2 pl-2"
-                            key={item.id}
-                            style={{ padding: "0px !important", margin: "0px !important" }}
-                          >
-                            <PostVideoCard data={item} index={index} />
-                          </div>
-                        )
-                      );
-                    })}
-                </div>
-              </div>
-            </div> */}
           </div>
         </div>
 
         <div className="app-live">
           <div className="container">
             <HotLive />
-            {/* <div className="row ">
-              {matchList &&
-                matchList.length > 0 &&
-                matchList
-                  .filter((item, index) => page <= index + 1 && index + 1 <= page + limit - 1)
-                  .map((item) => {
-                    return (
-                      <div className="col-12 col-md-6 col-lg-4 mb-4" key={item._id}>
-                        <MatchCard data={item} />
-                      </div>
-                    );
-                  })}
-            </div>
-            <div className="row mb-3">
-              <div className="col-12">
-                <button className="w-100 load-more" onClick={() => setLimit(limit + 12)}>
-                  Xem thêm lịch trực tiếp
-                </button>
-              </div>
-            </div> */}
             <div className="row">
               <div className="col-md-7 mb-3">
                 <div className="news-selector">

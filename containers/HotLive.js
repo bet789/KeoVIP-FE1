@@ -3,6 +3,8 @@ import axios from "../utility/axios";
 import { ip } from "../data/ip";
 import { MatchCard } from "../containers/MatchCard";
 import Loading from "./Loading";
+import SkListMatch from "./Skeleton/SkListMatch";
+import SkListMenu from "./Skeleton/SkListMenu";
 export default function HotLive(props) {
   const [dataMenu, setDataMenu] = useState([]);
   const [matchList, setMatchList] = useState([]);
@@ -11,7 +13,8 @@ export default function HotLive(props) {
   const [categories, setCategories] = useState([]);
   const [filter, setFilter] = useState("all");
   const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [loadingMenu, setLoadingMenu] = useState(true);
   const fetchDataMenu = async () => {
     const response = await axios.get(`${ip}/website/matches/menu`);
     const data = response.data.data || [];
@@ -55,6 +58,7 @@ export default function HotLive(props) {
         },
       ]);
     }
+    setLoadingMenu(false);
   };
   useEffect(() => {
     fetchDataMenu();
@@ -63,6 +67,7 @@ export default function HotLive(props) {
     const response = await axios.get(`${ip}${urlMatches}`);
     setCategories(response?.data?.data?.categories ?? []);
     setMatchList(response?.data?.data ?? []);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -71,27 +76,34 @@ export default function HotLive(props) {
   useEffect(() => {}, [filter]);
   return (
     <>
-      {dataMenu && dataMenu.length > 0 && (
-        <div className="row">
-          <div className="col-md-12">
-            <div className="match-time-selector">
-              <ul>
-                <span>
-                  <img src="/assets/images/Group-4.png" />
-                </span>
-                {(dataMenu || []).map((d) => (
-                  <li key={d.key} onClick={() => setUrlMatches(d.url)}>
-                    <span className={urlMatches === d.url ? "active-title" : ""}>{d.title}</span>
-                    {Boolean(d.count) && <span className="match-time-selector-count">{d.count}</span>}
-                  </li>
-                ))}
-              </ul>
+      {loadingMenu ? (
+        <SkListMenu />
+      ) : (
+        dataMenu &&
+        dataMenu.length > 0 && (
+          <div className="row">
+            <div className="col-md-12">
+              <div className="match-time-selector">
+                <ul>
+                  <span>
+                    <img src="/assets/images/Group-4.png" />
+                  </span>
+                  {(dataMenu || []).map((d) => (
+                    <li key={d.key} onClick={() => setUrlMatches(d.url)}>
+                      <span className={urlMatches === d.url ? "active-title" : ""}>{d.title}</span>
+                      {Boolean(d.count) && <span className="match-time-selector-count">{d.count}</span>}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
+        )
       )}
       <div className="row ">
-        {!loading ? (
+        {loading ? (
+          <SkListMatch />
+        ) : (
           matchList &&
           matchList.length > 0 &&
           matchList
@@ -103,8 +115,6 @@ export default function HotLive(props) {
                 </div>
               );
             })
-        ) : (
-          <Loading />
         )}
       </div>
       <div className="row mb-3">

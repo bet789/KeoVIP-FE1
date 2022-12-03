@@ -24,6 +24,7 @@ import { Button } from "@mui/material";
 import ReactJWPlayer from "react-jw-player";
 import Marquee from "../../containers/Marquee";
 import EventStat from "../../containers/EventStat";
+import SkLivetream from "../../containers/Skeleton/SkLivetream";
 const listDetailMatchOddsOptions = ["789Bet", "New88", "Jun88"];
 
 export const MatchDetailsContext = React.createContext();
@@ -54,6 +55,7 @@ export default function MatchDetails() {
   const timeMatch = Date.parse(data?.timeMatch);
   const timeNow = Date.now();
   const difference = timeMatch - 360000 - timeNow;
+  const [loading, setLoading] = useState(true);
   // const difference = +new Date() - +new Date("2022-12-28T18:30:00+05:30");
   const getDataMatchList = async () => {
     const response = await axios.get(`${ip}${urlMatches}`);
@@ -78,6 +80,7 @@ export default function MatchDetails() {
       // getPromotionalVideo();
       getLiveStream(true);
     }
+    setLoading(false);
     // eslint-disable-next-line
   }, [pid]);
 
@@ -236,136 +239,79 @@ export default function MatchDetails() {
             </div> */}
               <div className="match-details-live">
                 <div className="match-live" styles={{ position: "relative", marginBottom: 10 }}>
-                  <>
-                    {difference > 0 ? (
-                      <>
-                        <div className="count-timer">
-                          <h2 style={{ textAlign: "center" }}>Trận đấu sẽ diễn ra sau</h2>
-                          <div className="count">
-                            <div className="count-hour">
-                              <p>{timeLeft?.hours}</p> GIỜ
-                            </div>
-                            <div className="count-minute">
-                              <p>{timeLeft?.minutes}</p> PHÚT
-                            </div>
-                            <div className="count-second">
-                              <p>{timeLeft?.seconds}</p>GIÂY
+                  {
+                    <>
+                      {loading ? (
+                        <SkLivetream />
+                      ) : livestream?.length > 0 ? (
+                        <>
+                          <div>
+                            <ReactJWPlayer
+                              playerId="livePlayer"
+                              playerScript="https://cdn.jwplayer.com/libraries/m393TMt7.js"
+                              file={linkLivestream}
+                              onSeventyFivePercent={() => console.log("75 Percent")}
+                              onNinetyFivePercent={() => console.log("95 Percent")}
+                              onOneHundredPercent={() => console.log("100 Percent")}
+                              isAutoPlay={true}
+                              aspectRatio="16:9"
+                              onEnterFullScreen={() => onEnterFullScreen()}
+                              customProps={{
+                                playbackRateControls: [1, 1.25, 1.5],
+                                cast: {},
+                              }}
+                              onError={(e) => handleError(e)}
+                            />
+                            <div className="button-odd">
+                              <a target="_blank" href="https://www.789betb.com/?uagt=livesbong1&path=signup">
+                                789BET
+                              </a>
+                              <a target="_blank" href="https://www.new88ww.com/?uagt=livesbong1&path=signup">
+                                NEW88
+                              </a>
+                              <a target="_blank" href="https://www.jun88h.com/?uagt=livesbong1&path=signup">
+                                Jun88
+                              </a>
                             </div>
                           </div>
-                        </div>
 
-                        <picture>
-                          <img
-                            src="/assets/images/banner-countdown.jpg"
-                            alt="logo"
-                            style={{ width: "100%", opacity: "70%", position: "relative", zIndex: "1" }}
-                          />
-                        </picture>
-                      </>
-                    ) : (
-                      <>
-                        {livestream?.length > 0 ? (
-                          <>
-                            <div>
-                              <ReactJWPlayer
-                                playerId="livePlayer"
-                                playerScript="https://cdn.jwplayer.com/libraries/m393TMt7.js"
-                                file={linkLivestream}
-                                onSeventyFivePercent={() => console.log("75 Percent")}
-                                onNinetyFivePercent={() => console.log("95 Percent")}
-                                onOneHundredPercent={() => console.log("100 Percent")}
-                                isAutoPlay={true}
-                                aspectRatio="16:9"
-                                onEnterFullScreen={() => onEnterFullScreen()}
-                                customProps={{
-                                  playbackRateControls: [1, 1.25, 1.5],
-                                  cast: {},
+                          <div
+                            className="pagination"
+                            style={{
+                              display: "flex",
+                              marginBottom: 10,
+                              justifyContent: "left",
+                              padding: "5px",
+                              background: "#a9a0a0ba",
+                            }}
+                          >
+                            {livestream.map((item, i) => (
+                              <span
+                                key={i}
+                                className="live"
+                                style={{ background: `${item?.color ?? "#F0BE5A"}` }}
+                                onClick={() => {
+                                  setLinkLivestream(item?.link ?? "");
+                                  //test
+                                  // setLinkLivestream(
+                                  //   'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4'
+                                  // );
                                 }}
-                                onError={(e) => handleError(e)}
-                              />
-                              <div className="button-odd">
-                                <a target="_blank" href="https://www.789betb.com/?uagt=livesbong1&path=signup">
-                                  789BET
-                                </a>
-                                <a target="_blank" href="https://www.new88ww.com/?uagt=livesbong1&path=signup">
-                                  NEW88
-                                </a>
-                                <a target="_blank" href="https://www.jun88h.com/?uagt=livesbong1&path=signup">
-                                  Jun88
-                                </a>
-                              </div>
-                            </div>
-
-                            <div
-                              className="pagination"
-                              style={{
-                                display: "flex",
-                                marginBottom: 10,
-                                justifyContent: "left",
-                                padding: "5px",
-                                background: "#a9a0a0ba",
-                              }}
-                            >
-                              {livestream.map((item, i) => (
-                                <span
-                                  key={i}
-                                  className="live"
-                                  style={{ background: `${item?.color ?? "#F0BE5A"}` }}
-                                  onClick={() => {
-                                    setLinkLivestream(item?.link ?? "");
-                                    //test
-                                    // setLinkLivestream(
-                                    //   'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4'
-                                    // );
-                                  }}
-                                >
-                                  {item?.name ?? `Dự phòng ${i + 1}`}
-                                </span>
-                              ))}
-                            </div>
-                          </>
-                        ) : (
-                          <iframe
-                            src={`${urlAmination}?matchId=${id}&accessKey=tEFL6ClbFnfkvmEn0xspIVQyPV9jAz9u&lang=vi&statsPanel=hide`}
-                            width="100%"
-                            height="720"
-                          ></iframe>
-                        )}
-
-                        {/* {Boolean(promotionalVideo) && (
-                          <>
-                            <ReactPlayer
-                              width="100%"
-                              height="100%"
-                              muted={isIOS}
-                              volume={1}
-                              playing={playing}
-                              url={promotionalVideo.filename}
-                              onReady={handleReady}
-                              playsinline
-                            />
-                            <div
-                              className="action-video"
-                              onClick={() => handlePromotionalVideoClick(promotionalVideo.url)}
-                            />
-                            {Boolean(timer) && (
-                              <div
-                                className="timeout"
-                                onClick={() => handlePromotionalVideoClick(promotionalVideo.url)}
                               >
-                                Quảng cáo sau {timer}s
-                              </div>
-                            )}
-                            {!Boolean(timer) && (
-                              <div className="skip" onClick={() => setPromotionalVideo(null)}>
-                                Bỏ qua quảng cáo
-                              </div>
-                            )}
-                          </>
-                        )} */}
-                      </>
-                    )}
-                  </>
+                                {item?.name ?? `Dự phòng ${i + 1}`}
+                              </span>
+                            ))}
+                          </div>
+                        </>
+                      ) : (
+                        <iframe
+                          src={`${urlAmination}?matchId=${id}&accessKey=tEFL6ClbFnfkvmEn0xspIVQyPV9jAz9u&lang=vi&statsPanel=hide`}
+                          width="100%"
+                          height="720"
+                        ></iframe>
+                      )}
+                    </>
+                  }
                 </div>
                 <div className="match-live-chat">
                   <div className="pagination" style={{ display: "flex", marginBottom: 10 }}>
