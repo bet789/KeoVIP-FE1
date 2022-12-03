@@ -71,6 +71,7 @@ export default function HotLive(props) {
   };
 
   useEffect(() => {
+    setLoading(true);
     getDataMatchList();
   }, [urlMatches]);
   useEffect(() => {}, [filter]);
