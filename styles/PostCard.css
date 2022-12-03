@@ -1,0 +1,119 @@
+.post_item {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+}
+
+.post_item .post_thumbnail {
+    position: relative;
+    z-index: 1;
+    width: 40%;
+}
+
+@media screen and (max-width: 1015px) {
+    .post_item .post_thumbnail {
+        overflow: hidden;
+        max-height: 232px;
+    }
+}
+
+.post_item .post_content {
+    z-index: 2;
+    width: 60%;
+    /* height: 100%; */
+    padding: 15px;
+    /* background: linear-gradient(90deg, #1A1D23 0%, #141417 100%); */
+}
+
+.post_item .post_content.big {
+    background: transparent;
+}
+
+.post_item .post_content p {
+    line-height: 30px;
+    font-weight: 400;
+    color: #F2F3F3;
+    font-family: "Oswald", sans-serif;
+    font-size: 18px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 767px) {
+    .post_item .post_content p {
+        font-size: 13px;
+        line-height: 19px;
+    }
+
+    .post_item .post_thumbnail{
+        height: 108px;
+    }
+
+    .post_item .post_thumbnail img {
+        height: 108px !important;
+        min-height: 108px !important;
+    }
+
+}
+
+@media (max-width: 991px) {
+
+    .highlight-list .post_video_item{
+       margin-bottom: 2rem !important;
+    }
+    .highlight-list .post_video_item img {
+        min-height: 0 !important;
+        max-height: 500px !important;
+        height: 108px !important;
+    }
+
+    .highlight-list .post_video_item .post_content {
+        position: relative !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        min-height: 108px !important;
+        max-height: 0px !important;
+        height: 108px !important;
+    } 
+}
+
+#content-news img {
+    max-width: 100%;
+}
+
+#content-guide img {
+    max-width: 100%;
+}
+
+@media (min-width: 992px) {
+    .post_item {
+        flex-direction: column;
+    }
+    
+    .post_item .post_thumbnail {
+        width: 100%;
+        height: max-content;
+    }
+
+    .post_item .post_content{
+        width: 100%;
+    }
+    
+    .post_item .post_content.big {
+        width: 60%;
+        position: absolute;
+        bottom: 0 !important;
+        left: 0 !important;
+        padding: 30px 20px;
+    }
+
+    .highlight-list .post_content p{
+        font-size: 15px;
+    }
+
+}

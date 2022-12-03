@@ -1,0 +1,94 @@
+.rank-table-container {
+    width: 100%;
+    /* overflow-x: auto; */
+}
+
+.rank-table-container .rank-table-header {
+    width: 100%;
+    padding: 0px 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.rank-table-container .rank-table-header p {
+    font-size: 25px;
+    font-weight: bold;
+    border-bottom: 3px solid #FF8300;
+}
+
+.rank-table-container .rank-table-header a {
+    color: #FF8300;
+    font-weight: bold;
+}
+
+.rank-table-container .table-container {
+    overflow-x: auto;
+}
+
+.rank-table-container table {
+    width: 100%;
+    min-width: 740px;
+}
+
+.rank-table-container table tr{
+    border-bottom: 1px solid #2A3038;
+}
+
+.rank-table-container table tr img {
+    height: 32px;
+    width: 32px;
+    margin-right: 10px;
+}
+
+.rank-table-container table th{
+    padding: 8px 13px;
+    font-weight: 700;
+}
+.rank-table-container table th:not(:nth-child(2)),
+.rank-table-container table tr td:not(:nth-child(2))
+{
+    text-align: center;
+}
+.rank-table-container table tr td{
+    padding: 12px 13px;
+    background-color: #111111;
+}
+
+.rank-table-container table tr td:last-child {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    justify-content: center;
+}
+
+.rank-table-container table tr td:last-child div{
+    height: 24px;
+    width: 24px;
+    position: relative;
+}
+
+.rank-table-container table tr td:last-child div::before{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 24px;
+}
+
+.rank-table-container table tr td .lose::before {
+    content: 'L';
+    background-color: #BD0000;
+}
+
+.rank-table-container table tr td .win::before {
+    content: 'W';
+    background-color: #00BD47;
+}
+
+.rank-table-container table tr td .dickens::before {
+    content: 'D';
+    background-color: #0F4CD9;
+}

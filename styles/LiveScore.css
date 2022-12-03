@@ -1,0 +1,162 @@
+#livescore-page .timezone {
+    background-color: #ddd;
+    font-weight: 700;
+    font-family: Tahoma;
+    padding: 2px 0;
+    padding-right: 15px;
+    cursor: pointer;
+    color: black;
+    padding-left: 10px;
+}
+
+#livescore-page .timezone span {
+    color: black;
+    margin-right: 4px;
+}
+
+#livescore-page .options {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background: linear-gradient(#b3b3b3, #fff) ;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#livescore-page .options .left a{
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    margin: 0 3px;
+}
+
+#livescore-page .options .left a:hover {
+    color: #01b243;
+}
+
+#livescore-page .options .right span {
+    cursor: pointer;
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+}
+
+#livescore-page .options .right span.sound {
+    background-image: url('https://i3.wp.com/img.7m.com.cn/v2/icon_13x13.gif');
+}
+
+#livescore-page .options .right span.icon {
+    background-image: url('https://i3.wp.com/img.7m.com.cn/v2/icon_11x11.gif');
+}
+
+#livescore-page .options .right span.i_reload {
+    background-position-y: -97px;
+}
+
+#livescore-page .options .right span.winOFF {
+    background-position-y: -405px;
+}
+
+#livescore-page .options .right span.winON {
+    background-position-y: -75px;
+}
+
+#livescore-page .options .right span.soundON {
+    background-position-y: 2px;
+}
+
+#livescore-page .options .right span.soundOFF {
+    background-position-y: -28px;
+}
+
+#livescore-page .table-title {
+    background-color: #FFE;
+    color: #000;
+    font-weight: 700;
+    height: 21px;
+    line-height: 21px;
+    position: relative;
+    text-align: center;
+}
+
+#livescore-page .table-container table {
+    width: 100%;
+    overflow-x: auto;
+}
+
+#livescore-page .table-container table tbody tr:nth-child(odd) {
+    background-color: #e0e9f6;
+}
+
+#livescore-page .table-container table tbody tr:nth-child(even) {
+    background-color: #eeeeee;
+}
+
+#livescore-page .table-container table tbody td {
+    text-align: center;
+    padding: 6px 4px;
+    color: black;
+    border: 1px solid #bbbbbb;
+}
+
+
+#livescore-page .table-container table tbody td.date {
+    background-color: #FFE;
+    color: #000;
+    font-weight: 700;
+    height: 21px;
+    line-height: 21px;
+    position: relative;
+}
+
+#livescore-page .table-container table tbody td.time-in-match{
+    background-color: #F7F8F3;
+    color: blue;
+}
+
+#livescore-page .table-container table tbody td.match {
+    color: white;
+}
+
+#livescore-page .table-container table tbody td.state span{
+    color: red;
+}
+
+#livescore-page .table-container table tbody td.team-home {
+    text-align: end;
+}
+
+#livescore-page .table-container table tbody td.team-away {
+    text-align: start;
+}
+
+#livescore-page .table-container table tbody td.score {
+    color: #0000FF;
+    font-weight: 600;
+}
+
+#livescore-page .table-container table tbody td.ht {
+    color: #F00;
+}
+
+#livescore-page .table-container table tbody td sup{
+    vertical-align: top;
+    color: #C00;
+    font-family: Arial;
+    top: 0px;
+    line-height: inherit;
+    margin: 0 2px;
+}
+
+.remark {
+    padding-top: 10px;
+    padding-bottom: 16px;
+    text-align: center;
+    background-color: #ddd;
+    margin: 0;
+    color: black;
+}
+
+.remark span {
+    margin: 0 6px;
+}

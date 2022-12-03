@@ -1,0 +1,10 @@
+#about-us-page p{
+    text-align: justify;
+    font-family: "Raleway", sans-serif;
+}
+
+#about-us-page .content {
+    padding: 20px;
+    background: #1A1D23;
+    color: #F2F3F3;
+}

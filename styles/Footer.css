@@ -1,0 +1,76 @@
+footer{
+    /* background: url("/assets/images/img-hr_banner-pc 1.webp"); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 350px;
+}
+
+footer .container {
+    display: flex;
+    padding-top: 70px;
+}
+
+footer picture{
+    position: absolute;
+    border: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+footer .footer-list {
+    
+    width: 625px;
+}
+
+footer .footer-list .list-item a{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 18px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+footer .reserved{
+    text-align: center;
+    font-size: 12px;
+    color: #ffffff;
+    margin: 0;
+}
+footer .info {
+    color: #ffffff;
+    font-size: 13px;
+    line-height: 22px;
+    margin-bottom: 1rem;
+}
+
+footer .social-contact {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 8px;
+}
+@media screen and (max-width: 420px) {
+    footer img {
+        width: 250px;
+        height: 50px;
+    }
+   footer .logo-footer{
+        text-align: center;
+   }
+   footer .container {
+        display: block;
+        padding-top: 24px;
+    } 
+    footer .col-md-4{
+        padding: 0 30px;
+    }
+    footer{
+        height: unset;
+        padding-bottom: 35px;
+    }
+    footer picture{
+        position: relative;
+    }
+  }

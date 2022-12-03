@@ -1,0 +1,13 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://keovip.tv
+
+# Sitemaps
+Sitemap: https://keovip.tv/sitemap.xml
+Sitemap: https://keovip.tv/sitemap/tin-tuc.xml
+Sitemap: https://keovip.tv/sitemap/soi-keo.xml
+Sitemap: https://keovip.tv/sitemap/cam-nang.xml
+Sitemap: https://keovip.tv/sitemap/highlight.xml

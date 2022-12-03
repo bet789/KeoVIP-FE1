@@ -1,0 +1,341 @@
+@import url(./_variables.css);
+
+/* background-color: var(--primary-color); */
+
+header {
+    height: 55px;
+}
+
+header svg {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: none !important;
+    /* background-color: var(--primary-color); */
+}
+
+.nav-site {
+    width: 100vw;
+    height: 63px;
+    padding: 10px 0;
+}
+.nav-site .logo-mobile{
+    display: none;
+}
+.site-brand {
+    border-top-right-radius: 45px;
+    border-bottom-right-radius: 45px;
+}
+
+.nav-site .container {
+    display: flex;
+    padding: 0;
+}
+
+.nav-site nav ul {
+    display: flex;
+    margin-bottom: 0;
+}
+
+.nav-site nav ul hr {
+    display: none;
+}
+
+.nav-site nav ul li {
+    width: max-content;
+    padding: 6px 17px;
+    text-transform: uppercase;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.nav-site nav ul a{
+    font-size: 18px;
+}
+
+.nav-site nav ul li:hover {
+    background: rgba(0,0,0,.2);
+}
+.nav-site nav ul li.active {
+    background: #c9312a;
+}
+
+.second-nav-site {
+    /* width: 100vw; */
+    background-color: white;
+}
+
+.second-nav-site .container {
+    display: flex;
+    padding-left: 15%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    justify-content: start;
+}
+
+.second-nav-site-item {
+    color: white;
+    padding: 8px 6px;
+    width: max-content;
+    font-weight: 700;
+}
+
+.second-nav-site-item:not(:last-child) {
+    margin-right: 12px;
+}
+
+.second-nav-site-item:hover {
+    color: rgb(23 109 212) !important;
+    /* color: black; */
+}
+
+.mobile-sticky-nav {
+    display: none;
+    /* position: sticky; */
+    left: 0;
+    right: 0;
+    z-index: 100000;
+    /* height: 40px; */
+    width: 100%;
+    overflow: hidden;
+    bottom: 0;
+    position: fixed;
+}
+
+.sticky{
+    position: fixed;
+}
+
+.mobile-sticky-nav ul {
+    display: flex;
+    flex-direction: row;
+    background: linear-gradient(180deg, #657180 0%, #D42F21 100%);
+    color: white;
+    padding: 10px 10px;
+    justify-content: space-evenly;
+    overflow: hidden;
+    margin: 0;
+}
+
+.mobile-sticky-nav li {
+    /* color: black; */
+    font-size: 13px;
+    /* position: relative; */
+    width: 20%;
+}
+
+.mobile-sticky-nav li a {
+    display: block;
+    padding: 0 16px;
+}
+.mobile-sticky-nav li a .icon-home{
+    padding: 0 10px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    width: 45px;
+    height: 25px;
+}
+.mobile-sticky-nav li a span{
+    text-align: center;
+}
+.mobile-sticky-nav li:not(:last-child)::after {
+    position: absolute;
+    content: '';
+    right: -17px;
+    top: 50%;
+    transform: translateY(-50%) rotate(22deg);
+    height: 224%;
+    width: 2px;
+    background-color: white;
+
+}
+.header-news {
+    color: #666;
+    height: 35px;
+    line-height: 35px;
+    overflow: hidden;
+    position: relative;
+}
+.marquee {
+    color: #fff;
+    cursor: pointer;
+    height: 35px;
+    line-height: 35px;
+    width: 100%;
+    font-size: 11px;
+}
+.marquee .visible-area {
+    height: 100%;
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+.marquee .marquee-content.scrollLeft {
+    -webkit-animation: scrollLeft linear infinite;
+    animation: scrollLeft linear infinite;
+    animation-delay: 1s;
+    animation-duration: 10s;
+    animation-play-state: running;
+}
+.marquee .marquee-content {
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding-left: 100%;
+    position: absolute;
+    white-space: nowrap;
+}
+.header-news .news.marquee .marquee-item {
+    margin: 0 50px 0 0;
+}
+.header-news .news.marquee .marquee-item:before {
+    content: "•";
+    margin-right: 5px;
+}
+.header-news .news-title {
+    background: #1e1e1e;
+    color: #fadb26;
+    font-size: 12px;
+    margin-right: 10px;
+    padding: 0 5px;
+    position: absolute;
+    top: 0;
+}
+
+@keyframes scrollLeft{
+    0% {
+        transform: translate(0);
+    }
+    
+    100% {
+        transform: translate(-100%);
+    }
+}
+@media (max-width: 1580px) {
+    .site-brand {
+        padding-left: 10px;
+    }
+
+    .nav-site .container {
+        padding-left: 20%;
+    }
+
+    .second-nav-site .container {
+        padding-left: 15px;
+    }
+}
+
+@media (max-width: 1350px) {
+
+    .nav-site .container {
+        padding-left: 22%;
+    }
+
+    .second-nav-site .container {
+        padding-left: 26%;
+    }
+}
+
+
+@media (max-width: 1250px) {
+    .site-brand {
+        position: relative;
+        margin: 0px auto;
+        display: block;
+        width: max-content;
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+    }
+
+    .nav-site .container {
+        padding-left: 0;
+        justify-content: center;
+        display: flex;
+    }
+
+    .second-nav-site .container {
+        justify-content: space-between;
+        padding-left: 15px;
+    }
+
+
+}
+
+@media (max-width: 1200px) {
+    .nav-site nav ul a {
+        font-size: 1.5vw;
+    }
+}
+
+@media (max-width: 870px) {
+    .nav-site .container {
+        display: none;
+    }
+
+    .second-nav-site .container {
+        justify-content: center;
+        padding-left: 0;
+    }
+
+    header svg {
+        display: block !important;
+    }
+
+    #navbar ul hr {
+        display: block;
+    }
+
+    #navbar ul li {
+        padding: 15px 20px;
+    }
+
+    #navbar ul a li{
+        color: black;
+    }
+    .mobile-sticky-nav {
+        display: block;
+    }
+}
+
+@media (max-width: 780px) {
+    .second-nav-site .container {
+        display: grid;
+        grid-template-columns: repeat(4, auto);
+        justify-content: space-between;
+        padding: 0 15px;
+    }
+}
+
+@media (max-width: 470px) {
+    .mobile-sticky-nav li a {
+        padding: 0;
+        display: grid;
+    }
+    .nav-site{
+        height: 57px;
+        position: fixed;
+        z-index: 3;
+        background: rgba(0,0,0,.4);
+    }
+   
+}
+@media (max-width: 420px) {
+    .nav-site .logo-mobile{
+        display: flex;
+        width: 200px;
+        padding: 8px 0;
+    }
+    .nav-site .float-top-ad{
+        display: block !important;
+    }
+    .nav-site .header-news{
+        display: block !important;
+    }
+}
+@media (max-width: 535px) {
+    .second-nav-site-item {
+        font-size: 12px;
+        padding: 8px 4px;
+    }
+}
