@@ -10,6 +10,7 @@ import { ip } from "../data/ip";
 import moment from "moment";
 import InfiniteScroll from "../containers/infiniteScroll";
 import { Banner } from "../containers/Banner";
+import SkSchedule from "../containers/Skeleton/SkSchedule";
 
 export async function getServerSideProps() {
   const response = await axios.get(`${ip}/website/schedule`);
@@ -30,6 +31,7 @@ export default function Schedulepage({ data }) {
   const [blv, setBlv] = useState([]);
   const [schedules, setSchedules] = useState([]);
   const [leagues, setLeagues] = useState([]);
+  const [loading, setLoading] = useState(true);
   const getDataSchedulesByDate = async () => {
     const response = await axios.get(`${ip}/website/schedule/${date}`);
     const tmp = response?.data?.data ?? [];
@@ -56,6 +58,7 @@ export default function Schedulepage({ data }) {
   const getDataBLV = async () => {
     const response = await axios.get(`${ip}/website/matches?type=blv`);
     setBlv(response?.data?.data ?? []);
+    setLoading(false);
   };
 
   const getDataLeague = async () => {
@@ -183,57 +186,61 @@ export default function Schedulepage({ data }) {
                 }}
               />
               <div className="schedule-blv">
-                {selectedLeague === "lich-truc-tiep"
-                  ? blv.map((data, index) => {
-                      return (
-                        <li key={index} className="league-item">
-                          <div className="league-title">
-                            <span>{data.league}</span>
-                          </div>
-                          <ul className="match-list">
-                            <li key={data.id}>
-                              <div className="match-time">{data?.time}</div>
-                              <div className="match-blv">
-                                BLV {data?.commentator} <span>Live</span>
+                {loading ? (
+                  <SkSchedule />
+                ) : selectedLeague === "lich-truc-tiep" ? (
+                  blv.map((data, index) => {
+                    return (
+                      <li key={index} className="league-item">
+                        <div className="league-title">
+                          <span>{data.league}</span>
+                        </div>
+                        <ul className="match-list">
+                          <li key={data.id}>
+                            <div className="match-time">{data?.time}</div>
+                            <div className="match-blv">
+                              BLV {data?.commentator} <span>Live</span>
+                            </div>
+                            <div className="match-team">
+                              <div>
+                                <span className="team-name">{data?.team_home_name}</span>
+                                <picture>
+                                  <img
+                                    src={
+                                      data?.team_home_logo ??
+                                      "https://xoilac7.net/Image/team/images/20130921172915.gif?win007=sell"
+                                    }
+                                    alt={data?.team_home_name}
+                                  />
+                                </picture>
                               </div>
-                              <div className="match-team">
-                                <div>
-                                  <span className="team-name">{data?.team_home_name}</span>
-                                  <picture>
-                                    <img
-                                      src={
-                                        data?.team_home_logo ??
-                                        "https://xoilac7.net/Image/team/images/20130921172915.gif?win007=sell"
-                                      }
-                                      alt={data?.team_home_name}
-                                    />
-                                  </picture>
-                                </div>
-                                <div>
-                                  <span className="vs">
-                                    {/* {e?.score?.home ?? 0} - {e?.score?.away ?? 0} */}
-                                    vs
-                                  </span>
-                                </div>
-                                <div>
-                                  <picture>
-                                    <img
-                                      src={
-                                        data?.team_away_logo ??
-                                        "https://xoilac7.net/Image/team/images/20130921172933.gif?win007=sell"
-                                      }
-                                      alt={data?.team_away_name}
-                                    />
-                                  </picture>
-                                  <span className="team-name">{data?.team_away_name}</span>
-                                </div>
+                              <div>
+                                <span className="vs">
+                                  {/* {e?.score?.home ?? 0} - {e?.score?.away ?? 0} */}
+                                  vs
+                                </span>
                               </div>
-                            </li>
-                          </ul>
-                        </li>
-                      );
-                    })
-                  : ""}
+                              <div>
+                                <picture>
+                                  <img
+                                    src={
+                                      data?.team_away_logo ??
+                                      "https://xoilac7.net/Image/team/images/20130921172933.gif?win007=sell"
+                                    }
+                                    alt={data?.team_away_name}
+                                  />
+                                </picture>
+                                <span className="team-name">{data?.team_away_name}</span>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                    );
+                  })
+                ) : (
+                  ""
+                )}
               </div>
             </ul>
             <p className="intro">
