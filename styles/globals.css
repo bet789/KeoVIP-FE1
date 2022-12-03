@@ -56,9 +56,6 @@ a:hover {
   margin: 0 auto;
   padding: 0;
 }
-.action-hot-live video {
-  border-radius: 5px;
-}
 .page-title {
   font-size: 20px;
     line-height: 26px;
@@ -360,7 +357,7 @@ button:focus{
   margin: 0 10px;
   border-radius: 5px;
 }
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 440px) {
   /* .action-hot-live video{
     background-size: contain;
     max-height: 100%;
@@ -402,6 +399,10 @@ button:focus{
   }
   .action-hot-live iframe, .match-live iframe{
     height: 200px;
+  }
+  .action-hot-live #livePlayer{
+    margin-bottom: 10px;
+    border-radius: 0;
   }
 }
 /* @media only screen and (min-device-width: 1820px){

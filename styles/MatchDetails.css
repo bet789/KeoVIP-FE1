@@ -455,7 +455,9 @@ width: 100%;
   .match-details-live .match-live-chat{
     width: 100%;
     padding: 0;
-    margin: auto;
+    margin: 0;
+    overflow: hidden;
+    overflow-y: auto;
   }
   #detailPage{
     height: 100%;

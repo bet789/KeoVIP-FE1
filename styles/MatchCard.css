@@ -172,7 +172,7 @@
 /* .action-hot-live>div{
     height: 555px;
 } */
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 440px) {
     .col-md-9 .card-top {
         display: none;
         margin-top: 35px;
@@ -219,6 +219,7 @@
     }
     .card-border {
         height: 100px;
+        border-radius: 0;
     }
     .match_card .match_body .team .team_name{
         padding-left: 8px;

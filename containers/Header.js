@@ -167,7 +167,7 @@ export const Header = () => {
           <li>
             <Link href="/livescore">
               <a>
-                <img className="icon-home" src="/assets/images/ball.webp" /> <span> Livescore</span>
+                <img className="icon-livescore" src="/assets/images/ball.webp" /> <span> Livescore</span>
               </a>
             </Link>
           </li>

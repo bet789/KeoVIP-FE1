@@ -115,6 +115,8 @@ header svg {
     justify-content: space-evenly;
     overflow: hidden;
     margin: 0;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
 }
 
 .mobile-sticky-nav li {
@@ -135,6 +137,23 @@ header svg {
     margin-left: auto;
     width: 45px;
     height: 25px;
+}
+.mobile-sticky-nav li a .icon-livescore{
+    padding: 0 10px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    width: 45px;
+    height: 25px;
+    animation: spin 3s linear infinite;
+}
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(1turn);
+    }
 }
 .mobile-sticky-nav li a span{
     text-align: center;
