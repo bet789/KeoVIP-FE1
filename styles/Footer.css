@@ -52,9 +52,25 @@ footer .social-contact {
     gap: 8px;
 }
 @media screen and (max-width: 420px) {
-    footer img {
+    footer .logo-footer img {
         width: 250px;
         height: 50px;
+    }
+    footer .contact-cskh img {
+        width: 50px;
+        height: 50px;
+    }
+     .bxContact{
+        top: 71% !important;
+        left: 70% !important;
+        width: 200px !important;
+        height: 265px !important;
+    }
+    .bxContact a {
+        font-size: 12px;
+    }
+    #child-modal-title{
+        font-size: 11px !important;
     }
    footer .logo-footer{
         text-align: center;

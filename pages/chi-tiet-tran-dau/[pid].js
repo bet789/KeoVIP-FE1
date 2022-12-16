@@ -25,6 +25,21 @@ import ReactJWPlayer from "react-jw-player";
 import Marquee from "../../containers/Marquee";
 import EventStat from "../../containers/EventStat";
 import SkLivetream from "../../containers/Skeleton/SkLivetream";
+import CountDown from "../../containers/CountDown";
+import Ads from "../../containers/Ads";
+import {
+  ADS_BANNER_BOTTOM,
+  ADS_KEOVIP,
+  URL_789BET,
+  URL_API_THESPORTS,
+  URL_IFRAME_CHAT,
+  URL_IFRAME_THESPORTS,
+  URL_JUN88,
+  URL_NEW88,
+  URL_VIDEO,
+} from "../../contants";
+import reverseString from "../../utility/reverseString";
+import { useMemo } from "react";
 const listDetailMatchOddsOptions = ["789Bet", "New88", "Jun88"];
 
 export const MatchDetailsContext = React.createContext();
@@ -39,7 +54,6 @@ export default function MatchDetails() {
   const [data, setData] = useState(undefined);
   const [promotionalVideo, setPromotionalVideo] = useState(null);
   const timerId = useRef();
-  const [timer, setTimer] = useState(5);
   const [dataDetailMatchOdds, setDataDetailMatchOdds] = useState([]);
   const [dataDetailMatchOddsOptions, setDataDetailMatchOddsOptions] = useState(0);
   const [dataDetailMatchHistory, setDataDetailMatchHistory] = useState([]);
@@ -51,12 +65,15 @@ export default function MatchDetails() {
   const [urlMatches, setUrlMatches] = useState("/website/matches?type=home");
   const [categories, setCategories] = useState([]);
   const [page, setPage] = useState(1);
-  const [timeLeft, setTimeLeft] = useState();
   const timeMatch = Date.parse(data?.timeMatch);
   const timeNow = Date.now();
   const difference = timeMatch - 360000 - timeNow;
   const [loading, setLoading] = useState(true);
-  // const difference = +new Date() - +new Date("2022-12-28T18:30:00+05:30");
+  const [dataTheSports, setDataTheSports] = useState(null);
+  const [dataTheSportsLive, setDataTheSportsLive] = useState(null);
+  const matchIdLive = useMemo(() => {
+    return dataTheSportsLive?.filter((data) => dataTheSports?.thesports_uuid === data.match_id);
+  }, [dataTheSports?.thesports_uuid]);
   const getDataMatchList = async () => {
     const response = await axios.get(`${ip}${urlMatches}`);
     setCategories(response?.data?.data?.categories ?? []);
@@ -64,49 +81,72 @@ export default function MatchDetails() {
   };
   useEffect(() => {
     getDataMatchList();
-    // eslint-disable-next-line
   }, [urlMatches]);
-  useEffect(() => {
-    if (!Boolean(promotionalVideo) && !Boolean(timer)) {
-      getLiveStream();
-    }
-
-    // eslint-disable-next-line
-  }, [promotionalVideo, timer]);
+  // useEffect(() => {
+  //   if (!Boolean(promotionalVideo) && !Boolean(timer)) {
+  //     getLiveStream();
+  //   }
+  // }, [promotionalVideo, timer]);
   useEffect(() => {
     if (pid) {
       getDetailMatchHistory();
       getDetailMatchOdds();
       // getPromotionalVideo();
       getLiveStream(true);
+      getDataTheSports();
+      getDataTheSportsLive();
     }
     setLoading(false);
-    // eslint-disable-next-line
   }, [pid]);
 
   useEffect(() => {
     setInterval(() => {
       getLiveStream(false);
     }, 30000);
-
-    // eslint-disable-next-line
   }, [pid]);
 
-  useEffect(() => {
-    if (Boolean(promotionalVideo) && playing) {
-      if (timer <= 0) {
-        clearInterval(timerId.current);
+  // useEffect(() => {
+  //   if (Boolean(promotionalVideo) && playing) {
+  //     if (timer <= 0) {
+  //       clearInterval(timerId.current);
+  //     }
+
+  //     timerId.current = setInterval(() => {
+  //       setTimer((prevTimer) => (prevTimer > 0 ? prevTimer - 1 : 0));
+  //     }, 1500);
+  //   }
+
+  //   return () => {
+  //     clearInterval(timerId.current);
+  //   };
+  // }, [timer, promotionalVideo, playing]);
+  const matchID = reverseString(id.toString().slice(1, 8));
+  const getDataTheSports = async () => {
+    try {
+      const res = await axios.get(URL_API_THESPORTS);
+      if (res?.data?.data) {
+        const dt = res.data.data;
+        dt.map((item) => {
+          if (item.match_id == matchID) {
+            setDataTheSports(item);
+          }
+        });
       }
-
-      timerId.current = setInterval(() => {
-        setTimer((prevTimer) => (prevTimer > 0 ? prevTimer - 1 : 0));
-      }, 1500);
+    } catch (error) {
+      console.error(error);
     }
+  };
 
-    return () => {
-      clearInterval(timerId.current);
-    };
-  }, [timer, promotionalVideo, playing]);
+  const getDataTheSportsLive = async () => {
+    try {
+      const res = await axios.get(`${URL_API_THESPORTS}/live`);
+      if (res?.data?.data) {
+        setDataTheSportsLive(res.data.data);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const getDetailMatchHistory = async () => {
     try {
@@ -130,18 +170,6 @@ export default function MatchDetails() {
     }
   };
 
-  const getPromotionalVideo = async () => {
-    try {
-      const res = await axios.get(`${ip}/website/setting/promotional-video`);
-      if (res?.data?.data) {
-        setPromotionalVideo(res.data.data);
-        // setPlaying(true);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   const getLiveStream = async (isLiveStream) => {
     if (id) {
       const response = await axios.get(`${ip}/website/matches/${id}`);
@@ -150,17 +178,6 @@ export default function MatchDetails() {
       isLiveStream && setLinkLivestream((response?.data?.data?.livestream ?? [])?.[0]?.link ?? "");
     }
   };
-
-  const handlePromotionalVideoClick = async (url) => {
-    url && window.open(url);
-  };
-
-  const handleReady = async () => {
-    setTimeout(() => {
-      setPlaying(true);
-    }, 1000);
-  };
-
   const buttonChat = [
     {
       title: "Tỷ lệ kèo",
@@ -179,22 +196,6 @@ export default function MatchDetails() {
       url: "https://www.7897890.vip/signup",
     },
   ];
-  const calculateTimeLeft = () => {
-    let timeLeft = {};
-    if (difference > 0) {
-      timeLeft = {
-        hours: Math.floor(difference / (1000 * 60 * 60)),
-        minutes: Math.floor((difference / 1000 / 60) % 60),
-        seconds: Math.floor((difference / 1000) % 60),
-      };
-    }
-    return timeLeft;
-  };
-  useEffect(() => {
-    setTimeout(() => {
-      setTimeLeft(calculateTimeLeft());
-    }, 1000);
-  });
   const handleRefresh = (e) => {
     e.preventDefault();
     router.reload(window.location.pathname);
@@ -215,9 +216,8 @@ export default function MatchDetails() {
     document.getElementById("livePlayer").insertAdjacentHTML("beforeend", myElement);
   };
   const handleError = (e) => {
-    setLinkLivestream("https://keovip.b-cdn.net/worldCup_2022.812323cc77452e7fc8171c31b25aad69.mp4");
+    setLinkLivestream(URL_VIDEO);
   };
-  // console.log(data);
   return (
     <div className={styles.container}>
       <Headhtml />
@@ -233,10 +233,12 @@ export default function MatchDetails() {
           </picture>
           <div className="match-details">
             <div className="home-live">
+              <a href={ADS_KEOVIP} target="_blank">
+                <div className="ads-mobile" style={{ display: "none" }}>
+                  <img src={ADS_BANNER_BOTTOM} width="100%" height="70px" />
+                </div>
+              </a>
               <Marquee />
-              {/* <div className="banner">
-              <Banner />
-            </div> */}
               <div className="match-details-live">
                 <div className="match-live" styles={{ position: "relative", marginBottom: 10 }}>
                   {
@@ -263,13 +265,13 @@ export default function MatchDetails() {
                               onError={(e) => handleError(e)}
                             />
                             <div className="button-odd">
-                              <a target="_blank" href="https://www.789betb.com/?uagt=livesbong1&path=signup">
+                              <a target="_blank" href={URL_789BET}>
                                 789BET
                               </a>
-                              <a target="_blank" href="https://www.new88ww.com/?uagt=livesbong1&path=signup">
+                              <a target="_blank" href={URL_NEW88}>
                                 NEW88
                               </a>
-                              <a target="_blank" href="https://www.jun88h.com/?uagt=livesbong1&path=signup">
+                              <a target="_blank" href={URL_JUN88}>
                                 Jun88
                               </a>
                             </div>
@@ -303,6 +305,12 @@ export default function MatchDetails() {
                             ))}
                           </div>
                         </>
+                      ) : matchIdLive?.length > 0 ? (
+                        <iframe
+                          src={`${URL_IFRAME_THESPORTS}&uuid=${matchIdLive[0].match_id}`}
+                          width="100%"
+                          height="720"
+                        ></iframe>
                       ) : (
                         <iframe
                           src={`${urlAmination}?matchId=${id}&accessKey=tEFL6ClbFnfkvmEn0xspIVQyPV9jAz9u&lang=vi&statsPanel=hide`}
@@ -328,56 +336,16 @@ export default function MatchDetails() {
                       </span>
                     ))}
                   </div>
-                  <iframe
-                    width="100%"
-                    height="670"
-                    src="https://a2zchat.com/embed/6348e17da24d2aea95abb068"
-                    frameBorder="0"
-                  ></iframe>
+                  <iframe width="100%" height="670" src={URL_IFRAME_CHAT} frameBorder="0"></iframe>
                 </div>
               </div>
-              {/* {data?.linkRoomChat !== "undefined" ? (
-                  <div
-                    style={{ position: "relative", height: "720px" }}
-                    dangerouslySetInnerHTML={{ __html: data?.linkRoomChat }}
-                  />
-                ) : (
-                  <iframe
-                    src="https://www5.cbox.ws/box/?boxid=936674&boxtag=VyUjzQ"
-                    width="100%"
-                    height="720px"
-                    allowtransparency="yes"
-                    allow="autoplay"
-                    frameBorder="0"
-                    marginHeight="0"
-                    marginWith="0"
-                    scrolling="auto"
-                  />
-                )} */}
-
-              {/* <iframe
-                  width="100%"
-                  height="100%"
-                  src="https://a2zchat.com/embed/6350ecf631e16ee5703546d9"
-                  frameborder="0"
-                ></iframe> */}
-              {/* livestream video */}
-              {/* {!Boolean(promotionalVideo) && (
-                <div className="row">
-                  <div className="col-12 col-lg-12"></div>
-                </div>
-              )} */}
             </div>
           </div>
         </div>
-        {/* <MatchDetailsContext.Provider value={{ dataDetailMatchHistory }}>
-          <TopBet />
-          <RecentResult />
-        </MatchDetailsContext.Provider>
-        
-        <Introduction /> */}
         <div className="app-live">
           <div className="container">
+            <Ads />
+            <CountDown timer={1800} />
             <div className="match-details-odds">
               <div className="match-introduction">
                 <div className="match-team">

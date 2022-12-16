@@ -3,9 +3,9 @@ import ReactPlayer from "react-player";
 import { ip } from "../data/ip";
 import axios from "../utility/axios";
 import ReactJWPlayer from "react-jw-player";
-// import ReactDOM from "react-dom";
 import { urlAmination } from "../data/ip";
 import SkLivetream from "./Skeleton/SkLivetream";
+import { URL_789BET, URL_JUN88, URL_NEW88, URL_VIDEO } from "../contants";
 export default function LiveHome(props) {
   const { data } = props;
   const [promotionalVideo, setPromotionalVideo] = useState(null);
@@ -96,7 +96,7 @@ export default function LiveHome(props) {
     document.getElementById("livePlayer").insertAdjacentHTML("beforeend", myElement);
   };
   const handleError = (e) => {
-    setLinkLivestream("https://keovip.b-cdn.net/worldCup_2022.812323cc77452e7fc8171c31b25aad69.mp4");
+    setLinkLivestream(URL_VIDEO);
   };
   return (
     <>
@@ -129,13 +129,13 @@ export default function LiveHome(props) {
             <a href={`/chi-tiet-tran-dau/${data?.slug ?? ""}-${data?.id}`}>
               <span>Vào Phòng Live</span>
             </a>
-            <a target="_blank" href="https://www.789betb.com/?uagt=livesbong1&path=signup">
+            <a target="_blank" href={URL_789BET}>
               789BET
             </a>
-            <a target="_blank" href="https://www.new88ww.com/?uagt=livesbong1&path=signup">
+            <a target="_blank" href={URL_NEW88}>
               NEW88
             </a>
-            <a target="_blank" href="https://www.jun88h.com/?uagt=livesbong1&path=signup">
+            <a target="_blank" href={URL_JUN88}>
               Jun88
             </a>
           </div>

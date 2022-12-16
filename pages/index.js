@@ -1,19 +1,11 @@
-import Image from "next/image";
-import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { Banner } from "../containers/Banner";
 
 import { Footer } from "../containers/Footer";
 import { Header } from "../containers/Header";
 import Headhtml from "../containers/Headhtml";
 import HotLive from "../containers/HotLive";
-import { Introduction } from "../containers/Introduction";
 import LiveHome from "../containers/LiveHome";
-import Loading from "../containers/Loading";
-import { MatchCard } from "../containers/MatchCard";
 import { MatchCard2 } from "../containers/MatchCard2";
-import { PostCard } from "../containers/PostCard";
-import { PostVideoCard } from "../containers/PostVideoCard";
 import Schema from "../containers/Schema";
 import Script from "../containers/Script";
 import { ip } from "../data/ip";
@@ -22,36 +14,9 @@ import axios from "../utility/axios";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
 import Marquee from "../containers/Marquee";
-
-// export async function getServerSideProps() {
-//   const response = await axios.get(`${ip}/website/news`, {
-//     params: {
-//       limit: 7,
-//       page: 1,
-//     },
-//   });
-
-//   const responseMatch = await axios.get(`${ip}/website/match`, {
-//     params: {
-//       limit: 7,
-//       page: 1,
-//     },
-//   });
-
-//   const responseHighlight = await axios.get(`${ip}/website/highlight`, {
-//     params: {
-//       limit: 7,
-//       page: 1,
-//     },
-//   });
-//   return {
-//     props: {
-//       news: response?.data?.data?.data ?? [],
-//       highlight: responseHighlight?.data?.data?.data ?? [],
-//       match: responseMatch?.data?.data?.data ?? [],
-//     },
-//   };
-// }
+import CountDown from "../containers/CountDown";
+import Ads from "../containers/Ads";
+import { ADS_BANNER_BOTTOM, ADS_KEOVIP } from "../contants";
 
 export async function getStaticProps(context) {
   const response = await axios.get(`${ip}/website/matches?type=home`);
@@ -64,7 +29,6 @@ export async function getStaticProps(context) {
 }
 
 export default function Home({ matchList }) {
-  // const [matchList, setMatchList] = useState([]);
   const [matchBlv, setMatchBlv] = useState([]);
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(12);
@@ -90,7 +54,6 @@ export default function Home({ matchList }) {
     });
   };
   useEffect(() => {
-    // getDataMatchList();
     getDataMatchBlv();
   }, [urlMatches]);
 
@@ -121,8 +84,6 @@ export default function Home({ matchList }) {
       setMatcheLive((prevState) => [...prevState, itemMatchBLV[0]]);
     }
   };
-  // console.log(matchList);
-  // console.log(matchLive);
   return (
     <div className={styles.container}>
       <Headhtml />
@@ -137,7 +98,13 @@ export default function Home({ matchList }) {
               alt="bg_homepage"
             />
           </picture>
+
           <div className="home-live">
+            <a href={ADS_KEOVIP} target="_blank">
+              <div className="ads-mobile" style={{ display: "none" }}>
+                <img src={ADS_BANNER_BOTTOM} width="100%" height="70px" />
+              </div>
+            </a>
             <Marquee />
             <div className="main-live">
               <div className="main-live-app">
@@ -187,6 +154,8 @@ export default function Home({ matchList }) {
 
         <div className="app-live">
           <div className="container">
+            <Ads />
+            <CountDown timer={1800} />
             <HotLive />
             <div className="row">
               <div className="col-md-7 mb-3">

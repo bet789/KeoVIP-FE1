@@ -1,0 +1,10 @@
+export const ADS_KEOVIP = "https://t.me/keovip1tv";
+export const ADS_BANNER = "https://keovip.b-cdn.net/taipei-14-12.gif";
+export const ADS_BANNER_BOTTOM = "https://keovip.b-cdn.net/taipei-ads.gif";
+export const URL_789BET = "https://www.789betb.com/?uagt=livesbong1&path=signup";
+export const URL_NEW88 = "https://www.new88ww.com/?uagt=livesbong1&path=signup";
+export const URL_JUN88 = "https://www.jun88h.com/?uagt=livesbong1&path=signup";
+export const URL_VIDEO = "https://keovip.b-cdn.net/worldCup_2022.812323cc77452e7fc8171c31b25aad69.mp4";
+export const URL_IFRAME_THESPORTS = "https://stream.raysports.live/vi/football?token=72qdeh1l6hgu5rl";
+export const URL_IFRAME_CHAT = "https://a2zchat.com/embed/6348e17da24d2aea95abb068";
+export const URL_API_THESPORTS = "https://api.keovip.live/website/thesports";

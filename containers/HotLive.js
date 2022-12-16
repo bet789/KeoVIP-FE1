@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "../utility/axios";
 import { ip } from "../data/ip";
 import { MatchCard } from "../containers/MatchCard";
-import Loading from "./Loading";
 import SkListMatch from "./Skeleton/SkListMatch";
 import SkListMenu from "./Skeleton/SkListMenu";
 export default function HotLive(props) {
@@ -74,7 +73,7 @@ export default function HotLive(props) {
     setLoading(true);
     getDataMatchList();
   }, [urlMatches]);
-  useEffect(() => {}, [filter]);
+
   return (
     <>
       {loadingMenu ? (

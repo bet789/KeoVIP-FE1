@@ -3,6 +3,7 @@ import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
+import { URL_789BET } from "../contants";
 import { ip } from "../data/ip";
 
 export const MatchCard2 = (props) => {
@@ -34,7 +35,7 @@ export const MatchCard2 = (props) => {
       <div className="match_card text-light" onClick={() => props.getIdItemMatch(data?.id)}>
         <div className="match_header d-flex justify-content-between">
           <span className="match_title">{league}</span>
-          <Link target={"_blank"} href="https://www.7897890.vip/">
+          <Link target={"_blank"} href={URL_789BET}>
             <span className="match_time" style={{ fontSize: "12px" }}>
               Cược ngay
             </span>
