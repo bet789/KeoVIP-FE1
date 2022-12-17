@@ -5,7 +5,9 @@ import axios from "../utility/axios";
 import ReactJWPlayer from "react-jw-player";
 import { urlAmination } from "../data/ip";
 import SkLivetream from "./Skeleton/SkLivetream";
-import { URL_789BET, URL_JUN88, URL_NEW88, URL_VIDEO } from "../contants";
+import { URL_789BET, URL_API_THESPORTS, URL_IFRAME_THESPORTS, URL_JUN88, URL_NEW88, URL_VIDEO } from "../contants";
+import reverseString from "../utility/reverseString";
+import { useMemo } from "react";
 export default function LiveHome(props) {
   const { data } = props;
   const [promotionalVideo, setPromotionalVideo] = useState(null);
@@ -16,6 +18,13 @@ export default function LiveHome(props) {
   const [timer, setTimer] = useState(5);
   const userAgent = typeof navigator === "undefined" ? "SSR" : navigator.userAgent;
   const [loading, setLoading] = useState(true);
+  const [dataTheSports, setDataTheSports] = useState(null);
+  const [dataTheSportsLive, setDataTheSportsLive] = useState(null);
+  const matchID = reverseString(data.id.toString().slice(1, 8));
+
+  const matchIdLive = useMemo(() => {
+    return dataTheSportsLive?.filter((data) => dataTheSports?.thesports_uuid === data.match_id);
+  }, [dataTheSports?.thesports_uuid]);
   useEffect(() => {
     if (!Boolean(promotionalVideo) && !Boolean(timer)) {
       getLiveStream();
@@ -26,9 +35,36 @@ export default function LiveHome(props) {
     if (data.id) {
       // getPromotionalVideo();
       getLiveStream(true);
+      getDataTheSports();
+      getDataTheSportsLive();
     }
   }, [data.id]);
+  const getDataTheSports = async () => {
+    try {
+      const res = await axios.get(URL_API_THESPORTS);
+      if (res?.data?.data) {
+        const dt = res.data.data;
+        dt.map((item) => {
+          if (item.match_id == matchID) {
+            setDataTheSports(item);
+          }
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
+  const getDataTheSportsLive = async () => {
+    try {
+      const res = await axios.get(`${URL_API_THESPORTS}/live`);
+      if (res?.data?.data) {
+        setDataTheSportsLive(res.data.data);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
   useEffect(() => {
     setInterval(() => {
       getLiveStream(false);
@@ -50,34 +86,12 @@ export default function LiveHome(props) {
       clearInterval(timerId.current);
     };
   }, [timer, promotionalVideo, playing]);
-
-  // const getPromotionalVideo = async () => {
-  //   try {
-  //     const res = await axios.get(`${ip}/website/setting/promotional-video`);
-  //     if (res?.data?.data) {
-  //       setPromotionalVideo(res.data.data);
-  //       // setPlaying(true);
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
   const getLiveStream = async (isLiveStream) => {
     isLiveStream && setLivestream(data?.livestream ?? []);
     isLiveStream && setLinkLivestream((data?.livestream ?? [])?.[0]?.link ?? "");
     setLoading(false);
   };
 
-  // const handlePromotionalVideoClick = async (url) => {
-  //   url && window.open(url);
-  // };
-
-  // const handleReady = async () => {
-  //   setTimeout(() => {
-  //     setPlaying(true);
-  //   }, 1000);
-  // };
   const onEnterFullScreen = () => {
     const myElement = `  <div class="button-odd2" id="odd2">
     <a href="/chi-tiet-tran-dau/${data?.slug ?? ""}-${data?.id}">
@@ -140,11 +154,13 @@ export default function LiveHome(props) {
             </a>
           </div>
         </>
+      ) : matchIdLive?.length > 0 ? (
+        <iframe src={`${URL_IFRAME_THESPORTS}&uuid=${matchIdLive[0].match_id}`} width="100%" height="720"></iframe>
       ) : (
         <iframe
           src={`${urlAmination}?matchId=${data.id}&accessKey=tEFL6ClbFnfkvmEn0xspIVQyPV9jAz9u&lang=vi&statsPanel=hide`}
           width="100%"
-          height="700"
+          height="720"
         ></iframe>
       )}
     </>
