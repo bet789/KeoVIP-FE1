@@ -309,13 +309,13 @@ export default function MatchDetails() {
                         <iframe
                           src={`${URL_IFRAME_THESPORTS}&uuid=${matchIdLive[0].match_id}`}
                           width="100%"
-                          height="720"
+                          height="700"
                         ></iframe>
                       ) : (
                         <iframe
                           src={`${urlAmination}?matchId=${id}&accessKey=tEFL6ClbFnfkvmEn0xspIVQyPV9jAz9u&lang=vi&statsPanel=hide`}
                           width="100%"
-                          height="720"
+                          height="700"
                         ></iframe>
                       )}
                     </>

@@ -17,6 +17,8 @@ import Marquee from "../containers/Marquee";
 import CountDown from "../containers/CountDown";
 import Ads from "../containers/Ads";
 import { ADS_BANNER_BOTTOM, ADS_KEOVIP } from "../contants";
+import { useMemo } from "react";
+import { Box } from "@mui/material";
 
 export async function getStaticProps(context) {
   const response = await axios.get(`${ip}/website/matches?type=home`);
@@ -37,6 +39,9 @@ export default function Home({ matchList }) {
   const [urlMatches, setUrlMatches] = useState("/website/matches?type=home");
   const [urlMatcheBlv, setUrlMatcheBlv] = useState("/website/matches?type=blv");
   const [matchLive, setMatcheLive] = useState([]);
+  const matchLiveHome = useMemo(() => {
+    return matchList?.filter((data) => data.status !== "");
+  }, [matchList]);
   const getDataMatchList = async () => {
     const response = await axios.get(`${ip}${urlMatches}`);
     setCategories(response?.data?.data?.categories ?? []);
@@ -126,25 +131,29 @@ export default function Home({ matchList }) {
               <div className=" main-card-header">
                 <PerfectScrollbar style={sampleContainer}>
                   <div className="card-top">
-                    {matchBlv.length > 3
-                      ? matchBlv
-                          .filter((item, index) => page <= index + 1 && index + 1 <= page + limit - 1)
-                          .map((item) => {
-                            return (
-                              <div className="col-12 col-md-6 col-lg-12 mb-2" key={item.id}>
-                                <MatchCard2 data={item} getIdItemMatch={getIdItemMatch} />
-                              </div>
-                            );
-                          })
-                      : matchList
-                          .filter((item, index) => page <= index + 1 && index + 1 <= page + 10 - 1)
-                          .map((item) => {
-                            return (
-                              <div className="col-12 col-md-6 col-lg-12 mb-2" key={item.id}>
-                                <MatchCard2 data={item} getIdItemMatch={getIdItemMatch} />
-                              </div>
-                            );
-                          })}
+                    {matchLiveHome.length > 0
+                      ? matchLiveHome.map((item) => {
+                          return (
+                            <div className="col-12 col-md-6 col-lg-12 mb-2" key={item.id}>
+                              <MatchCard2 data={item} getIdItemMatch={getIdItemMatch} />
+                              {/* <Box sx={{ marginTop: "10px" }}>
+                                <img
+                                  src="https://sta.cvndnss.com/file/common/20221217/7037e35595afb31f7d090d60814b06d8_wh320.jpg"
+                                  height="150"
+                                  width="100%"
+                                  style={{ borderRadius: "10px" }}
+                                />
+                              </Box> */}
+                            </div>
+                          );
+                        })
+                      : matchList.map((item) => {
+                          return (
+                            <div className="col-12 col-md-6 col-lg-12 mb-2" key={item.id}>
+                              <MatchCard2 data={item} getIdItemMatch={getIdItemMatch} />
+                            </div>
+                          );
+                        })}
                   </div>
                 </PerfectScrollbar>
               </div>

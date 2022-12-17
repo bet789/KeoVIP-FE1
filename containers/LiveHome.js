@@ -156,7 +156,7 @@ export default function LiveHome(props) {
         </>
       ) : matchIdLive?.length > 0 ? (
         <>
-          <iframe src={`${URL_IFRAME_THESPORTS}&uuid=${matchIdLive[0].match_id}`} width="100%" height="720"></iframe>
+          <iframe src={`${URL_IFRAME_THESPORTS}&uuid=${matchIdLive[0].match_id}`} width="100%" height="700"></iframe>
           <div className="button-live">
             <a href={`/chi-tiet-tran-dau/${data?.slug ?? ""}-${data?.id}`}>
               <span>Vào Phòng Live</span>
@@ -167,7 +167,7 @@ export default function LiveHome(props) {
         <iframe
           src={`${urlAmination}?matchId=${data.id}&accessKey=tEFL6ClbFnfkvmEn0xspIVQyPV9jAz9u&lang=vi&statsPanel=hide`}
           width="100%"
-          height="720"
+          height="700"
         ></iframe>
       )}
     </>
