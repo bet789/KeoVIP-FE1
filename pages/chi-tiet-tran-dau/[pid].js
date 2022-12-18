@@ -37,6 +37,7 @@ import {
   URL_JUN88,
   URL_NEW88,
   URL_VIDEO,
+  URL_GROUP_KEOVIP,
 } from "../../contants";
 import reverseString from "../../utility/reverseString";
 import { useMemo } from "react";
@@ -189,17 +190,13 @@ export default function MatchDetails() {
     },
     {
       title: "Nhóm Keovip",
-      url: "https://t.me/keovip39",
+      url: URL_GROUP_KEOVIP,
     },
     {
       title: "Đặt cược",
-      url: "https://www.7897890.vip/signup",
+      url: URL_789BET,
     },
   ];
-  const handleRefresh = (e) => {
-    e.preventDefault();
-    router.reload(window.location.pathname);
-  };
   const onEnterFullScreen = () => {
     const myElement = `  <div class="button-odd2" >
     <a target="_blank" href="https://www.789betb.com/?uagt=livesbong1&path=signup">
@@ -294,10 +291,6 @@ export default function MatchDetails() {
                                 style={{ background: `${item?.color ?? "#F0BE5A"}` }}
                                 onClick={() => {
                                   setLinkLivestream(item?.link ?? "");
-                                  //test
-                                  // setLinkLivestream(
-                                  //   'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4'
-                                  // );
                                 }}
                               >
                                 {item?.name ?? `Dự phòng ${i + 1}`}
@@ -306,11 +299,24 @@ export default function MatchDetails() {
                           </div>
                         </>
                       ) : matchIdLive?.length > 0 ? (
-                        <iframe
-                          src={`${URL_IFRAME_THESPORTS}&uuid=${matchIdLive[0].match_id}`}
-                          width="100%"
-                          height="700"
-                        ></iframe>
+                        <>
+                          <iframe
+                            src={`${URL_IFRAME_THESPORTS}&uuid=${matchIdLive[0].match_id}`}
+                            width="100%"
+                            height="700"
+                          ></iframe>
+                          <div className="button-odd">
+                            <a target="_blank" href={URL_789BET}>
+                              789BET
+                            </a>
+                            <a target="_blank" href={URL_NEW88}>
+                              NEW88
+                            </a>
+                            <a target="_blank" href={URL_JUN88}>
+                              Jun88
+                            </a>
+                          </div>
+                        </>
                       ) : (
                         <iframe
                           src={`${urlAmination}?matchId=${id}&accessKey=tEFL6ClbFnfkvmEn0xspIVQyPV9jAz9u&lang=vi&statsPanel=hide`}
@@ -417,55 +423,6 @@ export default function MatchDetails() {
                 <EventStat id={id} />
               </div>
             </div>
-            {/* <div className="row">
-              <div className="col-md-12 mb-3">
-                <div className="news-selector">
-                  <ul>
-                    <span>
-                      <img src="/assets/images/Group-19.png" />
-                    </span>
-                    <li>
-                      <span>TRẬN ĐẤU TIẾP THEO</span>
-                    </li>
-                  </ul>
-                </div>
-                <Swiper
-                  slidesPerView={4}
-                  autoplay={{
-                    delay: 3000,
-                    disableOnInteraction: false,
-                  }}
-                  modules={[Autoplay]}
-                  breakpoints={{
-                    // when window width is <= 420px
-                    375: {
-                      slidesPerView: 1,
-                    },
-                    360: {
-                      slidesPerView: 1,
-                    },
-                    768: {
-                      slidesPerView: 2,
-                    },
-                    1080: {
-                      slidesPerView: 4,
-                    },
-                  }}
-                >
-                  {matchList &&
-                    matchList.length > 0 &&
-                    matchList
-                      .filter((item, index) => page <= index + 1 && index + 1 <= page + limit - 1)
-                      .map((item) => {
-                        return (
-                          <SwiperSlide key={item._id}>
-                            <MatchContinue data={item} />
-                          </SwiperSlide>
-                        );
-                      })}
-                </Swiper>
-              </div>
-            </div> */}
             <HotLive />
           </div>
         </div>

@@ -8,3 +8,4 @@ export const URL_VIDEO = "https://keovip.b-cdn.net/worldCup_2022.812323cc77452e7
 export const URL_IFRAME_THESPORTS = "https://stream.raysports.live/vi/football?token=72qdeh1l6hgu5rl";
 export const URL_IFRAME_CHAT = "https://a2zchat.com/embed/6348e17da24d2aea95abb068";
 export const URL_API_THESPORTS = "https://api.keovip.live/website/thesports";
+export const URL_GROUP_KEOVIP = "https://t.me/+iivt0xZFDhJjMmY1";

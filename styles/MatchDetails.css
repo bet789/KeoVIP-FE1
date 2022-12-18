@@ -354,8 +354,8 @@ width: 100%;
 }
 .action-hot-live .button-odd{
   position: absolute;
-  top: 95%;
-  right: 55px;
+  top: 94%;
+  right: 140px;
 }
 .match-live .button-odd a,  .action-hot-live .button-odd a{
   padding: 5px 10px;
@@ -478,8 +478,8 @@ width: 100%;
     font-size: 10px;
   }
   .match-live .button-odd {
-    top: 85%;
-    right: 40px;
+    top: 82%;
+    right: 140px;
   }
   .match-live .button-odd a:first-child, .match-live .button-odd a:nth-child(2), .match-live .button-odd a:nth-child(3) {
     font-size: 10px;

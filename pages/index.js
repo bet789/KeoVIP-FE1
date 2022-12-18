@@ -136,14 +136,6 @@ export default function Home({ matchList }) {
                           return (
                             <div className="col-12 col-md-6 col-lg-12 mb-2" key={item.id}>
                               <MatchCard2 data={item} getIdItemMatch={getIdItemMatch} />
-                              {/* <Box sx={{ marginTop: "10px" }}>
-                                <img
-                                  src="https://sta.cvndnss.com/file/common/20221217/7037e35595afb31f7d090d60814b06d8_wh320.jpg"
-                                  height="150"
-                                  width="100%"
-                                  style={{ borderRadius: "10px" }}
-                                />
-                              </Box> */}
                             </div>
                           );
                         })
