@@ -38,6 +38,7 @@ import {
   URL_NEW88,
   URL_VIDEO,
   URL_GROUP_KEOVIP,
+  URL_IMAGE_BACKGROUND,
 } from "../../contants";
 import reverseString from "../../utility/reverseString";
 import { useMemo } from "react";
@@ -222,11 +223,7 @@ export default function MatchDetails() {
         <div id="detailPage">
           <Header />
           <picture>
-            <img
-              src="https://senbackkg.kz4702q.com/main-consumer-web/assets-oss/commons/images/worldCupLanding/banner_loaded.2e26c37489fb845f412c90b2056be180.webp"
-              className="bg_homepage"
-              alt="bg_homepage"
-            />
+            <img src={URL_IMAGE_BACKGROUND} className="bg_homepage" alt="bg_homepage" />
           </picture>
           <div className="match-details">
             <div className="home-live">
@@ -423,7 +420,6 @@ export default function MatchDetails() {
                 <EventStat id={id} />
               </div>
             </div>
-            <HotLive />
           </div>
         </div>
         <Footer />

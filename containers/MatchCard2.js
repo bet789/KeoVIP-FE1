@@ -2,14 +2,12 @@ import { Button } from "@mui/material";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect, useMemo } from "react";
 import { URL_789BET } from "../contants";
 import { ip } from "../data/ip";
+import reverseString from "../utility/reverseString";
 
-export const MatchCard2 = (props) => {
-  const router = useRouter();
-  const { data } = props;
-  // console.log(data);
+export const MatchCard2 = ({ data, getIdItemMatch, matchTheSports }) => {
   const {
     linkMatch,
     category,
@@ -29,10 +27,16 @@ export const MatchCard2 = (props) => {
     league,
   } = data;
   const imgTmp = "https://apivaobo.xyz/logo_teams/no-logo.gif";
+  const matchChangeId = parseInt(reverseString(data?.id.toString().slice(1, 8)));
+  const getIdMatch = (id) => {
+    if (!getIdItemMatch) return;
+    getIdItemMatch(id);
+  };
+  const matchIdTheSports = matchTheSports?.map((item) => item.match_id);
   return (
     <div className="card-border">
       {/* <Link href={`/chi-tiet-tran-dau/${data?.slug ?? ""}-${data?.id}`}> */}
-      <div className="match_card text-light" onClick={() => props.getIdItemMatch(data?.id)}>
+      <div className="match_card text-light" onClick={() => getIdMatch(data?.id)}>
         <div className="match_header d-flex justify-content-between">
           <span className="match_title">{league}</span>
           <Link target={"_blank"} href={URL_789BET}>
@@ -48,27 +52,8 @@ export const MatchCard2 = (props) => {
             </picture>
 
             <span className="team_name">{team_home_name.slice(0, 16) ?? ""}</span>
-            {/* <span
-                className="watch_now"
-                onClick={async () => {
-                  router.push(`/chi-tiet-tran-dau/${data?.id}`);
-                }}
-              >
-                Xem ngay
-              </span> */}
           </div>
           <div className="match_status d-flex flex-column justify-content-center">
-            {/* {isHappening ? (
-                <div className="happening d-flex flex-column justify-content-center align-items-center">
-                  <span className="current_status">{currentStatus}</span>
-                  <span className="current_result">{currentResult}</span>
-                </div>
-              ) : (
-                <div className="waiting d-flex flex-column justify-content-center align-items-center">
-                  <span className="current_status">{currentStatus}</span>
-                  <span className="current_result">{currentResult}</span>
-                </div>
-              )} */}
             <div className="happening d-flex flex-column justify-content-center align-items-center">
               {status !== "" ? null : (
                 <span className="match_time" style={{ fontSize: "12px" }}>
@@ -109,29 +94,7 @@ export const MatchCard2 = (props) => {
             <span className="team_name">{team_away_name.slice(0, 15) ?? ""}</span>
           </div>
         </div>
-        {/* <div style={{ display: "flex", justifyContent: "center" }}>
-          <Link href={`/chi-tiet-tran-dau/${data?.slug ?? ""}-${data?.id}`}>
-            <a>
-              <div
-                style={{
-                  backgroundColor: "#0F4CD9",
-                  padding: "5px 10px",
-                  borderRadius: 20,
-                  marginRight: 20,
-                }}
-              >
-                Xem ngay
-              </div>
-            </a>
-          </Link>
-          <Link href={bet}>
-            <a target="_blank">
-              <div style={{ backgroundColor: "#009B3A", padding: "5px 10px", borderRadius: 20 }}>Đặt cược</div>
-            </a>
-          </Link>
-        </div> */}
       </div>
-      {/* </Link> */}
     </div>
   );
 };

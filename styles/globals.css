@@ -42,14 +42,14 @@ a{
 a:hover {
   text-decoration: none;
 }
-#main{
+/* #main{
   width: 100%;
   background-color: #d9d9d9;
   background-image: url(../public/assets/images/main-home.webp);
   background-size: 100% 180%;
   background-repeat: no-repeat;
   background-position: center top;
-}
+} */
 .container{
   width: 100%;
   max-width: 1390px;

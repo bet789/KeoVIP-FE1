@@ -16,21 +16,23 @@ import "react-perfect-scrollbar/dist/css/styles.css";
 import Marquee from "../containers/Marquee";
 import CountDown from "../containers/CountDown";
 import Ads from "../containers/Ads";
-import { ADS_BANNER_BOTTOM, ADS_KEOVIP } from "../contants";
+import { ADS_BANNER_BOTTOM, ADS_KEOVIP, URL_API_THESPORTS, URL_IMAGE_BACKGROUND } from "../contants";
 import { useMemo } from "react";
 import { Box } from "@mui/material";
-
+import { getApiTheSports } from "./api";
 export async function getStaticProps(context) {
   const response = await axios.get(`${ip}/website/matches?type=home`);
+  const resTheSports = await getApiTheSports();
   return {
     props: {
       matchList: response?.data?.data ?? [],
+      matchTheSports: resTheSports?.data,
     }, // will be passed to the page component as props
     revalidate: 10, // In seconds
   };
 }
 
-export default function Home({ matchList }) {
+export default function Home({ matchList, matchTheSports }) {
   const [matchBlv, setMatchBlv] = useState([]);
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(12);
@@ -42,11 +44,7 @@ export default function Home({ matchList }) {
   const matchLiveHome = useMemo(() => {
     return matchList?.filter((data) => data.status !== "");
   }, [matchList]);
-  const getDataMatchList = async () => {
-    const response = await axios.get(`${ip}${urlMatches}`);
-    setCategories(response?.data?.data?.categories ?? []);
-    setMatchList(response?.data?.data ?? []);
-  };
+
   const getDataMatchBlv = async () => {
     const response = await axios.get(`${ip}${urlMatcheBlv}`);
     setMatchBlv(response?.data?.data ?? []);
@@ -97,11 +95,7 @@ export default function Home({ matchList }) {
         <div id="homepage">
           <Header />
           <picture>
-            <img
-              src="https://senbackkg.kz4702q.com/main-consumer-web/assets-oss/commons/images/worldCupLanding/banner_loaded.2e26c37489fb845f412c90b2056be180.webp"
-              className="bg_homepage"
-              alt="bg_homepage"
-            />
+            <img src={URL_IMAGE_BACKGROUND} className="bg_homepage" alt="bg_homepage" />
           </picture>
 
           <div className="home-live">
@@ -135,7 +129,7 @@ export default function Home({ matchList }) {
                       ? matchLiveHome.map((item) => {
                           return (
                             <div className="col-12 col-md-6 col-lg-12 mb-2" key={item.id}>
-                              <MatchCard2 data={item} getIdItemMatch={getIdItemMatch} />
+                              <MatchCard2 data={item} matchTheSports={matchTheSports} getIdItemMatch={getIdItemMatch} />
                             </div>
                           );
                         })

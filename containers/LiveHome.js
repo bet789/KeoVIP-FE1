@@ -20,7 +20,7 @@ export default function LiveHome(props) {
   const [loading, setLoading] = useState(true);
   const [dataTheSports, setDataTheSports] = useState(null);
   const [dataTheSportsLive, setDataTheSportsLive] = useState(null);
-  const matchID = reverseString(data.id.toString().slice(1, 8));
+  const matchID = reverseString(data?.id.toString().slice(1, 8));
 
   const matchIdLive = useMemo(() => {
     return dataTheSportsLive?.filter((data) => dataTheSports?.thesports_uuid === data.match_id);
@@ -160,7 +160,7 @@ export default function LiveHome(props) {
             src={`${URL_IFRAME_THESPORTS}&uuid=${matchIdLive[0].match_id}`}
             width="100%"
             height="700"
-            allowfullscreen="allowfullscreen"
+            allowfullscreen="allowFullScreen"
           ></iframe>
           <div className="button-live">
             <a href={`/chi-tiet-tran-dau/${data?.slug ?? ""}-${data?.id}`}>

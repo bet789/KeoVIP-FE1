@@ -10,7 +10,7 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  background: linear-gradient(180deg, #657180 0%, #1F2225 100%);
+  background: #1e1e1e;
   background-size: cover;
   background-repeat: no-repeat;
 }
