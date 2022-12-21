@@ -399,7 +399,7 @@ button:focus{
     top: 96%;
   }
   .action-hot-live iframe, .match-live iframe{
-    height: 200px;
+    height: 240px;
   }
   .action-hot-live #livePlayer{
     margin-bottom: 10px;

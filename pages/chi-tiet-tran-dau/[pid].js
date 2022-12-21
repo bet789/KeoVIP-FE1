@@ -26,7 +26,6 @@ import {
   API,
   URL_AMINATION,
 } from "../../contants";
-import reverseString from "../../utility/reverseString";
 import { useMemo } from "react";
 import {
   getApiMatchDetail,
@@ -170,7 +169,7 @@ export default function MatchDetails({ matchDetail, matchTheSports, matchTheSpor
                           <iframe
                             src={`${URL_IFRAME_THESPORTS}&uuid=${matchIdLive[0].match_id}`}
                             width="100%"
-                            height="700"
+                            height="670"
                           ></iframe>
                           <div className="button-odd">
                             <a target="_blank" href={URL_789BET}>

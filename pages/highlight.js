@@ -51,7 +51,7 @@ const Highlight = () => {
                 ) : (
                   highlight?.map((item, index) => (
                     <div className="col-12 co-md-6 col-lg-3 mb-3" key={item?.avatar}>
-                      <Link key={index} href={`/highlight/${item?.slug ?? ""}-${item?._id}`}>
+                      <Link key={index} href={`/highlight/${item?._id}`}>
                         <a>
                           <div className="highlight-item d-flex flex-lg-column ">
                             <div className="thumbnail position-relative">

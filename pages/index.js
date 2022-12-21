@@ -51,7 +51,6 @@ export default function Home({ matchList, matchTheSports, matchTheSportsLive }) 
       setMatcheLive((prevState) => [...prevState, itemMatch[0]]);
     }
   };
-  console.log(matchLive);
   return (
     <div className={styles.container}>
       <Headhtml />
@@ -73,15 +72,7 @@ export default function Home({ matchList, matchTheSports, matchTheSportsLive }) 
             <div className="main-live">
               <div className="main-live-app">
                 <div className="action-hot-live">
-                  {matchLiveHome ? (
-                    <div>
-                      <LiveHome
-                        matchTheSportsLive={matchTheSportsLive}
-                        matchTheSports={matchTheSports}
-                        data={matchLiveHome[matchLiveHome.length - 1]}
-                      />
-                    </div>
-                  ) : matchLive && matchLive.length > 0 ? (
+                  {matchLive && matchLive.length > 0 ? (
                     <div>
                       <LiveHome
                         matchTheSportsLive={matchTheSportsLive}

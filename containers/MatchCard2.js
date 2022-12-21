@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 import React, { useEffect, useMemo } from "react";
 import { useState } from "react";
 import { URL_789BET, URL_GIF_LIVE } from "../contants";
-import reverseString from "../utility/reverseString";
 
 export const MatchCard2 = ({ data, getIdItemMatch, matchTheSports }) => {
   const {
@@ -41,7 +40,7 @@ export const MatchCard2 = ({ data, getIdItemMatch, matchTheSports }) => {
             <span className="match_title">{league}</span>
 
             {commentator ? (
-              <div class="living">
+              <div className="living">
                 <img src={URL_GIF_LIVE} height="11" width="20" />
                 <span>Live</span>
               </div>
