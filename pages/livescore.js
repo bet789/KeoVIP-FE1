@@ -3,17 +3,16 @@ import Headhtml from "../containers/Headhtml";
 import Script from "../containers/Script";
 import { Footer } from "../containers/Footer";
 import { Header } from "../containers/Header";
-import { Introduction } from "../containers/Introduction";
 import styles from "../styles/Home.module.css";
 import axios from "../utility/axios";
-import { ip } from "../data/ip";
 import { Banner } from "../containers/Banner";
 import moment from "moment";
+import { API } from "../contants";
 
 export default function LiveScorePage() {
   const [data, setData] = useState([]);
   const getDataLivescore = async () => {
-    const response = await axios.get(`${ip}/website/livescore`);
+    const response = await axios.get(`${API}/website/livescore`);
     setData(response?.data?.data ?? []);
   };
 
@@ -110,7 +109,6 @@ export default function LiveScorePage() {
             </div>
           </div>
         </div>
-        {/* <Introduction /> */}
         <Footer />
       </main>
       <Script />

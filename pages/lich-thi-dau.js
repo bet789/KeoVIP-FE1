@@ -3,17 +3,16 @@ import Headhtml from "../containers/Headhtml";
 import Script from "../containers/Script";
 import { Footer } from "../containers/Footer";
 import { Header } from "../containers/Header";
-import { Introduction } from "../containers/Introduction";
 import styles from "../styles/Home.module.css";
 import axios from "axios";
-import { ip } from "../data/ip";
 import moment from "moment";
 import InfiniteScroll from "../containers/infiniteScroll";
 import { Banner } from "../containers/Banner";
 import SkSchedule from "../containers/Skeleton/SkSchedule";
+import { API } from "../contants";
 
 export async function getServerSideProps() {
-  const response = await axios.get(`${ip}/website/schedule`);
+  const response = await axios.get(`${API}/website/schedule`);
   const tmp = response?.data?.data ?? [];
   const dataToday = tmp?.filter((item) => item.value === "")?.[0] ?? undefined;
   let tmpData = tmp?.filter((item) => item.value !== "") ?? [];
@@ -33,7 +32,7 @@ export default function Schedulepage({ data }) {
   const [leagues, setLeagues] = useState([]);
   const [loading, setLoading] = useState(true);
   const getDataSchedulesByDate = async () => {
-    const response = await axios.get(`${ip}/website/schedule/${date}`);
+    const response = await axios.get(`${API}/website/schedule/${date}`);
     const tmp = response?.data?.data ?? [];
     let res = [];
     tmp.map((item) => {
@@ -56,13 +55,13 @@ export default function Schedulepage({ data }) {
   };
 
   const getDataBLV = async () => {
-    const response = await axios.get(`${ip}/website/matches?type=blv`);
+    const response = await axios.get(`${API}/website/matches?type=blv`);
     setBlv(response?.data?.data ?? []);
     setLoading(false);
   };
 
   const getDataLeague = async () => {
-    const response = await axios.get(`${ip}/website/schedule/league`);
+    const response = await axios.get(`${API}/website/schedule/league`);
     setLeagues(response?.data?.data ?? []);
   };
 
@@ -252,7 +251,6 @@ export default function Schedulepage({ data }) {
             <br />
           </div>
         </div>
-        {/* <Introduction/> */}
         <Footer />
       </main>
       <Script />

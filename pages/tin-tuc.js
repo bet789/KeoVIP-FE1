@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
-import Headhtml from '../containers/Headhtml';
-import { Footer } from '../containers/Footer';
-import { Header } from '../containers/Header';
-import { Introduction } from '../containers/Introduction';
-import styles from '../styles/Home.module.css';
-import { PostCard } from '../containers/PostCard';
-import Script from '../containers/Script';
-import axios from '../utility/axios';
-import { ip } from '../data/ip';
-import Paging from '../containers/Paging';
-import { Banner } from '../containers/Banner';
+import Headhtml from "../containers/Headhtml";
+import { Footer } from "../containers/Footer";
+import { Header } from "../containers/Header";
+import styles from "../styles/Home.module.css";
+import { PostCard } from "../containers/PostCard";
+import Script from "../containers/Script";
+import axios from "../utility/axios";
+import Paging from "../containers/Paging";
+import { Banner } from "../containers/Banner";
+import { API } from "../contants";
 
 const News = () => {
   const [page, setPage] = useState(0);
@@ -18,7 +17,7 @@ const News = () => {
   const [total, setTotal] = useState(0);
   const [data, setData] = useState([]);
   const getDataNews = async () => {
-    const response = await axios.get(`${ip}/website/news`, {
+    const response = await axios.get(`${API}/website/news`, {
       params: {
         limit,
         page: page + 1,
@@ -40,9 +39,7 @@ const News = () => {
             <div className="banner">
               <Banner />
             </div>
-            <h3 className="page-title mb-4 mt-4">
-              ĐỘI NGŨ PHÓNG VIÊN TÁC NGHIỆP ĐƯA TIN TỨC BÓNG ĐÁ 24/7
-            </h3>
+            <h3 className="page-title mb-4 mt-4">ĐỘI NGŨ PHÓNG VIÊN TÁC NGHIỆP ĐƯA TIN TỨC BÓNG ĐÁ 24/7</h3>
             <div className="row">
               <div className="col-12 col-md-12">
                 <div className="row">
@@ -69,7 +66,6 @@ const News = () => {
             </div>
           </div>
         </div>
-        <Introduction />
         <Footer />
       </main>
       <Script />

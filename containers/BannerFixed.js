@@ -1,7 +1,7 @@
 import axios from "axios";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import { ip } from "../data/ip";
+import { API } from "../contants";
 
 export const BannerFixed = () => {
   const [banner, setBanner] = useState(undefined);
@@ -23,7 +23,7 @@ export const BannerFixed = () => {
   const bannerScrollLeft = banner?.find((d) => d.key === "banner-scroll-left") || undefined;
   const bannerScrollRight = banner?.find((d) => d.key === "banner-scroll-right") || undefined;
   const fetchData = async () => {
-    const response = await axios.get(`${ip}/website/setting/banner`);
+    const response = await axios.get(`${API}/website/setting/banner`);
     const data = response.data.data || [];
     if (data) {
       setBanner(data);

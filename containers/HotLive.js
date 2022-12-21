@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "../utility/axios";
-import { ip } from "../data/ip";
 import { MatchCard } from "../containers/MatchCard";
 import SkListMatch from "./Skeleton/SkListMatch";
 import SkListMenu from "./Skeleton/SkListMenu";
+import { API } from "../contants";
 export default function HotLive(props) {
   const [dataMenu, setDataMenu] = useState([]);
   const [matchList, setMatchList] = useState([]);
@@ -15,7 +15,7 @@ export default function HotLive(props) {
   const [loading, setLoading] = useState(true);
   const [loadingMenu, setLoadingMenu] = useState(true);
   const fetchDataMenu = async () => {
-    const response = await axios.get(`${ip}/website/matches/menu`);
+    const response = await axios.get(`${API}/website/matches/menu`);
     const data = response.data.data || [];
     if (data) {
       setDataMenu([
@@ -63,7 +63,7 @@ export default function HotLive(props) {
     fetchDataMenu();
   }, []);
   const getDataMatchList = async () => {
-    const response = await axios.get(`${ip}${urlMatches}`);
+    const response = await axios.get(`${API}${urlMatches}`);
     setCategories(response?.data?.data?.categories ?? []);
     setMatchList(response?.data?.data ?? []);
     setLoading(false);

@@ -1,19 +1,18 @@
-import React from 'react';
-import Headhtml from '../containers/Headhtml';
-import styles from '../styles/Home.module.css';
-import { Header } from '../containers/Header';
-import { Footer } from '../containers/Footer';
-import { Introduction } from '../containers/Introduction';
-import { Banner } from '../containers/Banner';
+import React from "react";
+import Headhtml from "../containers/Headhtml";
+import styles from "../styles/Home.module.css";
+import { Header } from "../containers/Header";
+import { Footer } from "../containers/Footer";
+import { Banner } from "../containers/Banner";
 
 const style = {
-  display: 'block',
-  background: '#000',
-  border: 'none',
-  height: '1500px',
-  width: '100%',
-  'overflow-y': 'hidden',
-  marginBottom: '30px',
+  display: "block",
+  background: "#000",
+  border: "none",
+  height: "1500px",
+  width: "100%",
+  "overflow-y": "hidden",
+  marginBottom: "30px",
 };
 
 const TyLeKeoPage = () => {
@@ -28,7 +27,6 @@ const TyLeKeoPage = () => {
           </div>
           <iframe src="https://t5x4ob.kh5688.com/Newindex?OType=2&lang=vn" style={style}></iframe>
         </div>
-        <Introduction />
         <Footer />
       </main>
     </div>

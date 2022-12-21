@@ -4,46 +4,24 @@ import Script from "../../containers/Script";
 import styles from "../../styles/Home.module.css";
 import { Footer } from "../../containers/Footer";
 import { Header } from "../../containers/Header";
-import { Introduction } from "../../containers/Introduction";
 import Paging from "../../containers/Paging";
 import axios from "axios";
-import { ip } from "../../data/ip";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import RelatedPost from "../../containers/RelatedPost";
 import { Banner } from "../../containers/Banner";
 import Tags from "../../containers/Tags";
 import Schema from "../../containers/Schema";
+import { getApiHighLight, getApiHighLightDetail } from "../api";
 
-const Highlight = () => {
-  const [data, setData] = useState([]);
+const Highlight = ({ matchHighLightDetail, matchHighLight }) => {
   const router = useRouter();
   const { pid } = router.query;
-  const arr = pid?.split("-") ?? [];
-  const id = arr.length > 1 ? arr[arr.length - 1] : "";
-  const [highlight, setHighlight] = useState([]);
-  const getData = async () => {
-    const responseHighlight = await axios.get(`${ip}/website/highlight`, {
-      params: {
-        limit: 6,
-        page: 1,
-      },
-    });
-    setData(responseHighlight?.data?.data?.data ?? []);
-    const res = await axios.get(`${ip}/website/highlight/${id}`);
-    setHighlight(res?.data?.data ?? undefined);
-  };
-
-  useEffect(() => {
-    if (id && id !== "") {
-      getData();
-    }
-  }, [pid]);
 
   return (
     <div className={styles.container}>
-      <Headhtml data={highlight} />
-      <Schema post={highlight ?? {}} />
+      <Headhtml data={matchHighLightDetail} />
+      <Schema post={matchHighLightDetail ?? {}} />
       <main className={styles.main}>
         <Header />
         <div id="highlight-page">
@@ -53,20 +31,20 @@ const Highlight = () => {
             </div>
             <div className="row">
               <div className="col-12 col-lg-9">
-                {highlight && (
+                {matchHighLightDetail && (
                   <>
-                    <p style={{ fontSize: 20, fontWeight: "bold" }}>{highlight?.title}</p>
+                    <p style={{ fontSize: 20, fontWeight: "bold" }}>{matchHighLightDetail?.title}</p>
                     <iframe
-                      src={`https://www.youtube.com/embed/${highlight?.youtube_id}`}
+                      src={`https://www.youtube.com/embed/${matchHighLightDetail?.youtube_id}`}
                       style={{ width: "100%", height: 500 }}
                     />
                   </>
                 )}
-                <Tags data={highlight} onClickTag={() => location.reload()} />
+                {/* <Tags data={matchHighLight} onClickTag={() => location.reload()} /> */}
               </div>
               <div className="col-12 col-lg-3" style={{ padding: 0 }}>
                 <RelatedPost
-                  data={data.filter((item) => item?._id != id).filter((_, index) => index < 5)}
+                  data={matchHighLight?.filter((item) => item?._id != pid).filter((_, index) => index < 5)}
                   keyAvatar="avatar"
                   keyTitle="title"
                   keyUrl="highlight"
@@ -76,12 +54,32 @@ const Highlight = () => {
             </div>
           </div>
         </div>
-        <Introduction />
         <Footer />
       </main>
       <Script />
     </div>
   );
 };
-
+export async function getStaticPaths() {
+  const res = await getApiHighLight();
+  return {
+    paths: res.data.data.map((item) => ({ params: { pid: `${item._id}` } })),
+    fallback: false, // can also be true or 'blocking'
+  };
+}
+export async function getStaticProps(context) {
+  const Id = context.params?.pid;
+  if (!Id) {
+    return { notFound: true };
+  }
+  const res = await getApiHighLightDetail(Id);
+  const resHighLight = await getApiHighLight();
+  return {
+    props: {
+      matchHighLightDetail: res?.data,
+      matchHighLight: resHighLight?.data?.data,
+    },
+    revalidate: 10, // In seconds
+  };
+}
 export default Highlight;

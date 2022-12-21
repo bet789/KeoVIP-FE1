@@ -89,4 +89,7 @@ footer .social-contact {
     footer picture{
         position: relative;
     }
+    .contact-cskh {
+        bottom: 70px;
+    }
   }

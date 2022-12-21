@@ -8,7 +8,6 @@ import LiveHome from "../containers/LiveHome";
 import { MatchCard2 } from "../containers/MatchCard2";
 import Schema from "../containers/Schema";
 import Script from "../containers/Script";
-import { ip } from "../data/ip";
 import styles from "../styles/Home.module.css";
 import axios from "../utility/axios";
 import PerfectScrollbar from "react-perfect-scrollbar";
@@ -16,39 +15,17 @@ import "react-perfect-scrollbar/dist/css/styles.css";
 import Marquee from "../containers/Marquee";
 import CountDown from "../containers/CountDown";
 import Ads from "../containers/Ads";
-import { ADS_BANNER_BOTTOM, ADS_KEOVIP, URL_API_THESPORTS, URL_IMAGE_BACKGROUND } from "../contants";
+import { ADS_BANNER_BOTTOM, ADS_KEOVIP, API, URL_IMAGE_BACKGROUND } from "../contants";
 import { useMemo } from "react";
 import { Box } from "@mui/material";
-import { getApiTheSports } from "./api";
-export async function getStaticProps(context) {
-  const response = await axios.get(`${ip}/website/matches?type=home`);
-  const resTheSports = await getApiTheSports();
-  return {
-    props: {
-      matchList: response?.data?.data ?? [],
-      matchTheSports: resTheSports?.data,
-    }, // will be passed to the page component as props
-    revalidate: 10, // In seconds
-  };
-}
+import { getApiMatchList, getApiTheSports, getApiTheSportsLive } from "./api";
 
-export default function Home({ matchList, matchTheSports }) {
-  const [matchBlv, setMatchBlv] = useState([]);
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(12);
-  const [filter, setFilter] = useState("all");
-  const [categories, setCategories] = useState([]);
-  const [urlMatches, setUrlMatches] = useState("/website/matches?type=home");
-  const [urlMatcheBlv, setUrlMatcheBlv] = useState("/website/matches?type=blv");
+export default function Home({ matchList, matchTheSports, matchTheSportsLive }) {
   const [matchLive, setMatcheLive] = useState([]);
   const matchLiveHome = useMemo(() => {
     return matchList?.filter((data) => data.status !== "");
   }, [matchList]);
 
-  const getDataMatchBlv = async () => {
-    const response = await axios.get(`${ip}${urlMatcheBlv}`);
-    setMatchBlv(response?.data?.data ?? []);
-  };
   const getLiveHome = () => {
     matchList.map((item) => {
       if (item.screen === true) {
@@ -56,17 +33,11 @@ export default function Home({ matchList, matchTheSports }) {
       }
     });
   };
-  useEffect(() => {
-    getDataMatchBlv();
-  }, [urlMatches]);
 
-  useEffect(() => {}, [filter]);
   useEffect(() => {
     getLiveHome();
   }, [matchList]);
-  const changeMatchFilter = (name) => {
-    setFilter(name);
-  };
+
   const sampleContainer = {
     maxHeight: "705px",
   };
@@ -75,18 +46,12 @@ export default function Home({ matchList, matchTheSports }) {
     const itemMatch = matchList.filter((item) => {
       return item.id === id;
     });
-    const itemMatchBLV = matchBlv.filter((item) => {
-      return item.id === id;
-    });
 
     if (itemMatch.length > 0) {
       setMatcheLive((prevState) => [...prevState, itemMatch[0]]);
     }
-
-    if (itemMatchBLV.length > 0) {
-      setMatcheLive((prevState) => [...prevState, itemMatchBLV[0]]);
-    }
   };
+  console.log(matchLive);
   return (
     <div className={styles.container}>
       <Headhtml />
@@ -108,15 +73,31 @@ export default function Home({ matchList, matchTheSports }) {
             <div className="main-live">
               <div className="main-live-app">
                 <div className="action-hot-live">
-                  {matchLive && matchLive.length > 0 ? (
+                  {matchLiveHome ? (
                     <div>
-                      <LiveHome data={matchLive[matchLive.length - 1]} />
+                      <LiveHome
+                        matchTheSportsLive={matchTheSportsLive}
+                        matchTheSports={matchTheSports}
+                        data={matchLiveHome[matchLiveHome.length - 1]}
+                      />
+                    </div>
+                  ) : matchLive && matchLive.length > 0 ? (
+                    <div>
+                      <LiveHome
+                        matchTheSportsLive={matchTheSportsLive}
+                        matchTheSports={matchTheSports}
+                        data={matchLive[matchLive.length - 1]}
+                      />
                     </div>
                   ) : (
                     matchList &&
                     matchList.length > 0 && (
                       <div>
-                        <LiveHome data={matchList[matchList.length - 1]} />
+                        <LiveHome
+                          matchTheSportsLive={matchTheSportsLive}
+                          matchTheSports={matchTheSports}
+                          data={matchList[matchList.length - 1]}
+                        />
                       </div>
                     )
                   )}
@@ -190,9 +171,21 @@ export default function Home({ matchList, matchTheSports }) {
           </div>
           <Footer />
         </div>
-        {/* <Introduction /> */}
       </main>
       <Script />
     </div>
   );
+}
+export async function getStaticProps(context) {
+  const response = await getApiMatchList();
+  const resTheSports = await getApiTheSports();
+  const resTheSportsLive = await getApiTheSportsLive();
+  return {
+    props: {
+      matchList: response?.data,
+      matchTheSports: resTheSports?.data,
+      matchTheSportsLive: resTheSportsLive?.data,
+    }, // will be passed to the page component as props
+    revalidate: 10, // In seconds
+  };
 }

@@ -498,6 +498,12 @@
     #main{
         background-size: 100% 100%;
     }
+    .nav-site .btn-bet {
+      justify-content: right;
+      margin-right: 5px;
+      margin-top: 5px;
+      display: flex;
+    }
 }
 @media screen and (width: 820px){
     .main-live .main-live-app{

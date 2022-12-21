@@ -514,9 +514,6 @@ width: 100%;
   .match-details-odds .match-introduction .match-team .team-name a {
       font-size: 12px ;
   }
-  .match-details-live .match-live .pagination,.match-details-live .match-live-chat .pagination{
-    display: none !important;
-  }
   .match-live #livePlayer{
     border-radius: 0;
   }

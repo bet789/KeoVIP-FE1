@@ -1,12 +1,12 @@
 import { Table, TableBody, TableCell, TableContainer, TableRow } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { ip } from "../data/ip";
+import { API } from "../contants";
 
 export default function EventStat(matchId) {
   const [events, setEvents] = useState([]);
   const getDataEvent = async () => {
-    const res = await axios.get(`${ip}/website/events`);
+    const res = await axios.get(`${API}/website/events`);
     await res.data.data.map((event) => {
       event.matchId === matchId.id ? setEvents(event.events) : [];
     });

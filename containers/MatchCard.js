@@ -2,7 +2,7 @@ import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
-import { ip } from "../data/ip";
+import { URL_789BET } from "../contants";
 import Loading from "./Loading";
 
 export const MatchCard = (props) => {
@@ -29,11 +29,11 @@ export const MatchCard = (props) => {
   const imgTmp = "https://apivaobo.xyz/logo_teams/no-logo.gif";
   return (
     <div className="card-border">
-      <Link href={`/chi-tiet-tran-dau/${data?.slug ?? ""}-${data?.id}`}>
+      <Link href={`/chi-tiet-tran-dau/${data?.slug ?? ""}${data?.id}`}>
         <div className="match_card text-light">
           <div className="match_header d-flex justify-content-between">
             <span className="match_title">{league}</span>
-            <Link target={"_blank"} href="https://www.7897890.vip/">
+            <Link href={URL_789BET} target="_blank">
               <span className="match_time" style={{ fontSize: "12px" }}>
                 Cược ngay
               </span>
@@ -70,10 +70,7 @@ export const MatchCard = (props) => {
               <div className="happening d-flex flex-column justify-content-center align-items-center">
                 {status !== "" ? null : <span className="match_time">{time === "" ? "Chưa bắt đầu" : time}</span>}
                 {commentator && (
-                  <span
-                    className="blv"
-                    style={{ color: "#FEC006", width: 90, textAlign: "center", fontWeight: "bold" }}
-                  >
+                  <span className="blv" style={{ color: "#FEC006", textAlign: "center", fontWeight: "bold" }}>
                     BLV: {commentator}
                   </span>
                 )}
@@ -99,29 +96,6 @@ export const MatchCard = (props) => {
               <span className="team_name">{team_away_name.slice(0, 15) ?? ""}</span>
             </div>
           </div>
-          {/* <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <Link href={`/chi-tiet-tran-dau/${data?.slug ?? ''}-${data?.id}`}>
-            <a>
-              <div
-                style={{
-                  backgroundColor: '#0F4CD9',
-                  padding: '5px 10px',
-                  borderRadius: 20,
-                  marginRight: 20,
-                }}
-              >
-                Xem ngay
-              </div>
-            </a>
-          </Link>
-          <Link href={bet}>
-            <a target="_blank">
-              <div style={{ backgroundColor: '#009B3A', padding: '5px 10px', borderRadius: 20 }}>
-                Đặt cược
-              </div>
-            </a>
-          </Link>
-        </div> */}
         </div>
       </Link>
     </div>

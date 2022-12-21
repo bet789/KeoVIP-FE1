@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import Headhtml from '../containers/Headhtml';
-import Script from '../containers/Script';
-import { Footer } from '../containers/Footer';
-import { Header } from '../containers/Header';
-import { Introduction } from '../containers/Introduction';
-import styles from '../styles/Home.module.css';
-import { PostCard } from '../containers/PostCard';
-import axios from 'axios';
-import { ip } from '../data/ip';
-import Paging from '../containers/Paging';
-import { Banner } from '../containers/Banner';
+import React, { useState, useEffect } from "react";
+import Headhtml from "../containers/Headhtml";
+import Script from "../containers/Script";
+import { Footer } from "../containers/Footer";
+import { Header } from "../containers/Header";
+import { Introduction } from "../containers/Introduction";
+import styles from "../styles/Home.module.css";
+import { PostCard } from "../containers/PostCard";
+import axios from "axios";
+import Paging from "../containers/Paging";
+import { Banner } from "../containers/Banner";
+import { API } from "../contants";
 
 export default function Handbook() {
   const [page, setPage] = useState(0);
@@ -17,7 +17,7 @@ export default function Handbook() {
   const [total, setTotal] = useState(0);
   const [data, setData] = useState([]);
   const getDataHandbook = async () => {
-    const response = await axios.get(`${ip}/website/guide`, {
+    const response = await axios.get(`${API}/website/guide`, {
       params: {
         limit,
         page: page + 1,
@@ -48,13 +48,7 @@ export default function Handbook() {
                     data.map((item, index) => {
                       return index == 0 ? (
                         <div className="col-12 col-lg-8" key={item.id} style={{ marginBottom: 20 }}>
-                          <PostCard
-                            data={item}
-                            isBig={true}
-                            first={true}
-                            postpage={true}
-                            url="cam-nang"
-                          />
+                          <PostCard data={item} isBig={true} first={true} postpage={true} url="cam-nang" />
                         </div>
                       ) : (
                         <div className="col-12 col-lg-4" key={item.id} style={{ marginBottom: 20 }}>
@@ -72,7 +66,6 @@ export default function Handbook() {
             </div>
           </div>
         </div>
-        <Introduction />
         <Footer />
       </main>
       <Script />

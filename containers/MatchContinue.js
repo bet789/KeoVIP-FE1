@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { URL_789BET } from "../contants";
 export default function MatchContinue(props) {
   const { data } = props;
   const {
@@ -26,8 +27,12 @@ export default function MatchContinue(props) {
         <div className="match-continue">
           <div className="match-header d-flex justify-space-between">
             <span className="match-leage">{league}</span>
-            <Link target={"_blank"} href="https://www.7897890.vip/">
-              <span className="bet-now">Cược ngay</span>
+            <Link href={URL_789BET}>
+              <a target="_blank">
+                <span className="match_time" style={{ fontSize: "12px" }}>
+                  Cược ngay
+                </span>
+              </a>
             </Link>
           </div>
           <div className="match-body d-flex justify-content-between justify-content-lg-around">

@@ -25,7 +25,7 @@
     background-size: cover;
     padding: 2px;
     border-radius: 10px ;
-    height: 134px;
+    height: 150px;
     box-shadow: 0 45px 20px rgb(0 0 0 / 19%), 0 6px 6px rgb(0 0 0 / 22%);
 }
 .card-border:hover{
@@ -43,8 +43,15 @@
     min-height: 42px;
     padding-top: 10px;
     color: #dbfd21;
+    width: 40%;
 }
-
+.match_card .match_header .living {
+    width: 33%;
+}
+.match_card .match_header .living span{
+    color: #ff7e7e;
+    font-weight: bold;
+}
 .match_card .match_header .match_time {
     font-family: "Roboto", sans-serif;
     font-weight: 400;
@@ -61,7 +68,9 @@
 .match_card .match_body>div:nth-child(1), .match_card .match_body>div:nth-child(3) {
     width: 33%
 }
-
+.match_status{
+    width: 50%;
+}
 /* .match_card .match_body>div:nth-child(2) {
     width: 20%
 } */

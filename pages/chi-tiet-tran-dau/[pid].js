@@ -4,27 +4,11 @@ import Script from "../../containers/Script";
 import styles from "../../styles/Home.module.css";
 import { Footer } from "../../containers/Footer";
 import { Header } from "../../containers/Header";
-import { Introduction } from "../../containers/Introduction";
-import { useRouter } from "next/router";
 import axios from "axios";
-import { ip } from "../../data/ip";
-import { urlAmination } from "../../data/ip";
-import ReactPlayer from "react-player";
-import { TopBet } from "../../containers/TopBet";
-import { RecentResult } from "../../containers/RecentResult";
-import { Banner } from "../../containers/Banner";
-import HotLive from "../../containers/HotLive";
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
-import "swiper/css";
-import MatchContinue from "../../containers/MatchContinue";
-import { Autoplay } from "swiper";
-import { Button } from "@mui/material";
 import ReactJWPlayer from "react-jw-player";
 import Marquee from "../../containers/Marquee";
 import EventStat from "../../containers/EventStat";
-import SkLivetream from "../../containers/Skeleton/SkLivetream";
 import CountDown from "../../containers/CountDown";
 import Ads from "../../containers/Ads";
 import {
@@ -39,147 +23,35 @@ import {
   URL_VIDEO,
   URL_GROUP_KEOVIP,
   URL_IMAGE_BACKGROUND,
+  API,
+  URL_AMINATION,
 } from "../../contants";
 import reverseString from "../../utility/reverseString";
 import { useMemo } from "react";
+import {
+  getApiMatchDetail,
+  getApiMatchHistory,
+  getApiMatchList,
+  getApiMatchOdds,
+  getApiTheSports,
+  getApiTheSportsLive,
+} from "../api";
+import { useRouter } from "next/router";
 const listDetailMatchOddsOptions = ["789Bet", "New88", "Jun88"];
 
 export const MatchDetailsContext = React.createContext();
 
-export default function MatchDetails() {
+export default function MatchDetails({ matchDetail, matchTheSports, matchTheSportsLive, matchOdds }) {
   const router = useRouter();
-  const { pid } = router.query;
-  const arr = pid?.split("-") ?? [];
-  const id = arr.length > 1 ? arr[arr.length - 1] : "";
-  const [livestream, setLivestream] = useState([]);
-  const [linkLivestream, setLinkLivestream] = useState("");
-  const [data, setData] = useState(undefined);
-  const [promotionalVideo, setPromotionalVideo] = useState(null);
-  const timerId = useRef();
-  const [dataDetailMatchOdds, setDataDetailMatchOdds] = useState([]);
+  const pid = router.query.pid;
   const [dataDetailMatchOddsOptions, setDataDetailMatchOddsOptions] = useState(0);
-  const [dataDetailMatchHistory, setDataDetailMatchHistory] = useState([]);
-  const [playing, setPlaying] = useState(false);
-  const userAgent = typeof navigator === "undefined" ? "SSR" : navigator.userAgent;
-  const isIOS = /iPhone|iPad|iPod/i.test(userAgent);
-  const [matchList, setMatchList] = useState([]);
-  const [limit, setLimit] = useState(12);
-  const [urlMatches, setUrlMatches] = useState("/website/matches?type=home");
-  const [categories, setCategories] = useState([]);
-  const [page, setPage] = useState(1);
-  const timeMatch = Date.parse(data?.timeMatch);
-  const timeNow = Date.now();
-  const difference = timeMatch - 360000 - timeNow;
-  const [loading, setLoading] = useState(true);
-  const [dataTheSports, setDataTheSports] = useState(null);
-  const [dataTheSportsLive, setDataTheSportsLive] = useState(null);
+  const matchIdTheSports = useMemo(() => {
+    return matchTheSports.filter((data) => data.match_id == matchDetail.id);
+  }, [matchDetail.id]);
   const matchIdLive = useMemo(() => {
-    return dataTheSportsLive?.filter((data) => dataTheSports?.thesports_uuid === data.match_id);
-  }, [dataTheSports?.thesports_uuid]);
-  const getDataMatchList = async () => {
-    const response = await axios.get(`${ip}${urlMatches}`);
-    setCategories(response?.data?.data?.categories ?? []);
-    setMatchList(response?.data?.data ?? []);
-  };
-  useEffect(() => {
-    getDataMatchList();
-  }, [urlMatches]);
-  // useEffect(() => {
-  //   if (!Boolean(promotionalVideo) && !Boolean(timer)) {
-  //     getLiveStream();
-  //   }
-  // }, [promotionalVideo, timer]);
-  useEffect(() => {
-    if (pid) {
-      getDetailMatchHistory();
-      getDetailMatchOdds();
-      // getPromotionalVideo();
-      getLiveStream(true);
-      getDataTheSports();
-      getDataTheSportsLive();
-    }
-    setLoading(false);
-  }, [pid]);
+    return matchTheSportsLive?.filter((data) => matchIdTheSports[0]?.thesports_uuid === data.match_id);
+  }, [matchIdTheSports[0]?.thesports_uuid]);
 
-  useEffect(() => {
-    setInterval(() => {
-      getLiveStream(false);
-    }, 30000);
-  }, [pid]);
-
-  // useEffect(() => {
-  //   if (Boolean(promotionalVideo) && playing) {
-  //     if (timer <= 0) {
-  //       clearInterval(timerId.current);
-  //     }
-
-  //     timerId.current = setInterval(() => {
-  //       setTimer((prevTimer) => (prevTimer > 0 ? prevTimer - 1 : 0));
-  //     }, 1500);
-  //   }
-
-  //   return () => {
-  //     clearInterval(timerId.current);
-  //   };
-  // }, [timer, promotionalVideo, playing]);
-  const matchID = reverseString(id.toString().slice(1, 8));
-  const getDataTheSports = async () => {
-    try {
-      const res = await axios.get(URL_API_THESPORTS);
-      if (res?.data?.data) {
-        const dt = res.data.data;
-        dt.map((item) => {
-          if (item.match_id == matchID) {
-            setDataTheSports(item);
-          }
-        });
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const getDataTheSportsLive = async () => {
-    try {
-      const res = await axios.get(`${URL_API_THESPORTS}/live`);
-      if (res?.data?.data) {
-        setDataTheSportsLive(res.data.data);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const getDetailMatchHistory = async () => {
-    try {
-      const res = await axios.get(`${ip}/website/matches/${id}/history`);
-      if (res?.data?.data) {
-        setDataDetailMatchHistory(res.data.data);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const getDetailMatchOdds = async () => {
-    try {
-      const res = await axios.get(`${ip}/website/matches/${id}/odds`);
-      if (res?.data?.data) {
-        setDataDetailMatchOdds(res.data.data);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const getLiveStream = async (isLiveStream) => {
-    if (id) {
-      const response = await axios.get(`${ip}/website/matches/${id}`);
-      setData(response?.data?.data ?? undefined);
-      isLiveStream && setLivestream(response?.data?.data?.livestream ?? []);
-      isLiveStream && setLinkLivestream((response?.data?.data?.livestream ?? [])?.[0]?.link ?? "");
-    }
-  };
   const buttonChat = [
     {
       title: "Tỷ lệ kèo",
@@ -237,15 +109,13 @@ export default function MatchDetails() {
                 <div className="match-live" styles={{ position: "relative", marginBottom: 10 }}>
                   {
                     <>
-                      {loading ? (
-                        <SkLivetream />
-                      ) : livestream?.length > 0 ? (
+                      {matchDetail?.livestream?.length > 0 ? (
                         <>
                           <div>
                             <ReactJWPlayer
                               playerId="livePlayer"
                               playerScript="https://cdn.jwplayer.com/libraries/m393TMt7.js"
-                              file={linkLivestream}
+                              file={matchDetail?.livestream?.[0]?.link}
                               onSeventyFivePercent={() => console.log("75 Percent")}
                               onNinetyFivePercent={() => console.log("95 Percent")}
                               onOneHundredPercent={() => console.log("100 Percent")}
@@ -271,7 +141,7 @@ export default function MatchDetails() {
                             </div>
                           </div>
 
-                          <div
+                          {/* <div
                             className="pagination"
                             style={{
                               display: "flex",
@@ -280,8 +150,8 @@ export default function MatchDetails() {
                               padding: "5px",
                               background: "#a9a0a0ba",
                             }}
-                          >
-                            {livestream.map((item, i) => (
+                          > */}
+                          {/* {livestream.map((item, i) => (
                               <span
                                 key={i}
                                 className="live"
@@ -292,8 +162,8 @@ export default function MatchDetails() {
                               >
                                 {item?.name ?? `Dự phòng ${i + 1}`}
                               </span>
-                            ))}
-                          </div>
+                            ))} */}
+                          {/* </div> */}
                         </>
                       ) : matchIdLive?.length > 0 ? (
                         <>
@@ -310,13 +180,13 @@ export default function MatchDetails() {
                               NEW88
                             </a>
                             <a target="_blank" href={URL_JUN88}>
-                              Jun88
+                              Jun8
                             </a>
                           </div>
                         </>
                       ) : (
                         <iframe
-                          src={`${urlAmination}?matchId=${id}&accessKey=tEFL6ClbFnfkvmEn0xspIVQyPV9jAz9u&lang=vi&statsPanel=hide`}
+                          src={`${URL_AMINATION}?matchId=${matchDetail.id}&accessKey=tEFL6ClbFnfkvmEn0xspIVQyPV9jAz9u&lang=vi&statsPanel=hide`}
                           width="100%"
                           height="700"
                         ></iframe>
@@ -339,7 +209,7 @@ export default function MatchDetails() {
                       </span>
                     ))}
                   </div>
-                  <iframe width="100%" height="670" src={URL_IFRAME_CHAT} frameBorder="0"></iframe>
+                  <iframe width="100%" height="618" src={URL_IFRAME_CHAT} frameBorder="0"></iframe>
                 </div>
               </div>
             </div>
@@ -353,17 +223,17 @@ export default function MatchDetails() {
               <div className="match-introduction">
                 <div className="match-team">
                   <picture>
-                    <img src={data?.team_home_logo ?? ""} alt="" />
+                    <img src={matchDetail?.team_home_logo ?? ""} alt="" />
                   </picture>
                   <div className="team-name">
-                    <a>{data?.team_home_name ?? ""}</a>
+                    <a>{matchDetail?.team_home_name ?? ""}</a>
                   </div>
                 </div>
                 <div className="match-center">
                   <div className="match-result">
-                    {data?.score?.home ?? 0} - {data?.score?.away ?? 0}
+                    {matchDetail?.score?.home ?? 0} - {matchDetail?.score?.away ?? 0}
                   </div>
-                  <div className="match-status">{data?.time}</div>
+                  <div className="match-status">{matchDetail?.time}</div>
                   <div className="match-odds flex-column">
                     <div className="company">
                       {listDetailMatchOddsOptions.map((item, idx) => (
@@ -378,7 +248,7 @@ export default function MatchDetails() {
                     </div>
                     <div className="show-odds">
                       <div className="soccer">
-                        {dataDetailMatchOdds[dataDetailMatchOddsOptions]?.map((item, idx) => {
+                        {matchOdds[dataDetailMatchOddsOptions]?.map((item, idx) => {
                           return (
                             <div key={idx} className="item">
                               <div className="side">
@@ -401,23 +271,23 @@ export default function MatchDetails() {
                 </div>
                 <div className="match-team">
                   <picture>
-                    <img src={data?.team_away_logo ?? ""} alt="" />
+                    <img src={matchDetail?.team_away_logo ?? ""} alt="" />
                   </picture>
                   <div className="team-name">
-                    <a>{data?.team_away_name ?? ""}</a>
+                    <a>{matchDetail?.team_away_name ?? ""}</a>
                   </div>
                 </div>
               </div>
             </div>
             <div className="match-amination">
               <iframe
-                src={`${urlAmination}?matchId=${id}&accessKey=tEFL6ClbFnfkvmEn0xspIVQyPV9jAz9u&lang=vi`}
+                src={`${URL_AMINATION}?matchId=${pid}&accessKey=tEFL6ClbFnfkvmEn0xspIVQyPV9jAz9u&lang=vi`}
                 width="800"
                 height="700"
               ></iframe>
               <div className="match-stats">
                 <h3>Sự Kiện Chính</h3>
-                <EventStat id={id} />
+                <EventStat id={pid} />
               </div>
             </div>
           </div>
@@ -427,4 +297,32 @@ export default function MatchDetails() {
       <Script />
     </div>
   );
+}
+
+export async function getStaticPaths() {
+  const res = await getApiMatchList();
+  return {
+    paths: res.data.map((item) => ({ params: { pid: `${item.id}` } })),
+    fallback: false, // can also be true or 'blocking'
+  };
+}
+export async function getStaticProps(context) {
+  const matchID = context.params?.pid;
+  if (!matchID) {
+    return { notFound: true };
+  }
+  const res = await getApiMatchDetail(matchID);
+  const resTheSports = await getApiTheSports(matchID);
+  const resTheSportsLive = await getApiTheSportsLive(matchID);
+  const resMatchOdds = await getApiMatchOdds(matchID);
+
+  return {
+    props: {
+      matchDetail: res?.data,
+      matchTheSports: resTheSports?.data,
+      matchTheSportsLive: resTheSportsLive?.data,
+      matchOdds: resMatchOdds?.data,
+    },
+    revalidate: 10, // In seconds
+  };
 }

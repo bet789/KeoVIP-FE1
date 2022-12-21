@@ -1,3 +1,4 @@
+export const API = "https://api.keovip.live";
 export const ADS_KEOVIP = "https://t.me/keovip1tv";
 export const ADS_BANNER = "https://keovip.b-cdn.net/taipei-14-12.gif";
 export const ADS_BANNER_BOTTOM = "https://keovip.b-cdn.net/taipei-ads.gif";
@@ -10,3 +11,6 @@ export const URL_IFRAME_CHAT = "https://a2zchat.com/embed/6348e17da24d2aea95abb0
 export const URL_API_THESPORTS = "https://api.keovip.live/website/thesports";
 export const URL_GROUP_KEOVIP = "https://t.me/+iivt0xZFDhJjMmY1";
 export const URL_IMAGE_BACKGROUND = "https://keovip.b-cdn.net/login_bg@2x.webp";
+export const URL_FB_KEOVIP = "https://www.facebook.com/groups/keovip88";
+export const URL_AMINATION = "https://www.isportslive8.com/football/detail.html";
+export const URL_GIF_LIVE = "https://keovip.b-cdn.net/living.gif";

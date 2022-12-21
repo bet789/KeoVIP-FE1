@@ -1,12 +1,16 @@
 import Link from "next/link";
 import React, { useState, useEffect, useRef } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Divider, Drawer } from "@mui/material";
+import { Box, Button, Divider, Drawer } from "@mui/material";
 import axios from "axios";
-import { ip } from "../data/ip";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/router";
+import { API, URL_789BET } from "../contants";
+
+const style = {
+  display: "none",
+};
 export const Header = () => {
   const myRef = useRef();
   const [isOpen, setIsOpen] = useState(false);
@@ -78,7 +82,7 @@ export const Header = () => {
   ];
 
   const getButton = async () => {
-    const response = await axios.get(`${ip}/website/setting/button`);
+    const response = await axios.get(`${API}/website/setting/button`);
     setButton(response?.data?.data ?? []);
   };
 
@@ -119,6 +123,11 @@ export const Header = () => {
             <Image src="/assets/images/logo-keovip.png" width={250} height={40} />
           </a>
         </div>
+        <Box className="btn-bet" sx={{ ...style }}>
+          <Button size="small" href={URL_789BET} variant="contained" color="error">
+            ĐẶT CƯỢC
+          </Button>
+        </Box>
         {/* <div className="float-top-ad" style={{ width: "414", height: "50", display: "none" }}>
           <img src="/assets/images/banner-bito2k.gif" width="400" height="75" alt="banner mobile 789bet" />
         </div> */}

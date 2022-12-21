@@ -4,13 +4,12 @@ import Script from "../containers/Script";
 import styles from "../styles/Home.module.css";
 import { Footer } from "../containers/Footer";
 import { Header } from "../containers/Header";
-import { Introduction } from "../containers/Introduction";
 import Paging from "../containers/Paging";
 import axios from "axios";
-import { ip } from "../data/ip";
 import Link from "next/link";
 import { Banner } from "../containers/Banner";
 import SKHighLight from "../containers/Skeleton/SKHighLight";
+import { API } from "../contants";
 
 const Highlight = () => {
   const [highlight, setHighlight] = useState([]);
@@ -19,7 +18,7 @@ const Highlight = () => {
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
   const getData = async () => {
-    const responseHighlight = await axios.get(`${ip}/website/highlight`, {
+    const responseHighlight = await axios.get(`${API}/website/highlight`, {
       params: {
         limit,
         page: page + 1,
@@ -81,7 +80,6 @@ const Highlight = () => {
             </div>
           </div>
         </div>
-        {/* <Introduction /> */}
         <Footer />
       </main>
       <Script />

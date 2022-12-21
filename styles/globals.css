@@ -246,6 +246,7 @@ a:hover {
   height: 35px;
   line-height: 35px;
   overflow: hidden;
+  padding-right: 18px;
 }
 #homepage .home-live{
   max-width: 1585px;
@@ -413,6 +414,9 @@ button:focus{
   .ads-mobile{
     display: block !important;
   }
+  .home-news{
+    padding: 0;
+  }
 }
 /* @media only screen and (min-device-width: 1820px){
  .action-hot-live{
@@ -434,7 +438,7 @@ button:focus{
 } */
 
 .contact-cskh {
-  bottom: 60px;
+  bottom: 0;
   position: fixed;
   right: 10px;
   z-index: 100;
@@ -448,13 +452,13 @@ button:focus{
 .ads-left{
   position: fixed;
   left: 0;
-  top: 50%;
+  top: 40%;
   z-index: 1;
 }
 .ads-right{
   position: fixed;
   right: 0;
-  top: 50%;
+  top: 40%;
   z-index: 1;
 }
 
