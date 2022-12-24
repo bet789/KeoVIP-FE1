@@ -1,5 +1,6 @@
 export const API = "https://api.keovip.live";
-export const ADS_KEOVIP = "https://t.me/keovip1tv";
+export const ADS_KEOVIP = "https://t.me/keovip4tv";
+export const URL_KEOVIP_ZALO = "https://zalo.me/0783208888";
 export const ADS_BANNER = "https://keovip.b-cdn.net/taipei-14-12.gif";
 export const ADS_BANNER_BOTTOM = "https://keovip.b-cdn.net/taipei-ads.gif";
 export const URL_789BET = "https://www.789betb.com/?uagt=livesbong1&path=signup";
@@ -14,3 +15,5 @@ export const URL_IMAGE_BACKGROUND = "https://keovip.b-cdn.net/login_bg@2x.webp";
 export const URL_FB_KEOVIP = "https://www.facebook.com/groups/keovip88";
 export const URL_AMINATION = "https://www.isportslive8.com/football/detail.html";
 export const URL_GIF_LIVE = "https://keovip.b-cdn.net/living.gif";
+export const URL_IFRAME_ODDS_PC = "https://t5x4ob.kh5688.com/Newindex?OType=2&lang=vn";
+export const URL_IFRAME_ODDS_MOBILE = "https://t5x4mb.wsd666.com/#Theme";

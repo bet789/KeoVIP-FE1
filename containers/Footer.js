@@ -1,6 +1,7 @@
 import { Box, Button, Modal } from "@mui/material";
 import Image from "next/image";
 import React, { useState } from "react";
+import { ADS_KEOVIP, URL_KEOVIP_ZALO } from "../contants";
 const style = {
   position: "relative",
   top: "60%",
@@ -103,12 +104,12 @@ export const Footer = () => {
                   gia Nhóm
                 </h6>
                 <div>
-                  <a href="https://t.me/keovip1tv" target="_blank">
+                  <a href={ADS_KEOVIP} target="_blank">
                     NHẮN TIN TELEGRAM
                   </a>
                 </div>
                 <div>
-                  <a href="https://zalo.me/0783208888" target="_blank">
+                  <a href={URL_KEOVIP_ZALO} target="_blank">
                     NHẮN TIN ZALO
                   </a>
                 </div>

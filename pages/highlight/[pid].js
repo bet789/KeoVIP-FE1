@@ -64,7 +64,7 @@ export async function getStaticPaths() {
   const res = await getApiHighLight();
   return {
     paths: res.data.data.map((item) => ({ params: { pid: `${item._id}` } })),
-    fallback: false, // can also be true or 'blocking'
+    fallback: "blocking", // can also be true or 'blocking'
   };
 }
 export async function getStaticProps(context) {

@@ -216,7 +216,7 @@ export default function MatchDetails({ matchDetail, matchTheSports, matchTheSpor
         </div>
         <div className="app-live">
           <div className="container">
-            <Ads />
+            {/* <Ads /> */}
             <CountDown timer={1800} />
             <div className="match-details-odds">
               <div className="match-introduction">
@@ -302,7 +302,7 @@ export async function getStaticPaths() {
   const res = await getApiMatchList();
   return {
     paths: res.data.map((item) => ({ params: { pid: `${item.id}` } })),
-    fallback: false, // can also be true or 'blocking'
+    fallback: "block", // can also be true or 'blocking'
   };
 }
 export async function getStaticProps(context) {
