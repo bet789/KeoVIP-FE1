@@ -122,7 +122,7 @@ export default function Home({ matchList, matchTheSports, matchTheSportsLive }) 
         <div className="app-live">
           <div className="container">
             {/* <Ads /> */}
-            <CountDown timer={1800} />
+            {/* <CountDown timer={1800} /> */}
             <HotLive />
             <div className="row">
               <div className="col-md-7 mb-3">

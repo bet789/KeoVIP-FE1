@@ -15,5 +15,5 @@ export const URL_IMAGE_BACKGROUND = "https://keovip.b-cdn.net/login_bg@2x.webp";
 export const URL_FB_KEOVIP = "https://www.facebook.com/groups/keovip88";
 export const URL_AMINATION = "https://www.isportslive8.com/football/detail.html";
 export const URL_GIF_LIVE = "https://keovip.b-cdn.net/living.gif";
-export const URL_IFRAME_ODDS_PC = "https://t5x4ob.kh5688.com/Newindex?OType=2&lang=vn";
-export const URL_IFRAME_ODDS_MOBILE = "https://t5x4mb.wsd666.com/#Theme";
+export const URL_IFRAME_ODDS =
+  "https://v05btsmart.fts368.com/?api=V05BT&zi=gd003i0054q4&c=VD&tp=darker&lang=vi-VN&code=V05BT";

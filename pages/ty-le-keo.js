@@ -4,6 +4,7 @@ import styles from "../styles/Home.module.css";
 import { Header } from "../containers/Header";
 import { Footer } from "../containers/Footer";
 import { Banner } from "../containers/Banner";
+import { URL_IFRAME_ODDS } from "../contants";
 
 const style = {
   display: "block",
@@ -25,7 +26,7 @@ const TyLeKeoPage = () => {
           <div className="banner">
             <Banner />
           </div>
-          <iframe src="https://t5x4ob.kh5688.com/Newindex?OType=2&lang=vn" style={style}></iframe>
+          <iframe src={URL_IFRAME_ODDS} style={style}></iframe>
         </div>
         <Footer />
       </main>
