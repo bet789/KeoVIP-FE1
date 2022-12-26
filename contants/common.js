@@ -16,4 +16,4 @@ export const URL_FB_KEOVIP = "https://www.facebook.com/groups/keovip88";
 export const URL_AMINATION = "https://www.isportslive8.com/football/detail.html";
 export const URL_GIF_LIVE = "https://keovip.b-cdn.net/living.gif";
 export const URL_IFRAME_ODDS =
-  "https://v05btsmart.fts368.com/?api=V05BT&zi=gd003i0054q4&c=VD&tp=darker&lang=vi-VN&code=V05BT";
+  "https://v05btsmart.fts368.com/?api=V05BT&zi=gd003i0054q4&c=VD&tp=darker&lang=vi-VN&code=V05BT&token=j8Ko5QhwFiopHRVRHKFzgTqQDg1BoiMmvibUR9W2Lvw";
