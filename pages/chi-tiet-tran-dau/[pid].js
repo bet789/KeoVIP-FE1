@@ -36,19 +36,27 @@ import {
   getApiTheSportsLive,
 } from "../api";
 import { useRouter } from "next/router";
-const listDetailMatchOddsOptions = ["789Bet", "New88", "Jun88"];
+const listDetailMatchOddsOptions = ["789BET", "NEW88", "Jun88"];
 
 export const MatchDetailsContext = React.createContext();
 
-export default function MatchDetails({ matchDetail, matchTheSports, matchTheSportsLive, matchOdds }) {
+export default function MatchDetails({
+  matchDetail,
+  matchTheSports,
+  matchTheSportsLive,
+  matchOdds,
+}) {
   const router = useRouter();
   const pid = router.query.pid;
-  const [dataDetailMatchOddsOptions, setDataDetailMatchOddsOptions] = useState(0);
+  const [dataDetailMatchOddsOptions, setDataDetailMatchOddsOptions] =
+    useState(0);
   const matchIdTheSports = useMemo(() => {
     return matchTheSports.filter((data) => data.match_id == matchDetail.id);
   }, [matchDetail.id]);
   const matchIdLive = useMemo(() => {
-    return matchTheSportsLive?.filter((data) => matchIdTheSports[0]?.thesports_uuid === data.match_id);
+    return matchTheSportsLive?.filter(
+      (data) => matchIdTheSports[0]?.thesports_uuid === data.match_id
+    );
   }, [matchIdTheSports[0]?.thesports_uuid]);
 
   const buttonChat = [
@@ -82,7 +90,9 @@ export default function MatchDetails({ matchDetail, matchTheSports, matchTheSpor
     </a>
   </div>`;
     // refButton.current.insertAdjacentHTML("beforeend", myElement);
-    document.getElementById("livePlayer").insertAdjacentHTML("beforeend", myElement);
+    document
+      .getElementById("livePlayer")
+      .insertAdjacentHTML("beforeend", myElement);
   };
   const handleError = (e) => {
     setLinkLivestream(URL_VIDEO);
@@ -94,7 +104,11 @@ export default function MatchDetails({ matchDetail, matchTheSports, matchTheSpor
         <div id="detailPage">
           <Header />
           <picture>
-            <img src={URL_IMAGE_BACKGROUND} className="bg_homepage" alt="bg_homepage" />
+            <img
+              src={URL_IMAGE_BACKGROUND}
+              className="bg_homepage"
+              alt="bg_homepage"
+            />
           </picture>
           <div className="match-details">
             <div className="home-live">
@@ -105,7 +119,10 @@ export default function MatchDetails({ matchDetail, matchTheSports, matchTheSpor
               </a>
               <Marquee />
               <div className="match-details-live">
-                <div className="match-live" styles={{ position: "relative", marginBottom: 10 }}>
+                <div
+                  className="match-live"
+                  styles={{ position: "relative", marginBottom: 10 }}
+                >
                   {
                     <>
                       {matchDetail?.livestream?.length > 0 ? (
@@ -115,9 +132,15 @@ export default function MatchDetails({ matchDetail, matchTheSports, matchTheSpor
                               playerId="livePlayer"
                               playerScript="https://cdn.jwplayer.com/libraries/m393TMt7.js"
                               file={matchDetail?.livestream?.[0]?.link}
-                              onSeventyFivePercent={() => console.log("75 Percent")}
-                              onNinetyFivePercent={() => console.log("95 Percent")}
-                              onOneHundredPercent={() => console.log("100 Percent")}
+                              onSeventyFivePercent={() =>
+                                console.log("75 Percent")
+                              }
+                              onNinetyFivePercent={() =>
+                                console.log("95 Percent")
+                              }
+                              onOneHundredPercent={() =>
+                                console.log("100 Percent")
+                              }
                               isAutoPlay={true}
                               aspectRatio="16:9"
                               onEnterFullScreen={() => onEnterFullScreen()}
@@ -194,7 +217,10 @@ export default function MatchDetails({ matchDetail, matchTheSports, matchTheSpor
                   }
                 </div>
                 <div className="match-live-chat">
-                  <div className="pagination" style={{ display: "flex", marginBottom: 10 }}>
+                  <div
+                    className="pagination"
+                    style={{ display: "flex", marginBottom: 10 }}
+                  >
                     {buttonChat.map((item, i) => (
                       <span
                         key={i}
@@ -208,7 +234,12 @@ export default function MatchDetails({ matchDetail, matchTheSports, matchTheSpor
                       </span>
                     ))}
                   </div>
-                  <iframe width="100%" height="618" src={URL_IFRAME_CHAT} frameBorder="0"></iframe>
+                  <iframe
+                    width="100%"
+                    height="618"
+                    src={URL_IFRAME_CHAT}
+                    frameBorder="0"
+                  ></iframe>
                 </div>
               </div>
             </div>
@@ -230,7 +261,8 @@ export default function MatchDetails({ matchDetail, matchTheSports, matchTheSpor
                 </div>
                 <div className="match-center">
                   <div className="match-result">
-                    {matchDetail?.score?.home ?? 0} - {matchDetail?.score?.away ?? 0}
+                    {matchDetail?.score?.home ?? 0} -{" "}
+                    {matchDetail?.score?.away ?? 0}
                   </div>
                   <div className="match-status">{matchDetail?.time}</div>
                   <div className="match-odds flex-column">
@@ -238,7 +270,9 @@ export default function MatchDetails({ matchDetail, matchTheSports, matchTheSpor
                       {listDetailMatchOddsOptions.map((item, idx) => (
                         <span
                           key={idx}
-                          className={dataDetailMatchOddsOptions === idx ? "active" : ""}
+                          className={
+                            dataDetailMatchOddsOptions === idx ? "active" : ""
+                          }
                           onClick={() => setDataDetailMatchOddsOptions(idx)}
                         >
                           {item}
@@ -247,23 +281,25 @@ export default function MatchDetails({ matchDetail, matchTheSports, matchTheSpor
                     </div>
                     <div className="show-odds">
                       <div className="soccer">
-                        {matchOdds[dataDetailMatchOddsOptions]?.map((item, idx) => {
-                          return (
-                            <div key={idx} className="item">
-                              <div className="side">
-                                {item.left.map((d, index) => (
-                                  <span key={index}>{d}</span>
-                                ))}
+                        {matchOdds[dataDetailMatchOddsOptions]?.map(
+                          (item, idx) => {
+                            return (
+                              <div key={idx} className="item">
+                                <div className="side">
+                                  {item.left.map((d, index) => (
+                                    <span key={index}>{d}</span>
+                                  ))}
+                                </div>
+                                <div className="mid">{item.center}</div>
+                                <div className="side">
+                                  {item.right.map((d, index) => (
+                                    <span key={index}>{d}</span>
+                                  ))}
+                                </div>
                               </div>
-                              <div className="mid">{item.center}</div>
-                              <div className="side">
-                                {item.right.map((d, index) => (
-                                  <span key={index}>{d}</span>
-                                ))}
-                              </div>
-                            </div>
-                          );
-                        })}
+                            );
+                          }
+                        )}
                       </div>
                     </div>
                   </div>
