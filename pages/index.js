@@ -15,12 +15,21 @@ import "react-perfect-scrollbar/dist/css/styles.css";
 import Marquee from "../containers/Marquee";
 import CountDown from "../containers/CountDown";
 import Ads from "../containers/Ads";
-import { ADS_BANNER_BOTTOM, ADS_KEOVIP, API, URL_IMAGE_BACKGROUND } from "../contants";
+import {
+  ADS_BANNER_BOTTOM,
+  ADS_KEOVIP,
+  API,
+  URL_IMAGE_BACKGROUND,
+} from "../contants";
 import { useMemo } from "react";
 import { Box } from "@mui/material";
 import { getApiMatchList, getApiTheSports, getApiTheSportsLive } from "./api";
 
-export default function Home({ matchList, matchTheSports, matchTheSportsLive }) {
+export default function Home({
+  matchList,
+  matchTheSports,
+  matchTheSportsLive,
+}) {
   const [matchLive, setMatcheLive] = useState([]);
   const matchLiveHome = useMemo(() => {
     return matchList?.filter((data) => data.status !== "");
@@ -59,15 +68,19 @@ export default function Home({ matchList, matchTheSports, matchTheSportsLive }) 
         <div id="homepage">
           <Header />
           <picture>
-            <img src={URL_IMAGE_BACKGROUND} className="bg_homepage" alt="bg_homepage" />
+            <img
+              src={URL_IMAGE_BACKGROUND}
+              className="bg_homepage"
+              alt="bg_homepage"
+            />
           </picture>
 
           <div className="home-live">
-            <a href={ADS_KEOVIP} target="_blank">
+            {/* <a href={ADS_KEOVIP} target="_blank">
               <div className="ads-mobile" style={{ display: "none" }}>
                 <img src={ADS_BANNER_BOTTOM} width="100%" height="70px" />
               </div>
-            </a>
+            </a> */}
             <Marquee />
             <div className="main-live">
               <div className="main-live-app">
@@ -100,15 +113,28 @@ export default function Home({ matchList, matchTheSports, matchTheSportsLive }) 
                     {matchLiveHome.length > 0
                       ? matchLiveHome.map((item) => {
                           return (
-                            <div className="col-12 col-md-6 col-lg-12 mb-2" key={item.id}>
-                              <MatchCard2 data={item} matchTheSports={matchTheSports} getIdItemMatch={getIdItemMatch} />
+                            <div
+                              className="col-12 col-md-6 col-lg-12 mb-2"
+                              key={item.id}
+                            >
+                              <MatchCard2
+                                data={item}
+                                matchTheSports={matchTheSports}
+                                getIdItemMatch={getIdItemMatch}
+                              />
                             </div>
                           );
                         })
                       : matchList.map((item) => {
                           return (
-                            <div className="col-12 col-md-6 col-lg-12 mb-2" key={item.id}>
-                              <MatchCard2 data={item} getIdItemMatch={getIdItemMatch} />
+                            <div
+                              className="col-12 col-md-6 col-lg-12 mb-2"
+                              key={item.id}
+                            >
+                              <MatchCard2
+                                data={item}
+                                getIdItemMatch={getIdItemMatch}
+                              />
                             </div>
                           );
                         })}
@@ -138,19 +164,28 @@ export default function Home({ matchList, matchTheSports, matchTheSportsLive }) 
                   <div className="news">
                     <p className="title">Keovip là gì?</p>
                     <p style={{ fontWeight: 100 }}>
-                      Keovip TV là trang web phát sóng trực tiếp bóng đá miễn phí với chất lượng cao và là kênh xem bóng
-                      đá trực tuyến được yêu thích nhất Việt Nam. Nơi mà tất cả các giải đấu bóng đá hàng đầu trong cho
-                      đến ngoài nước đều được trực tiếp đầy đủ. Giúp bạn xem được trận đấu mình thích với trải nghiệm
-                      cao nhất. Chính vì thế, nếu có nhu cầu xem bất kỳ trận đấu nào, bạn hãy truy cập vào đây để lấy
-                      được link xem bóng đá uy tín nhất nhé.
+                      Keovip TV là trang web phát sóng trực tiếp bóng đá miễn
+                      phí với chất lượng cao và là kênh xem bóng đá trực tuyến
+                      được yêu thích nhất Việt Nam. Nơi mà tất cả các giải đấu
+                      bóng đá hàng đầu trong cho đến ngoài nước đều được trực
+                      tiếp đầy đủ. Giúp bạn xem được trận đấu mình thích với
+                      trải nghiệm cao nhất. Chính vì thế, nếu có nhu cầu xem bất
+                      kỳ trận đấu nào, bạn hãy truy cập vào đây để lấy được link
+                      xem bóng đá uy tín nhất nhé.
                     </p>
-                    <p className="title">Mục tiêu phát triển của trang web trực tiếp bóng đá Keovip.tv</p>
+                    <p className="title">
+                      Mục tiêu phát triển của trang web trực tiếp bóng đá
+                      Keovip.tv
+                    </p>
                     <p style={{ fontWeight: 100 }}>
-                      Đây là thời buổi của công nghệ số, cho nên đa số mọi người đều chọn cách xem trực tiếp bóng đá
-                      trên điện thoại, máy tính,.. hơn là xem trên TV như trước. Để có thể xem được 1 trận bóng đá trực
-                      tiếp với chất lượng cao, đầu tiên bạn phải truy cập vào 1 website uy tín. Tuy nhiên hiện tại ở
-                      Việt Nam không có quá nhiều website bóng đá làm được điều này. Cho nên, keovip.tv ra đời với mục
-                      đích giúp mọi người có được một địa chỉ xem bóng đá chất lượng cao
+                      Đây là thời buổi của công nghệ số, cho nên đa số mọi người
+                      đều chọn cách xem trực tiếp bóng đá trên điện thoại, máy
+                      tính,.. hơn là xem trên TV như trước. Để có thể xem được 1
+                      trận bóng đá trực tiếp với chất lượng cao, đầu tiên bạn
+                      phải truy cập vào 1 website uy tín. Tuy nhiên hiện tại ở
+                      Việt Nam không có quá nhiều website bóng đá làm được điều
+                      này. Cho nên, keovip.tv ra đời với mục đích giúp mọi người
+                      có được một địa chỉ xem bóng đá chất lượng cao
                     </p>
                   </div>
                 </div>

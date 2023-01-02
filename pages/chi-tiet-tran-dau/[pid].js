@@ -112,11 +112,11 @@ export default function MatchDetails({
           </picture>
           <div className="match-details">
             <div className="home-live">
-              <a href={ADS_KEOVIP} target="_blank">
+              {/* <a href={ADS_KEOVIP} target="_blank">
                 <div className="ads-mobile" style={{ display: "none" }}>
                   <img src={ADS_BANNER_BOTTOM} width="100%" height="70px" />
                 </div>
-              </a>
+              </a> */}
               <Marquee />
               <div className="match-details-live">
                 <div
