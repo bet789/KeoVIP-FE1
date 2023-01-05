@@ -23,4 +23,4 @@ export const URL_AMINATION =
   "https://www.isportslive8.com/football/detail.html";
 export const URL_GIF_LIVE = "https://keovip.b-cdn.net/living.gif";
 export const URL_IFRAME_ODDS =
-  "https://v05btsmart.fts368.com/?api=V05BT&zi=gd003i0054q4&c=VD&tp=darker&lang=vi-VN&code=V05BT&token=j8Ko5QhwFiopHRVRHKFzgTqQDg1BoiMmvibUR9W2Lvw";
+  "https://ismart.w2sports.com/(s(xideqset3z7ra11eirt1dzd3ym1t1sjddgeegqbirnzgeux8lselmina8cwzz))/DepositLogin/bfindex?lang=vn&provider=oneworks&gameId=sb&play=0";

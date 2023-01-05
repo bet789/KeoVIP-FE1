@@ -12,7 +12,7 @@ const style = {
   display: "block",
   background: "#000",
   border: "none",
-  height: "1500px",
+  height: "100vh",
   width: "100%",
   "overflow-y": "hidden",
   marginBottom: "30px",
@@ -66,11 +66,11 @@ const TyLeKeoPage = () => {
       <Headhtml />
       <main className={styles.main}>
         <Header />
-        <div className="container-fluid" style={{ marginTop: 40 }}>
-          <div className="banner">
+        <div className="container-fluid" style={{ margin: 0, padding: 0 }}>
+          <div className="banner" style={{ margin: 0 }}>
             <Banner />
           </div>
-          <iframe src={URL_IFRAME_ODDS} style={style}></iframe>
+          <iframe src={URL_IFRAME_ODDS} style={style} border="0"></iframe>
         </div>
         <Footer />
       </main>
