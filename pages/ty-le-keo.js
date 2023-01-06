@@ -70,7 +70,7 @@ const TyLeKeoPage = () => {
           <div className="banner" style={{ margin: 0 }}>
             <Banner />
           </div>
-          <iframe src={URL_IFRAME_ODDS} style={style} border="0"></iframe>
+          <iframe src={URL_IFRAME_ODDS} style={style} frameBorder="0"></iframe>
         </div>
         <Footer />
       </main>

@@ -5,12 +5,19 @@ import styles from "../../styles/Home.module.css";
 import { Footer } from "../../containers/Footer";
 import { Header } from "../../containers/Header";
 import axios from "axios";
-// Import Swiper styles
+
+import Box from "@mui/material/Box";
+import Tab from "@mui/material/Tab";
+import TabContext from "@mui/lab/TabContext";
+import TabList from "@mui/lab/TabList";
+import TabPanel from "@mui/lab/TabPanel";
+
 import ReactJWPlayer from "react-jw-player";
 import Marquee from "../../containers/Marquee";
 import EventStat from "../../containers/EventStat";
 import CountDown from "../../containers/CountDown";
 import Ads from "../../containers/Ads";
+
 import {
   ADS_BANNER_BOTTOM,
   ADS_KEOVIP,
@@ -35,7 +42,9 @@ import {
   getApiTheSports,
   getApiTheSportsLive,
 } from "../api";
+
 import { useRouter } from "next/router";
+import { useMediaQuery } from "@mui/material";
 const listDetailMatchOddsOptions = ["789BET", "NEW88", "Jun88"];
 
 export const MatchDetailsContext = React.createContext();
@@ -50,6 +59,13 @@ export default function MatchDetails({
   const pid = router.query.pid;
   const [dataDetailMatchOddsOptions, setDataDetailMatchOddsOptions] =
     useState(0);
+  const matches = useMediaQuery("(max-width:768px)");
+  const [value, setValue] = React.useState("1");
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
   const matchIdTheSports = useMemo(() => {
     return matchTheSports.filter((data) => data.match_id == matchDetail.id);
   }, [matchDetail.id]);
@@ -101,69 +117,71 @@ export default function MatchDetails({
     <div className={styles.container}>
       <Headhtml />
       <main id="main" className={styles.main}>
-        <div id="detailPage">
-          <Header />
-          <picture>
-            <img
-              src={URL_IMAGE_BACKGROUND}
-              className="bg_homepage"
-              alt="bg_homepage"
-            />
-          </picture>
-          <div className="match-details">
-            <div className="home-live">
-              {/* <a href={ADS_KEOVIP} target="_blank">
+        {!matches ? (
+          <>
+            <div id="detailPage">
+              <Header />
+              <picture>
+                <img
+                  src={URL_IMAGE_BACKGROUND}
+                  className="bg_homepage"
+                  alt="bg_homepage"
+                />
+              </picture>
+              <div className="match-details">
+                <div className="home-live">
+                  {/* <a href={ADS_KEOVIP} target="_blank">
                 <div className="ads-mobile" style={{ display: "none" }}>
                   <img src={ADS_BANNER_BOTTOM} width="100%" height="70px" />
                 </div>
               </a> */}
-              <Marquee />
-              <div className="match-details-live">
-                <div
-                  className="match-live"
-                  styles={{ position: "relative", marginBottom: 10 }}
-                >
-                  {
-                    <>
-                      {matchDetail?.livestream?.length > 0 ? (
+                  <Marquee />
+                  <div className="match-details-live">
+                    <div
+                      className="match-live"
+                      styles={{ position: "relative", marginBottom: 10 }}
+                    >
+                      {
                         <>
-                          <div>
-                            <ReactJWPlayer
-                              playerId="livePlayer"
-                              playerScript="https://cdn.jwplayer.com/libraries/m393TMt7.js"
-                              file={matchDetail?.livestream?.[0]?.link}
-                              onSeventyFivePercent={() =>
-                                console.log("75 Percent")
-                              }
-                              onNinetyFivePercent={() =>
-                                console.log("95 Percent")
-                              }
-                              onOneHundredPercent={() =>
-                                console.log("100 Percent")
-                              }
-                              isAutoPlay={true}
-                              aspectRatio="16:9"
-                              onEnterFullScreen={() => onEnterFullScreen()}
-                              customProps={{
-                                playbackRateControls: [1, 1.25, 1.5],
-                                cast: {},
-                              }}
-                              onError={(e) => handleError(e)}
-                            />
-                            <div className="button-odd">
-                              <a target="_blank" href={URL_789BET}>
-                                789BET
-                              </a>
-                              <a target="_blank" href={URL_NEW88}>
-                                NEW88
-                              </a>
-                              <a target="_blank" href={URL_JUN88}>
-                                Jun88
-                              </a>
-                            </div>
-                          </div>
+                          {matchDetail?.livestream?.length > 0 ? (
+                            <>
+                              <div>
+                                <ReactJWPlayer
+                                  playerId="livePlayer"
+                                  playerScript="https://cdn.jwplayer.com/libraries/m393TMt7.js"
+                                  file={matchDetail?.livestream?.[0]?.link}
+                                  onSeventyFivePercent={() =>
+                                    console.log("75 Percent")
+                                  }
+                                  onNinetyFivePercent={() =>
+                                    console.log("95 Percent")
+                                  }
+                                  onOneHundredPercent={() =>
+                                    console.log("100 Percent")
+                                  }
+                                  isAutoPlay={true}
+                                  aspectRatio="16:9"
+                                  onEnterFullScreen={() => onEnterFullScreen()}
+                                  customProps={{
+                                    playbackRateControls: [1, 1.25, 1.5],
+                                    cast: {},
+                                  }}
+                                  onError={(e) => handleError(e)}
+                                />
+                                <div className="button-odd">
+                                  <a target="_blank" href={URL_789BET}>
+                                    789BET
+                                  </a>
+                                  <a target="_blank" href={URL_NEW88}>
+                                    NEW88
+                                  </a>
+                                  <a target="_blank" href={URL_JUN88}>
+                                    Jun88
+                                  </a>
+                                </div>
+                              </div>
 
-                          {/* <div
+                              {/* <div
                             className="pagination"
                             style={{
                               display: "flex",
@@ -173,7 +191,7 @@ export default function MatchDetails({
                               background: "#a9a0a0ba",
                             }}
                           > */}
-                          {/* {livestream.map((item, i) => (
+                              {/* {livestream.map((item, i) => (
                               <span
                                 key={i}
                                 className="live"
@@ -185,149 +203,364 @@ export default function MatchDetails({
                                 {item?.name ?? `Dự phòng ${i + 1}`}
                               </span>
                             ))} */}
-                          {/* </div> */}
+                              {/* </div> */}
+                            </>
+                          ) : matchIdLive?.length > 0 ? (
+                            <>
+                              <iframe
+                                src={`${URL_IFRAME_THESPORTS}&uuid=${matchIdLive[0].match_id}`}
+                                width="100%"
+                                height="670"
+                              ></iframe>
+                              <div className="button-odd">
+                                <a target="_blank" href={URL_789BET}>
+                                  789BET
+                                </a>
+                                <a target="_blank" href={URL_NEW88}>
+                                  NEW88
+                                </a>
+                                <a target="_blank" href={URL_JUN88}>
+                                  Jun8
+                                </a>
+                              </div>
+                            </>
+                          ) : (
+                            <iframe
+                              src={`${URL_AMINATION}?matchId=${matchDetail.id}&accessKey=tEFL6ClbFnfkvmEn0xspIVQyPV9jAz9u&lang=vi&statsPanel=hide`}
+                              width="100%"
+                              height="700"
+                            ></iframe>
+                          )}
                         </>
-                      ) : matchIdLive?.length > 0 ? (
-                        <>
-                          <iframe
-                            src={`${URL_IFRAME_THESPORTS}&uuid=${matchIdLive[0].match_id}`}
-                            width="100%"
-                            height="670"
-                          ></iframe>
-                          <div className="button-odd">
-                            <a target="_blank" href={URL_789BET}>
-                              789BET
-                            </a>
-                            <a target="_blank" href={URL_NEW88}>
-                              NEW88
-                            </a>
-                            <a target="_blank" href={URL_JUN88}>
-                              Jun8
-                            </a>
-                          </div>
-                        </>
-                      ) : (
-                        <iframe
-                          src={`${URL_AMINATION}?matchId=${matchDetail.id}&accessKey=tEFL6ClbFnfkvmEn0xspIVQyPV9jAz9u&lang=vi&statsPanel=hide`}
-                          width="100%"
-                          height="700"
-                        ></iframe>
-                      )}
-                    </>
-                  }
-                </div>
-                <div className="match-live-chat">
-                  <div
-                    className="pagination"
-                    style={{ display: "flex", marginBottom: 10 }}
-                  >
-                    {buttonChat.map((item, i) => (
-                      <span
-                        key={i}
-                        className="live"
-                        style={{ width: "25%" }}
-                        onClick={() => {
-                          Boolean(item?.url) && window.open(item?.url);
-                        }}
+                      }
+                    </div>
+                    <div className="match-live-chat">
+                      <div
+                        className="pagination"
+                        style={{ display: "flex", marginBottom: 10 }}
                       >
-                        {item?.title ?? ""}
-                      </span>
-                    ))}
+                        {buttonChat.map((item, i) => (
+                          <span
+                            key={i}
+                            className="live"
+                            style={{ width: "25%" }}
+                            onClick={() => {
+                              Boolean(item?.url) && window.open(item?.url);
+                            }}
+                          >
+                            {item?.title ?? ""}
+                          </span>
+                        ))}
+                      </div>
+                      <iframe
+                        width="100%"
+                        height="618"
+                        src={URL_IFRAME_CHAT}
+                        frameBorder="0"
+                      ></iframe>
+                    </div>
                   </div>
-                  <iframe
-                    width="100%"
-                    height="618"
-                    src={URL_IFRAME_CHAT}
-                    frameBorder="0"
-                  ></iframe>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div className="app-live">
-          <div className="container">
-            {/* <Ads /> */}
-            {/* <CountDown timer={1800} /> */}
-            <div className="match-details-odds">
-              <div className="match-introduction">
-                <div className="match-team">
-                  <picture>
-                    <img src={matchDetail?.team_home_logo ?? ""} alt="" />
-                  </picture>
-                  <div className="team-name">
-                    <a>{matchDetail?.team_home_name ?? ""}</a>
-                  </div>
-                </div>
-                <div className="match-center">
-                  <div className="match-result">
-                    {matchDetail?.score?.home ?? 0} -{" "}
-                    {matchDetail?.score?.away ?? 0}
-                  </div>
-                  <div className="match-status">{matchDetail?.time}</div>
-                  <div className="match-odds flex-column">
-                    <div className="company">
-                      {listDetailMatchOddsOptions.map((item, idx) => (
-                        <span
-                          key={idx}
-                          className={
-                            dataDetailMatchOddsOptions === idx ? "active" : ""
-                          }
-                          onClick={() => setDataDetailMatchOddsOptions(idx)}
-                        >
-                          {item}
-                        </span>
-                      ))}
+            <div className="app-live">
+              <div className="container">
+                {/* <Ads /> */}
+                {/* <CountDown timer={1800} /> */}
+                <div className="match-details-odds">
+                  <div className="match-introduction">
+                    <div className="match-team">
+                      <picture>
+                        <img src={matchDetail?.team_home_logo ?? ""} alt="" />
+                      </picture>
+                      <div className="team-name">
+                        <a>{matchDetail?.team_home_name ?? ""}</a>
+                      </div>
                     </div>
-                    <div className="show-odds">
-                      <div className="soccer">
-                        {matchOdds[dataDetailMatchOddsOptions]?.map(
-                          (item, idx) => {
-                            return (
-                              <div key={idx} className="item">
-                                <div className="side">
-                                  {item.left.map((d, index) => (
-                                    <span key={index}>{d}</span>
-                                  ))}
-                                </div>
-                                <div className="mid">{item.center}</div>
-                                <div className="side">
-                                  {item.right.map((d, index) => (
-                                    <span key={index}>{d}</span>
-                                  ))}
-                                </div>
-                              </div>
-                            );
-                          }
-                        )}
+                    <div className="match-center">
+                      <div className="match-result">
+                        {matchDetail?.score?.home ?? 0} -{" "}
+                        {matchDetail?.score?.away ?? 0}
+                      </div>
+                      <div className="match-status">{matchDetail?.time}</div>
+                      <div className="match-odds flex-column">
+                        <div className="company">
+                          {listDetailMatchOddsOptions.map((item, idx) => (
+                            <span
+                              key={idx}
+                              className={
+                                dataDetailMatchOddsOptions === idx
+                                  ? "active"
+                                  : ""
+                              }
+                              onClick={() => setDataDetailMatchOddsOptions(idx)}
+                            >
+                              {item}
+                            </span>
+                          ))}
+                        </div>
+                        <div className="show-odds">
+                          <div className="soccer">
+                            {matchOdds[dataDetailMatchOddsOptions]?.map(
+                              (item, idx) => {
+                                return (
+                                  <div key={idx} className="item">
+                                    <div className="side">
+                                      {item.left.map((d, index) => (
+                                        <span key={index}>{d}</span>
+                                      ))}
+                                    </div>
+                                    <div className="mid">{item.center}</div>
+                                    <div className="side">
+                                      {item.right.map((d, index) => (
+                                        <span key={index}>{d}</span>
+                                      ))}
+                                    </div>
+                                  </div>
+                                );
+                              }
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="match-team">
+                      <picture>
+                        <img src={matchDetail?.team_away_logo ?? ""} alt="" />
+                      </picture>
+                      <div className="team-name">
+                        <a>{matchDetail?.team_away_name ?? ""}</a>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="match-team">
-                  <picture>
-                    <img src={matchDetail?.team_away_logo ?? ""} alt="" />
-                  </picture>
-                  <div className="team-name">
-                    <a>{matchDetail?.team_away_name ?? ""}</a>
+                <div className="match-amination">
+                  <iframe
+                    src={`${URL_AMINATION}?matchId=${pid}&accessKey=tEFL6ClbFnfkvmEn0xspIVQyPV9jAz9u&lang=vi`}
+                    width="800"
+                    height="700"
+                  ></iframe>
+                  <div className="match-stats">
+                    <h3>Sự Kiện Chính</h3>
+                    <EventStat id={pid} />
                   </div>
                 </div>
               </div>
             </div>
-            <div className="match-amination">
-              <iframe
-                src={`${URL_AMINATION}?matchId=${pid}&accessKey=tEFL6ClbFnfkvmEn0xspIVQyPV9jAz9u&lang=vi`}
-                width="800"
-                height="700"
-              ></iframe>
-              <div className="match-stats">
-                <h3>Sự Kiện Chính</h3>
-                <EventStat id={pid} />
+            <Footer />
+          </>
+        ) : (
+          <>
+            <div id="detailPage detailPage-only-mobile">
+              <Header />
+              <div className="match-details">
+                <div className="home-live">
+                  <Marquee />
+                  <div className="match-details-live">
+                    <div
+                      className="match-live"
+                      styles={{ position: "relative", marginBottom: 10 }}
+                    >
+                      {
+                        <>
+                          {matchDetail?.livestream?.length > 0 ? (
+                            <>
+                              <div>
+                                <ReactJWPlayer
+                                  playerId="livePlayer"
+                                  playerScript="https://cdn.jwplayer.com/libraries/m393TMt7.js"
+                                  file={matchDetail?.livestream?.[0]?.link}
+                                  onSeventyFivePercent={() =>
+                                    console.log("75 Percent")
+                                  }
+                                  onNinetyFivePercent={() =>
+                                    console.log("95 Percent")
+                                  }
+                                  onOneHundredPercent={() =>
+                                    console.log("100 Percent")
+                                  }
+                                  isAutoPlay={true}
+                                  aspectRatio="16:9"
+                                  onEnterFullScreen={() => onEnterFullScreen()}
+                                  customProps={{
+                                    playbackRateControls: [1, 1.25, 1.5],
+                                    cast: {},
+                                  }}
+                                  onError={(e) => handleError(e)}
+                                />
+                                <div className="button-odd">
+                                  <a target="_blank" href={URL_789BET}>
+                                    789BET
+                                  </a>
+                                  <a target="_blank" href={URL_NEW88}>
+                                    NEW88
+                                  </a>
+                                  <a target="_blank" href={URL_JUN88}>
+                                    Jun88
+                                  </a>
+                                </div>
+                              </div>
+                            </>
+                          ) : matchIdLive?.length > 0 ? (
+                            <>
+                              <iframe
+                                src={`${URL_IFRAME_THESPORTS}&uuid=${matchIdLive[0].match_id}`}
+                                width="100%"
+                                height="670"
+                              ></iframe>
+                              <div className="button-odd">
+                                <a target="_blank" href={URL_789BET}>
+                                  789BET
+                                </a>
+                                <a target="_blank" href={URL_NEW88}>
+                                  NEW88
+                                </a>
+                                <a target="_blank" href={URL_JUN88}>
+                                  Jun8
+                                </a>
+                              </div>
+                            </>
+                          ) : (
+                            <iframe
+                              src={`${URL_AMINATION}?matchId=${matchDetail.id}&accessKey=tEFL6ClbFnfkvmEn0xspIVQyPV9jAz9u&lang=vi&statsPanel=hide`}
+                              width="100%"
+                              height="100%"
+                            ></iframe>
+                          )}
+                        </>
+                      }
+                    </div>
+                  </div>
+                </div>
               </div>
+
+              <Box className="box-chat-details">
+                <TabContext value={value}>
+                  <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+                    <TabList onChange={handleChange} aria-label="tabs">
+                      <Tab label="PHÒNG CHAT" value="1" />
+                      <Tab label="SỰ KIỆN CHÍNH" value="2" />
+                    </TabList>
+                  </Box>
+                  <TabPanel value="1" style={{ padding: 0 }}>
+                    <div
+                      className="match-live-chat"
+                      style={{ backgroundColor: "#fff" }}
+                    >
+                      <iframe
+                        width="100%"
+                        height="100%"
+                        src={URL_IFRAME_CHAT}
+                        frameBorder="0"
+                      ></iframe>
+                    </div>
+                  </TabPanel>
+                  <TabPanel
+                    value="2"
+                    style={{ padding: "0 10px", backgroundColor: "#fff" }}
+                  >
+                    <div className="app-live">
+                      <div className="container">
+                        <div className="match-details-odds">
+                          <div className="match-introduction">
+                            <div className="match-team">
+                              <picture>
+                                <img
+                                  src={matchDetail?.team_home_logo ?? ""}
+                                  alt=""
+                                />
+                              </picture>
+                              <div className="team-name">
+                                <a>{matchDetail?.team_home_name ?? ""}</a>
+                              </div>
+                            </div>
+                            <div className="match-center">
+                              <div className="match-result">
+                                {matchDetail?.score?.home ?? 0} -{" "}
+                                {matchDetail?.score?.away ?? 0}
+                              </div>
+                              <div className="match-status">
+                                {matchDetail?.time}
+                              </div>
+                              <div className="match-odds flex-column">
+                                <div className="company">
+                                  {listDetailMatchOddsOptions.map(
+                                    (item, idx) => (
+                                      <span
+                                        key={idx}
+                                        className={
+                                          dataDetailMatchOddsOptions === idx
+                                            ? "active"
+                                            : ""
+                                        }
+                                        onClick={() =>
+                                          setDataDetailMatchOddsOptions(idx)
+                                        }
+                                      >
+                                        {item}
+                                      </span>
+                                    )
+                                  )}
+                                </div>
+                                <div className="show-odds">
+                                  <div className="soccer">
+                                    {matchOdds[dataDetailMatchOddsOptions]?.map(
+                                      (item, idx) => {
+                                        return (
+                                          <div key={idx} className="item">
+                                            <div className="side">
+                                              {item.left.map((d, index) => (
+                                                <span key={index}>{d}</span>
+                                              ))}
+                                            </div>
+                                            <div className="mid">
+                                              {item.center}
+                                            </div>
+                                            <div className="side">
+                                              {item.right.map((d, index) => (
+                                                <span key={index}>{d}</span>
+                                              ))}
+                                            </div>
+                                          </div>
+                                        );
+                                      }
+                                    )}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="match-team">
+                              <picture>
+                                <img
+                                  src={matchDetail?.team_away_logo ?? ""}
+                                  alt=""
+                                />
+                              </picture>
+                              <div className="team-name">
+                                <a>{matchDetail?.team_away_name ?? ""}</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="match-amination">
+                          <iframe
+                            src={`${URL_AMINATION}?matchId=${pid}&accessKey=tEFL6ClbFnfkvmEn0xspIVQyPV9jAz9u&lang=vi`}
+                            width="800"
+                            height="700"
+                          ></iframe>
+                          <div className="match-stats">
+                            <h3>Sự Kiện Chính</h3>
+                            <EventStat id={pid} />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </TabPanel>
+                </TabContext>
+              </Box>
             </div>
-          </div>
-        </div>
-        <Footer />
+          </>
+        )}
       </main>
       <Script />
     </div>

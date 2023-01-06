@@ -530,7 +530,7 @@ button:focus {
   background: -webkit-linear-gradient(top, #FF7F23 0%, #FFBC09 100%);
   background: -o-linear-gradient(top, #FF7F23 0%, #FFBC09 100%);
   background: linear-gradient(180deg, #FF7F23 0%, #FFBC09 100%);
-  border-radius: 2px;
+  border-radius: 4px;
   font-style: normal;
   font-weight: 600;
   font-size: 13px;

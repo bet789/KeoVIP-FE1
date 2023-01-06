@@ -1,13 +1,14 @@
-
-.match-details-odds{
+.match-details-odds {
   display: flex;
   margin-top: 30px;
   gap: 1rem;
 }
-.match-amination iframe{
+
+.match-amination iframe {
   border-radius: 8px;
   margin-top: 20px;
 }
+
 .match-details-odds .match-introduction {
   background-repeat: no-repeat;
   background-size: cover;
@@ -15,27 +16,32 @@
   flex-direction: row;
   padding: 1rem 0;
   background-image: url(../public/assets/images/match-even.png);
-border-radius: 5px;
-box-shadow: 0 45px 20px rgb(0 0 0 / 19%), 0 6px 6px rgb(0 0 0 / 22%);
-width: 100%;
+  border-radius: 5px;
+  box-shadow: 0 45px 20px rgb(0 0 0 / 19%), 0 6px 6px rgb(0 0 0 / 22%);
+  width: 100%;
 }
+
 .match-details-odds .match-amination {
- width: 30%;
+  width: 30%;
 }
-.match-details-odds .match-amination iframe{
+
+.match-details-odds .match-amination iframe {
   border-radius: 8px;
 }
-#detailPage{
+
+#detailPage {
   position: relative;
   height: 100%;
 }
-#detailPage .home-live{
+
+#detailPage .home-live {
   max-width: 1585px;
   margin: 0 auto;
   padding: 0;
   position: relative;
   z-index: 2;
 }
+
 .match-details-odds .match-introduction .match-team {
   flex: 1;
   display: flex;
@@ -143,6 +149,7 @@ width: 100%;
   line-height: inherit;
   color: #afb4ba;
 }
+
 .match-details-odds .match-introduction .match-center .show-odds .side {
   background: #2a3038;
   border-radius: 4px;
@@ -221,10 +228,12 @@ width: 100%;
   left: 0;
   top: 0;
 }
-.match-amination{
+
+.match-amination {
   display: flex;
 }
-.match-amination .match-stats{
+
+.match-amination .match-stats {
   width: 50%;
   text-align: center;
   margin: 20px 0 0px 20px;
@@ -232,16 +241,21 @@ width: 100%;
   background-image: linear-gradient(45deg, #a1a1a126, #b9b9b95c);
   box-shadow: 1px 1px 5px 1px #ffd9d95c;
 }
-.match-amination .match-stats table tr td{
+
+.match-amination .match-stats table tr td {
   text-align: center;
   color: #ffeb00;
 }
-.match-amination .match-stats table tr .event-home, .match-amination .match-stats table tr .event-away{
+
+.match-amination .match-stats table tr .event-home,
+.match-amination .match-stats table tr .event-away {
   width: 45%;
 }
-.match-amination .match-stats table tr .event-minutes{
+
+.match-amination .match-stats table tr .event-minutes {
   font-weight: bold;
 }
+
 .test {
   width: 100px;
   height: 100px;
@@ -258,7 +272,8 @@ width: 100%;
   top: 0;
 }
 
-.skip, .timeout {
+.skip,
+.timeout {
   cursor: pointer;
   position: absolute;
   bottom: 4rem;
@@ -269,11 +284,9 @@ width: 100%;
   z-index: 2;
 }
 
-.match-details .in-match-stats li {
-}
+.match-details .in-match-stats li {}
 
-.match-details .in-match-stats li .num {
-}
+.match-details .in-match-stats li .num {}
 
 .match-details .in-match-stats li .num span {
   font-size: 0.9375rem;
@@ -300,28 +313,35 @@ width: 100%;
   display: inline-block;
   background: #03be49;
 }
-.match-details-live{
+
+.match-details-live {
   display: flex;
 }
-.match-details-live .match-live{
+
+.match-details-live .match-live {
   width: 75%;
 }
-.match-details-live .match-live-chat{
+
+.match-details-live .match-live-chat {
   width: 25%;
   padding-left: 5px;
 }
-.match-details-live .match-live-chat iframe{
+
+.match-details-live .match-live-chat iframe {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
+
 @media screen and (max-width: 992px) {
   .match-details-odds .match-introduction .match-center .match-odds {
     position: absolute;
     top: 100%;
   }
+
   .match-details-odds .match-introduction {
     min-height: 204px;
   }
+
   .match-details-odds .match-introduction {
     align-items: start;
   }
@@ -331,43 +351,56 @@ width: 100%;
     height: 36px;
     margin-bottom: 2px;
   }
+
   .match-details-odds .match-introduction .match-center .match-result {
     font-size: 26px;
   }
 }
+
 /* .match-details{
   background: url('/assets/images/bg-world.webp');
   background-size: cover;
   background-repeat: no-repeat;
 } */
-.match-live, .action-hot-live{
+.match-live,
+.action-hot-live {
   border-radius: 5px;
   position: relative;
 }
-.match-live iframe, .action-hot-live iframe{
+
+.match-live iframe,
+.action-hot-live iframe {
   border-radius: 5px;
 }
-.match-live .button-odd{
+
+.match-live .button-odd {
   position: absolute;
   top: 87%;
   right: 50px;
 }
-.action-hot-live .button-odd{
+
+.action-hot-live .button-odd {
   position: absolute;
   top: 94%;
   right: 140px;
 }
-.match-live .button-odd a,  .action-hot-live .button-odd a{
+
+.match-live .button-odd a,
+.action-hot-live .button-odd a {
   padding: 5px 10px;
   margin: 0 10px;
   border-radius: 5px;
 }
-.action-hot-live .button-odd a:nth-child(1), .button-odd2 a:nth-child(1){
-  background-image:linear-gradient(0deg,#ff5200b8,#adc111);
+
+.action-hot-live .button-odd a:nth-child(1),
+.button-odd2 a:nth-child(1) {
+  background-image: linear-gradient(0deg, #ff5200b8, #adc111);
   box-shadow: 0px 35px 35px 0px rgb(24 2 8 / 50%);
- }
-.action-hot-live .button-odd a:nth-child(1) span, .button-odd2 a:nth-child(1) span{
-  background-image: linear-gradient(-225deg,#744eff,#7d00ff 29%,#ff0054 67%,#fff800);
+}
+
+.action-hot-live .button-odd a:nth-child(1) span,
+.button-odd2 a:nth-child(1) span {
+  background-image: linear-gradient(-225deg, #744eff, #7d00ff 29%, #ff0054 67%, #fff800);
   text-transform: uppercase;
   background-size: auto auto;
   background-clip: border-box;
@@ -380,39 +413,50 @@ width: 100%;
   animation: textclip 2s linear infinite;
   display: inline-block;
   font-weight: 700;
- }
+}
+
 @keyframes textclip {
   to {
     background-position: 200% center;
   }
 }
-.match-live .button-odd a:nth-child(1), .action-hot-live .button-odd a:nth-child(3){
-  background-image: linear-gradient(0deg,#fd7900,#ff4c23);
+
+.match-live .button-odd a:nth-child(1),
+.action-hot-live .button-odd a:nth-child(3) {
+  background-image: linear-gradient(0deg, #fd7900, #ff4c23);
 }
-.match-live .button-odd a:nth-child(2), .action-hot-live .button-odd a:nth-child(2){
-  background-image: linear-gradient(0deg,#fd7900,#ff4c23);
+
+.match-live .button-odd a:nth-child(2),
+.action-hot-live .button-odd a:nth-child(2) {
+  background-image: linear-gradient(0deg, #fd7900, #ff4c23);
 }
-.match-live .button-odd a:nth-child(3), .action-hot-live .button-odd a:nth-child(4){
+
+.match-live .button-odd a:nth-child(3),
+.action-hot-live .button-odd a:nth-child(4) {
   background: #25aae1;
 }
-.swiper-wrapper .match-continue img{
+
+.swiper-wrapper .match-continue img {
   width: 50px;
   height: 50px;
 }
-.swiper-wrapper .match-continue .match-leage{
+
+.swiper-wrapper .match-continue .match-leage {
   color: #666666;
   font-size: 12px;
   font-weight: bold;
   width: 60%;
 }
-.swiper-wrapper .match-continue .team_name{
+
+.swiper-wrapper .match-continue .team_name {
   color: #666666;
   font-weight: bold;
   padding: 10px 0;
   text-align: center;
   font-size: 12px;
 }
-.swiper-wrapper .match-continue span.bet-now{
+
+.swiper-wrapper .match-continue span.bet-now {
   color: #fff !important;
   background-color: #e11d23;
   font-weight: bold;
@@ -422,193 +466,281 @@ width: 100%;
   font-size: 14px;
   cursor: pointer;
 }
-.swiper{
+
+.swiper {
   background-color: #ffffff;
-    border-radius: 5px;
-    box-shadow: rgb(0 0 0 / 20%) 0 12px 28px 0, rgb(0 0 0 / 10%) 0 2px 4px 0, rgb(255 255 255 / 5%) 0 0 0 1px;
+  border-radius: 5px;
+  box-shadow: rgb(0 0 0 / 20%) 0 12px 28px 0, rgb(0 0 0 / 10%) 0 2px 4px 0, rgb(255 255 255 / 5%) 0 0 0 1px;
 }
-.swiper-wrapper .match-continue{
+
+.swiper-wrapper .match-continue {
   padding: 0 20px;
   margin: 10px 0;
   border-right: 1px solid #80808066;
   cursor: pointer;
 }
-.match-continue .match-body{
+
+.match-continue .match-body {
   margin: 10px 0;
 }
+
+.box-chat-details {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 99999999;
+  height: 60vh;
+  background-color: #fff;
+}
+
+
 @media screen and (max-width: 440px) {
-  .news-selector img{
+  .news-selector img {
     display: none;
   }
-  .news-selector ul{
+
+  .news-selector ul {
     gap: unset;
   }
-  .match-time-selector img{
+
+  .match-time-selector img {
     width: 120px;
   }
-  .match-details{
+
+  .match-details {
     background: unset;
   }
-  .match-details-live .match-live{
+
+  .match-details-live .match-live {
     width: 100%;
   }
-  .match-details-live .match-live-chat{
+
+  .match-details-live .match-live-chat {
     width: 100%;
     padding: 0;
     margin: 0;
     overflow: hidden;
     overflow-y: auto;
   }
-  #detailPage{
+
+  #detailPage {
     height: 100%;
   }
-  .match-details-live{
+
+  .match-details-live {
     display: block
   }
-  #detailPage picture{
+
+  #detailPage picture {
     display: none;
   }
-  .swiper-wrapper .match-continue .team_name{
+
+  .swiper-wrapper .match-continue .team_name {
     font-size: 12px;
   }
-  .match-continue .match-body .team{
+
+  .match-continue .match-body .team {
     width: 33%;
   }
-  .match-details .match-introduction .match-team .team-name a{
+
+  .match-details .match-introduction .match-team .team-name a {
     font-size: 10px;
   }
+
   .match-live .button-odd {
     top: 82%;
     right: 140px;
   }
-  .match-live .button-odd a:first-child, .match-live .button-odd a:nth-child(2), .match-live .button-odd a:nth-child(3) {
+
+  .match-live .button-odd a:first-child,
+  .match-live .button-odd a:nth-child(2),
+  .match-live .button-odd a:nth-child(3) {
     font-size: 10px;
   }
+
   .match-live .button-odd a {
     padding: 5px 5px;
     margin: 0 5px;
     border-radius: 5px;
   }
-  .match-details-odds .match-introduction{
+
+  .match-details-odds .match-introduction {
     width: 100%;
   }
-  .match-details-odds{
+
+  .match-details-odds {
     display: block
   }
-  .match-details-odds .match-amination{
+
+  .match-details-odds .match-amination {
     width: 100%;
     padding-top: 20px;
   }
-  .match-amination{
+
+  .match-amination {
     display: block;
+    padding-bottom: 1px;
   }
-  .match-amination iframe{
+
+  .match-amination iframe {
     width: 100%;
     height: 300px;
   }
-  .match-amination .match-stats{
+
+  .match-amination .match-stats {
     width: 100%;
     margin: 10px 0;
     height: auto;
   }
+
   .match-details-odds .match-introduction .match-team .team-name a {
-      font-size: 12px ;
+    font-size: 12px;
   }
-  .match-live #livePlayer{
+
+  .match-live #livePlayer {
     border-radius: 0;
   }
-  .match-details-live .match-live-chat iframe{
+
+  .match-details-live .match-live-chat iframe {
     height: 350px;
   }
+
+  .match-amination .match-stats {
+    background-image: linear-gradient(45deg, #272d3c, #3d2e3b);
+  }
+
+  .match-live-chat iframe {
+    height: 53vh;
+  }
 }
+
+@media screen and (width: 414px) {
+
+  .match-live-chat iframe,
+  .box-chat-details {
+    height: 48vh;
+  }
+}
+
+
 @media screen and (width: 375px) {
   .swiper-wrapper .swiper-slide {
     width: 380px !important;
   }
+
+  .match-live-chat iframe,
+  .box-chat-details {
+    height: 42vh;
+  }
 }
+
+@media screen and (width: 360px) {
+
+  .match-live-chat iframe,
+  .box-chat-details {
+    height: 48vh;
+  }
+}
+
+
 @media screen and (width: 768px) {
   .swiper-wrapper .swiper-slide {
     width: 768px !important;
   }
 }
 
-.match-details .match-live .count-timer{
+.match-details .match-live .count-timer {
   position: absolute;
   left: 25%;
   top: 50%;
   z-index: 2;
   width: 50%;
 }
-.match-details .match-live .count-timer .count{
+
+.match-details .match-live .count-timer .count {
   display: flex;
-    justify-content: space-between;
+  justify-content: space-between;
 }
-.match-details .match-live .count-timer .count>div{
+
+.match-details .match-live .count-timer .count>div {
   font-size: 14px;
   text-align: center;
 }
-.match-details .match-live .count-timer .count>div>p{
+
+.match-details .match-live .count-timer .count>div>p {
   text-align: center;
   font-size: 37px;
   font-weight: 700;
   color: orange;
 }
-.match-live button{
+
+.match-live button {
   position: absolute;
-    left: 42%;
-    top: 57%;
-    z-index: 2;
-    background-color: #c5372d;
-    padding: 14px;
-    border-radius: 10px;
-    font-size: 22px;
-    font-weight: 600;
-    cursor: pointer;
+  left: 42%;
+  top: 57%;
+  z-index: 2;
+  background-color: #c5372d;
+  padding: 14px;
+  border-radius: 10px;
+  font-size: 22px;
+  font-weight: 600;
+  cursor: pointer;
 }
 
-@media screen and (width: 820px){
-  .match-details-live{
-         display: block !important; 
-        padding: 0 10px;
-    }
-    .match-details-live .match-live {
-        width: 100%;
-    }
-        .match-details-live .match-live-chat{
-        width: 100%;
-    }
-    .match-amination{
-        display: block;
-    }
-    .match-amination iframe{
-        width: 100%;
-    }
-    .match-amination .match-stats{
-        width: 100%;
-        height: auto;
-        margin: 20px 0 15px 0;
-    }
+@media screen and (width: 820px) {
+  .match-details-live {
+    display: block !important;
+    padding: 0 10px;
+  }
+
+  .match-details-live .match-live {
+    width: 100%;
+  }
+
+  .match-details-live .match-live-chat {
+    width: 100%;
+  }
+
+  .match-amination {
+    display: block;
+  }
+
+  .match-amination iframe {
+    width: 100%;
+  }
+
+  .match-amination .match-stats {
+    width: 100%;
+    height: auto;
+    margin: 20px 0 15px 0;
+  }
 }
-@media screen and (width: 768px){
-     .match-details-live{
-         display: block !important; 
-        padding: 0 10px;
-    }
-    .match-details-live .match-live {
-        width: 100%;
-    }
-        .match-details-live .match-live-chat{
-        width: 100%;
-    }
-    .match-amination{
-        display: block;
-    }
-    .match-amination iframe{
-        width: 100%;
-    }
-    .match-amination .match-stats{
-        width: 100%;
-        height: auto;
-        margin: 20px 0 15px 0;
-    }
+
+@media screen and (width: 768px) {
+  .match-details-live {
+    display: block !important;
+    padding: 0 10px;
+  }
+
+  .match-details-live .match-live {
+    width: 100%;
+  }
+
+  .match-details-live .match-live-chat {
+    width: 100%;
+  }
+
+  .match-amination {
+    display: block;
+  }
+
+  .match-amination iframe {
+    width: 100%;
+  }
+
+  .match-amination .match-stats {
+    width: 100%;
+    height: auto;
+    margin: 20px 0 15px 0;
+  }
 }
