@@ -124,12 +124,16 @@ export const Header = () => {
       </Drawer>
       <div className="nav-site">
         <div className="logo-mobile">
-          <a className="site-brand" style={{ cursor: "pointer" }} href="/">
+          <a
+            className="site-brand"
+            style={{ cursor: "pointer", display: "flex" }}
+            href="/"
+          >
             <Image
               src="/assets/images/logo-keovip.png"
               width={125}
               height={30}
-              style={{ objectFit: "contain", display: "flex" }}
+              style={{ objectFit: "contain" }}
             />
           </a>
         </div>
