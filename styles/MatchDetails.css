@@ -781,14 +781,22 @@
   }
 }
 
-@media only screen and (device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) {}
+@media only screen and (device-width: 320px) and (device-height: 568px) {
+  .box-chat-details {
+    height: 57%;
+  }
 
-@media only screen and (width: 360px) and (height: 740px) {
+  .match-live-chat {
+    height: 88%;
+  }
+}
+
+@media only screen and (width: 320px) and (height: 568px) {
   .box-chat-details {
     height: 58%;
   }
 
   .match-live-chat {
-    height: 88%;
+    height: 82%;
   }
 }
