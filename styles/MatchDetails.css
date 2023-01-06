@@ -489,8 +489,8 @@
   height: 100%;
   position: relative;
   z-index: 99999999;
-  height: 60vh;
   background-color: #fff;
+  height: 60vh;
 }
 
 
@@ -609,8 +609,9 @@
     background-image: linear-gradient(45deg, #272d3c, #3d2e3b);
   }
 
-  .match-live-chat iframe {
-    height: 53vh;
+  .match-live-chat iframe,
+  .box-chat-details {
+    height: 57vh;
   }
 }
 
@@ -618,10 +619,18 @@
 
   .match-live-chat iframe,
   .box-chat-details {
-    height: 48vh;
+    height: 58vh;
   }
 }
 
+
+@media screen and (width: 414px) and (height: 736px) {
+
+  .match-live-chat iframe,
+  .box-chat-details {
+    height: 49vh;
+  }
+}
 
 @media screen and (width: 375px) {
   .swiper-wrapper .swiper-slide {
@@ -630,7 +639,15 @@
 
   .match-live-chat iframe,
   .box-chat-details {
-    height: 42vh;
+    height: 56vh;
+  }
+}
+
+@media screen and (width: 375px) and (height: 667px) {
+
+  .match-live-chat iframe,
+  .box-chat-details {
+    height: 47vh;
   }
 }
 
@@ -639,6 +656,14 @@
   .match-live-chat iframe,
   .box-chat-details {
     height: 48vh;
+  }
+}
+
+@media screen and (width: 360px) and (height: 740px) {
+
+  .match-live-chat iframe,
+  .box-chat-details {
+    height: 53vh;
   }
 }
 

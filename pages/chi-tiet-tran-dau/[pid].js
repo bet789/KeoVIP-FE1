@@ -68,12 +68,12 @@ export default function MatchDetails({
 
   const matchIdTheSports = useMemo(() => {
     return matchTheSports.filter((data) => data.match_id == matchDetail.id);
-  }, [matchDetail.id]);
+  }, [matchDetail.id, matches]);
   const matchIdLive = useMemo(() => {
     return matchTheSportsLive?.filter(
       (data) => matchIdTheSports[0]?.thesports_uuid === data.match_id
     );
-  }, [matchIdTheSports[0]?.thesports_uuid]);
+  }, [matchIdTheSports[0]?.thesports_uuid, matches]);
 
   const buttonChat = [
     {
