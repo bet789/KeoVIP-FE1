@@ -485,6 +485,11 @@
     height: 100%;
   }
 
+  .match-detail-mobilem .match-details {
+    overflow: hidden;
+    position: relative;
+  }
+
   .main-live .main-live-app {
     width: 100%;
   }

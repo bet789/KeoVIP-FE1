@@ -58,6 +58,17 @@ export default function MatchDetails({
     setValue(newValue);
   };
 
+  useEffect(() => {
+    if (matches) {
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+    }
+    return () => {
+      document.body.style.overflow = "auto";
+      document.documentElement.style.overflow = "auto";
+    };
+  }, [matches]);
+
   const matchIdTheSports = useMemo(() => {
     return matchTheSports.filter((data) => data?.match_id == matchDetail?.id);
   }, [matchDetail?.id, matches]);
@@ -110,29 +121,8 @@ export default function MatchDetails({
     setLinkLivestream(URL_VIDEO);
   };
 
-  const onReactJWPlayer = (link) => {
-    return (
-      <ReactJWPlayer
-        playerId="livePlayer"
-        playerScript="https://cdn.jwplayer.com/libraries/m393TMt7.js"
-        file={link}
-        onSeventyFivePercent={() => console.log("75 Percent")}
-        onNinetyFivePercent={() => console.log("95 Percent")}
-        onOneHundredPercent={() => console.log("100 Percent")}
-        isAutoPlay={true}
-        aspectRatio="16:9"
-        onEnterFullScreen={() => onEnterFullScreen()}
-        customProps={{
-          playbackRateControls: [1, 1.25, 1.5],
-          cast: {},
-        }}
-        onError={(e) => handleError(e)}
-      />
-    );
-  };
-
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} match-detail-mobile`}>
       <Headhtml />
       <main id="main" className={styles.main}>
         <div id="detailPage">
@@ -155,7 +145,7 @@ export default function MatchDetails({
               <div className="match-details-live">
                 <div
                   className="match-live"
-                  styles={{ position: "relative", marginBottom: 10 }}
+                  style={{ position: "relative", marginBottom: 10 }}
                 >
                   {
                     <>
@@ -224,6 +214,152 @@ export default function MatchDetails({
                     </>
                   }
                 </div>
+                {matches && (
+                  <Box className="box-chat-details">
+                    <TabContext value={value}>
+                      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+                        <TabList onChange={handleChange} aria-label="tabs">
+                          <Tab
+                            label="PHÒNG CHAT"
+                            value="1"
+                            style={{ padding: "5px 10px" }}
+                          />
+                          <Tab
+                            label="SỰ KIỆN CHÍNH"
+                            value="2"
+                            style={{ padding: "5px 10px" }}
+                          />
+                        </TabList>
+                      </Box>
+                      <TabPanel
+                        value="1"
+                        style={{ padding: 0 }}
+                        className="tabs-panel"
+                      >
+                        <div
+                          className="match-live-chat"
+                          style={{
+                            backgroundColor: "#fff",
+                            overflow: "hidden",
+                          }}
+                        >
+                          <iframe
+                            width="100%"
+                            height="100%"
+                            src={URL_IFRAME_CHAT}
+                            frameBorder="0"
+                          ></iframe>
+                        </div>
+                      </TabPanel>
+                      <TabPanel
+                        value="2"
+                        className="tabs-panel"
+                        style={{
+                          padding: "0px 10px 40px",
+                          backgroundColor: "#fff",
+                          overflow: "scroll",
+                        }}
+                      >
+                        <div className="app-live">
+                          <div className="container">
+                            <div className="match-details-odds">
+                              <div className="match-introduction">
+                                <div className="match-team">
+                                  <picture>
+                                    <img
+                                      src={matchDetail?.team_home_logo ?? ""}
+                                      alt=""
+                                    />
+                                  </picture>
+                                  <div className="team-name">
+                                    <a>{matchDetail?.team_home_name ?? ""}</a>
+                                  </div>
+                                </div>
+                                <div className="match-center">
+                                  <div className="match-result">
+                                    {matchDetail?.score?.home ?? 0} -{" "}
+                                    {matchDetail?.score?.away ?? 0}
+                                  </div>
+                                  <div className="match-status">
+                                    {matchDetail?.time}
+                                  </div>
+                                  <div className="match-odds flex-column">
+                                    <div className="company">
+                                      {listDetailMatchOddsOptions.map(
+                                        (item, idx) => (
+                                          <span
+                                            key={idx}
+                                            className={
+                                              dataDetailMatchOddsOptions === idx
+                                                ? "active"
+                                                : ""
+                                            }
+                                            onClick={() =>
+                                              setDataDetailMatchOddsOptions(idx)
+                                            }
+                                          >
+                                            {item}
+                                          </span>
+                                        )
+                                      )}
+                                    </div>
+                                    <div className="show-odds">
+                                      <div className="soccer">
+                                        {matchOdds[
+                                          dataDetailMatchOddsOptions
+                                        ]?.map((item, idx) => {
+                                          return (
+                                            <div key={idx} className="item">
+                                              <div className="side">
+                                                {item.left.map((d, index) => (
+                                                  <span key={index}>{d}</span>
+                                                ))}
+                                              </div>
+                                              <div className="mid">
+                                                {item.center}
+                                              </div>
+                                              <div className="side">
+                                                {item.right.map((d, index) => (
+                                                  <span key={index}>{d}</span>
+                                                ))}
+                                              </div>
+                                            </div>
+                                          );
+                                        })}
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div className="match-team">
+                                  <picture>
+                                    <img
+                                      src={matchDetail?.team_away_logo ?? ""}
+                                      alt=""
+                                    />
+                                  </picture>
+                                  <div className="team-name">
+                                    <a>{matchDetail?.team_away_name ?? ""}</a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="match-amination">
+                              <iframe
+                                src={`${URL_AMINATION}?matchId=${pid}&accessKey=tEFL6ClbFnfkvmEn0xspIVQyPV9jAz9u&lang=vi`}
+                                width="800"
+                                height="700"
+                              ></iframe>
+                              <div className="match-stats">
+                                <h3>Sự Kiện Chính</h3>
+                                <EventStat id={pid} />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </TabPanel>
+                    </TabContext>
+                  </Box>
+                )}
 
                 {/* Hidden on view mobile */}
                 {!matches && (
@@ -345,142 +481,6 @@ export default function MatchDetails({
             </div>
             <Footer />
           </>
-        )}
-
-        {matches && (
-          <Box className="box-chat-details">
-            <TabContext value={value}>
-              <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-                <TabList onChange={handleChange} aria-label="tabs">
-                  <Tab
-                    label="PHÒNG CHAT"
-                    value="1"
-                    style={{ padding: "5px 10px" }}
-                  />
-                  <Tab
-                    label="SỰ KIỆN CHÍNH"
-                    value="2"
-                    style={{ padding: "5px 10px" }}
-                  />
-                </TabList>
-              </Box>
-              <TabPanel value="1" style={{ padding: 0 }} className="tabs-panel">
-                <div
-                  className="match-live-chat"
-                  style={{ backgroundColor: "#fff" }}
-                >
-                  <iframe
-                    width="100%"
-                    height="100%"
-                    src={URL_IFRAME_CHAT}
-                    frameBorder="0"
-                  ></iframe>
-                </div>
-              </TabPanel>
-              <TabPanel
-                value="2"
-                className="tabs-panel"
-                style={{
-                  padding: "0px 10px 40px",
-                  backgroundColor: "#fff",
-                  overflow: "scroll",
-                }}
-              >
-                <div className="app-live">
-                  <div className="container">
-                    <div className="match-details-odds">
-                      <div className="match-introduction">
-                        <div className="match-team">
-                          <picture>
-                            <img
-                              src={matchDetail?.team_home_logo ?? ""}
-                              alt=""
-                            />
-                          </picture>
-                          <div className="team-name">
-                            <a>{matchDetail?.team_home_name ?? ""}</a>
-                          </div>
-                        </div>
-                        <div className="match-center">
-                          <div className="match-result">
-                            {matchDetail?.score?.home ?? 0} -{" "}
-                            {matchDetail?.score?.away ?? 0}
-                          </div>
-                          <div className="match-status">
-                            {matchDetail?.time}
-                          </div>
-                          <div className="match-odds flex-column">
-                            <div className="company">
-                              {listDetailMatchOddsOptions.map((item, idx) => (
-                                <span
-                                  key={idx}
-                                  className={
-                                    dataDetailMatchOddsOptions === idx
-                                      ? "active"
-                                      : ""
-                                  }
-                                  onClick={() =>
-                                    setDataDetailMatchOddsOptions(idx)
-                                  }
-                                >
-                                  {item}
-                                </span>
-                              ))}
-                            </div>
-                            <div className="show-odds">
-                              <div className="soccer">
-                                {matchOdds[dataDetailMatchOddsOptions]?.map(
-                                  (item, idx) => {
-                                    return (
-                                      <div key={idx} className="item">
-                                        <div className="side">
-                                          {item.left.map((d, index) => (
-                                            <span key={index}>{d}</span>
-                                          ))}
-                                        </div>
-                                        <div className="mid">{item.center}</div>
-                                        <div className="side">
-                                          {item.right.map((d, index) => (
-                                            <span key={index}>{d}</span>
-                                          ))}
-                                        </div>
-                                      </div>
-                                    );
-                                  }
-                                )}
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="match-team">
-                          <picture>
-                            <img
-                              src={matchDetail?.team_away_logo ?? ""}
-                              alt=""
-                            />
-                          </picture>
-                          <div className="team-name">
-                            <a>{matchDetail?.team_away_name ?? ""}</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="match-amination">
-                      <iframe
-                        src={`${URL_AMINATION}?matchId=${pid}&accessKey=tEFL6ClbFnfkvmEn0xspIVQyPV9jAz9u&lang=vi`}
-                        width="800"
-                        height="700"
-                      ></iframe>
-                      <div className="match-stats">
-                        <h3>Sự Kiện Chính</h3>
-                        <EventStat id={pid} />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </TabPanel>
-            </TabContext>
-          </Box>
         )}
       </main>
       <Script />

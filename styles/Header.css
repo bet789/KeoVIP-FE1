@@ -97,7 +97,7 @@ header svg {
     /* position: sticky; */
     left: 0;
     right: 0;
-    z-index: 100000;
+    z-index: 1;
     /* height: 40px; */
     width: 100%;
     overflow: hidden;

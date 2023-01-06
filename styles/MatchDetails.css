@@ -531,16 +531,22 @@
   position: fixed;
   bottom: 0;
   background-color: #fff;
-  height: 63%;
+  height: 59%;
+}
+
+.match-live-chat {
+  height: 89%;
 }
 
 .tabs-panel {
   height: 100%;
 }
 
+
+
 @media screen and (max-width: 440px) {
   .match-live-chat {
-    height: 90%;
+    height: 89%;
   }
 
   .news-selector img {
@@ -653,6 +659,11 @@
     background-image: linear-gradient(45deg, #272d3c, #3d2e3b);
   }
 
+  .match-detail-mobilem .match-details {
+    overflow: hidden;
+    position: relative;
+  }
+
 }
 
 @media screen and (width: 820px) {
@@ -725,7 +736,7 @@
 }
 
 /* ----------- iPhone 6, 6S, 7 and 8 ----------- */
-@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
+@media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (-webkit-min-device-pixel-ratio: 2) {
   /* IP 6,7,8 */
 
   .box-chat-details {
@@ -738,7 +749,7 @@
 }
 
 /* ----------- iPhone X ----------- */
-@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+@media only screen and (min-device-width: 375px) and (max-device-height: 812px) and (-webkit-min-device-pixel-ratio: 3) {
   .box-chat-details {
     height: 64%;
   }
@@ -748,13 +759,36 @@
   }
 }
 
-/* ----------- iPhone XR ----------- */
-@media only screen and (min-device-width: 414px) and (max-device-width: 896px) and (-webkit-min-device-pixel-ratio: 2) {
+/* ----------- iPhone 13, 13pro ----------- */
+@media only screen and (min-device-width: 390px) and (max-device-height: 844px) and (-webkit-min-device-pixel-ratio: 3) {
   .box-chat-details {
     height: 64%;
   }
 
   .match-live-chat {
-    height: 90%;
+    height: 91%;
+  }
+}
+
+/* ----------- iPhone XR ----------- */
+@media only screen and (min-device-width: 414px) and (max-device-height: 896px) and (-webkit-min-device-pixel-ratio: 2) {
+  .box-chat-details {
+    height: 57%;
+  }
+
+  .match-live-chat {
+    height: 88%;
+  }
+}
+
+@media only screen and (device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) {}
+
+@media only screen and (width: 360px) and (height: 740px) {
+  .box-chat-details {
+    height: 58%;
+  }
+
+  .match-live-chat {
+    height: 88%;
   }
 }
