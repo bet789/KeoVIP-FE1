@@ -1,7 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import ReactJWPlayer from "react-jw-player";
 import SkLivetream from "./Skeleton/SkLivetream";
-import { URL_789BET, URL_AMINATION, URL_IFRAME_THESPORTS, URL_JUN88, URL_NEW88, URL_VIDEO } from "../contants";
+import {
+  URL_789BET,
+  URL_AMINATION,
+  URL_IFRAME_THESPORTS,
+  URL_JUN88,
+  URL_NEW88,
+  URL_VIDEO,
+} from "../contants";
 import reverseString from "../utility/reverseString";
 import { useMemo } from "react";
 import ReactPlayer from "react-player";
@@ -14,7 +21,9 @@ export default function LiveHome({ data, matchTheSportsLive, matchTheSports }) {
     return matchTheSports.filter((data) => data.match_id == matchID);
   }, [matchID]);
   const matchIdLive = useMemo(() => {
-    return matchTheSportsLive?.filter((data) => matchIdTheSports[0]?.thesports_uuid === data.match_id);
+    return matchTheSportsLive?.filter(
+      (data) => matchIdTheSports[0]?.thesports_uuid === data.match_id
+    );
   }, [matchIdTheSports[0]?.thesports_uuid]);
   useEffect(() => {
     if (data.id) {
@@ -24,7 +33,8 @@ export default function LiveHome({ data, matchTheSportsLive, matchTheSports }) {
 
   const getLiveStream = async (isLiveStream) => {
     isLiveStream && setLivestream(data?.livestream ?? []);
-    isLiveStream && setLinkLivestream((data?.livestream ?? [])?.[0]?.link ?? "");
+    isLiveStream &&
+      setLinkLivestream((data?.livestream ?? [])?.[0]?.link ?? "");
     setLoading(false);
   };
 
@@ -33,17 +43,19 @@ export default function LiveHome({ data, matchTheSportsLive, matchTheSports }) {
     <a href="/chi-tiet-tran-dau/${data?.slug ?? ""}-${data?.id}">
       <span>Vào Phòng Live</span>
     </a>
-    <a target="_blank" href="https://www.789betb.com/?uagt=livesbong1&path=signup">
+    <a target="_blank" href="${URL_789BET}">
       789BET
     </a>
-    <a target="_blank" href="https://www.new88ww.com/?uagt=livesbong1&path=signup">
+    <a target="_blank" href="${URL_NEW88}">
       NEW88
     </a>
-    <a target="_blank" href="https://www.jun88h.com/?uagt=livesbong1&path=signup">
+    <a target="_blank" href="${URL_JUN88}">
       Jun88
     </a>
   </div>`;
-    document.getElementById("livePlayer").insertAdjacentHTML("beforeend", myElement);
+    document
+      .getElementById("livePlayer")
+      .insertAdjacentHTML("beforeend", myElement);
   };
   const handleError = (e) => {
     setLinkLivestream(URL_VIDEO);

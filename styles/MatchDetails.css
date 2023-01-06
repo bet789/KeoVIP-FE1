@@ -484,17 +484,65 @@
   margin: 10px 0;
 }
 
+
+
+.match-details .match-live .count-timer {
+  position: absolute;
+  left: 25%;
+  top: 50%;
+  z-index: 2;
+  width: 50%;
+}
+
+.match-details .match-live .count-timer .count {
+  display: flex;
+  justify-content: space-between;
+}
+
+.match-details .match-live .count-timer .count>div {
+  font-size: 14px;
+  text-align: center;
+}
+
+.match-details .match-live .count-timer .count>div>p {
+  text-align: center;
+  font-size: 37px;
+  font-weight: 700;
+  color: orange;
+}
+
+.match-live button {
+  position: absolute;
+  left: 42%;
+  top: 57%;
+  z-index: 2;
+  background-color: #c5372d;
+  padding: 14px;
+  border-radius: 10px;
+  font-size: 22px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
 .box-chat-details {
   width: 100%;
   height: 100%;
-  position: relative;
   z-index: 99999999;
+  position: fixed;
+  bottom: 0;
   background-color: #fff;
-  height: 60vh;
+  height: 63%;
 }
 
+.tabs-panel {
+  height: 100%;
+}
 
 @media screen and (max-width: 440px) {
+  .match-live-chat {
+    height: 90%;
+  }
+
   .news-selector img {
     display: none;
   }
@@ -601,115 +649,10 @@
     border-radius: 0;
   }
 
-  .match-details-live .match-live-chat iframe {
-    height: 350px;
-  }
-
   .match-amination .match-stats {
     background-image: linear-gradient(45deg, #272d3c, #3d2e3b);
   }
 
-  .match-live-chat iframe,
-  .box-chat-details {
-    height: 57vh;
-  }
-}
-
-@media screen and (width: 414px) {
-
-  .match-live-chat iframe,
-  .box-chat-details {
-    height: 58vh;
-  }
-}
-
-
-@media screen and (width: 414px) and (height: 736px) {
-
-  .match-live-chat iframe,
-  .box-chat-details {
-    height: 49vh;
-  }
-}
-
-@media screen and (width: 375px) {
-  .swiper-wrapper .swiper-slide {
-    width: 380px !important;
-  }
-
-  .match-live-chat iframe,
-  .box-chat-details {
-    height: 56vh;
-  }
-}
-
-@media screen and (width: 375px) and (height: 667px) {
-
-  .match-live-chat iframe,
-  .box-chat-details {
-    height: 47vh;
-  }
-}
-
-@media screen and (width: 360px) {
-
-  .match-live-chat iframe,
-  .box-chat-details {
-    height: 48vh;
-  }
-}
-
-@media screen and (width: 360px) and (height: 740px) {
-
-  .match-live-chat iframe,
-  .box-chat-details {
-    height: 53vh;
-  }
-}
-
-
-@media screen and (width: 768px) {
-  .swiper-wrapper .swiper-slide {
-    width: 768px !important;
-  }
-}
-
-.match-details .match-live .count-timer {
-  position: absolute;
-  left: 25%;
-  top: 50%;
-  z-index: 2;
-  width: 50%;
-}
-
-.match-details .match-live .count-timer .count {
-  display: flex;
-  justify-content: space-between;
-}
-
-.match-details .match-live .count-timer .count>div {
-  font-size: 14px;
-  text-align: center;
-}
-
-.match-details .match-live .count-timer .count>div>p {
-  text-align: center;
-  font-size: 37px;
-  font-weight: 700;
-  color: orange;
-}
-
-.match-live button {
-  position: absolute;
-  left: 42%;
-  top: 57%;
-  z-index: 2;
-  background-color: #c5372d;
-  padding: 14px;
-  border-radius: 10px;
-  font-size: 22px;
-  font-weight: 600;
-  cursor: pointer;
 }
 
 @media screen and (width: 820px) {
@@ -741,7 +684,12 @@
   }
 }
 
+
 @media screen and (width: 768px) {
+  .swiper-wrapper .swiper-slide {
+    width: 768px !important;
+  }
+
   .match-details-live {
     display: block !important;
     padding: 0 10px;
@@ -767,5 +715,46 @@
     width: 100%;
     height: auto;
     margin: 20px 0 15px 0;
+  }
+}
+
+@media screen and (width: 375px) {
+  .swiper-wrapper .swiper-slide {
+    width: 380px !important;
+  }
+}
+
+/* ----------- iPhone 6, 6S, 7 and 8 ----------- */
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
+  /* IP 6,7,8 */
+
+  .box-chat-details {
+    height: 55%;
+  }
+
+  .match-live-chat {
+    height: 87%;
+  }
+}
+
+/* ----------- iPhone X ----------- */
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+  .box-chat-details {
+    height: 63%;
+  }
+
+  .match-live-chat {
+    height: 90%;
+  }
+}
+
+/* ----------- iPhone XR ----------- */
+@media only screen and (min-device-width: 414px) and (max-device-width: 896px) and (-webkit-min-device-pixel-ratio: 2) {
+  .box-chat-details {
+    height: 64%;
+  }
+
+  .match-live-chat {
+    height: 91%;
   }
 }
