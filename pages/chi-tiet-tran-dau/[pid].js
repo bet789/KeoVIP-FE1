@@ -352,8 +352,16 @@ export default function MatchDetails({
             <TabContext value={value}>
               <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
                 <TabList onChange={handleChange} aria-label="tabs">
-                  <Tab label="PHÒNG CHAT" value="1" />
-                  <Tab label="SỰ KIỆN CHÍNH" value="2" />
+                  <Tab
+                    label="PHÒNG CHAT"
+                    value="1"
+                    style={{ padding: "5px 10px" }}
+                  />
+                  <Tab
+                    label="SỰ KIỆN CHÍNH"
+                    value="2"
+                    style={{ padding: "5px 10px" }}
+                  />
                 </TabList>
               </Box>
               <TabPanel value="1" style={{ padding: 0 }} className="tabs-panel">

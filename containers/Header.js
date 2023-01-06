@@ -91,12 +91,17 @@ export const Header = () => {
   }, []);
 
   const NavBar = (
-    <nav id="navbar">
+    <nav
+      id="navbar"
+      style={{ display: "flex", alignItems: "center", marginLeft: 30 }}
+    >
       <ul>
         {listNav?.map((item, index) => (
           <div key={index}>
             <Link href={item.href}>
-              <li className={router.pathname === item.href ? "active" : ""}>{item?.label}</li>
+              <li className={router.pathname === item.href ? "active" : ""}>
+                {item?.label}
+              </li>
             </Link>
             <Divider />
           </div>
@@ -120,11 +125,22 @@ export const Header = () => {
       <div className="nav-site">
         <div className="logo-mobile">
           <a className="site-brand" style={{ cursor: "pointer" }} href="/">
-            <Image src="/assets/images/logo-keovip.png" width={250} height={40} />
+            <Image
+              src="/assets/images/logo-keovip.png"
+              width={125}
+              height={30}
+              style={{ objectFit: "contain", display: "flex" }}
+            />
           </a>
         </div>
         <Box className="btn-bet" sx={{ ...style }}>
-          <Button size="small" href={URL_789BET} variant="contained" color="error">
+          <Button
+            size="small"
+            href={URL_789BET}
+            variant="contained"
+            color="error"
+            style={{ fontSize: 10 }}
+          >
             ĐẶT CƯỢC
           </Button>
         </Box>
@@ -133,7 +149,11 @@ export const Header = () => {
         </div> */}
         <div className="container">
           <a className="site-brand" style={{ cursor: "pointer" }} href="/">
-            <Image src="/assets/images/logo-keovip.png" width={250} height={40} />
+            <Image
+              src="/assets/images/logo-keovip.png"
+              width={150}
+              height={40}
+            />
           </a>
           {NavBar}
         </div>
@@ -162,35 +182,49 @@ export const Header = () => {
           <li>
             <Link href="/">
               <a>
-                <img className="icon-home" src="/assets/images/home.webp" /> <span> Trang chủ</span>
+                <img className="icon-home" src="/assets/images/home.webp" />
+                <span> Trang chủ</span>
               </a>
             </Link>
           </li>
           <li>
             <Link href="/highlight">
               <a>
-                <img className="icon-home" src="/assets/images/highlight.webp" /> <span> Highlight</span>
+                <img
+                  className="icon-home"
+                  src="/assets/images/highlight.webp"
+                />
+                <span> Highlight</span>
               </a>
             </Link>
           </li>
           <li>
             <Link href="/livescore">
               <a>
-                <img className="icon-livescore" src="/assets/images/ball.webp" /> <span> Livescore</span>
+                <img
+                  className="icon-livescore"
+                  src="/assets/images/ball.webp"
+                />
+                <span> Livescore</span>
               </a>
             </Link>
           </li>
           <li>
             <Link href="/ty-le-keo">
               <a>
-                <img className="icon-home" src="/assets/images/tyle.webp" /> <span> Tỷ lệ</span>
+                <img className="icon-home" src="/assets/images/tyle.webp" />
+                <span> Tỷ lệ</span>
               </a>
             </Link>
           </li>
           <li>
             <Link href="/lich-thi-dau">
               <a>
-                <img className="icon-home" src="/assets/images/lichthidau.png" /> <span> Lịch thi đấu</span>
+                <img
+                  className="icon-home"
+                  src="/assets/images/lichthidau.png"
+                />
+                <span> Lịch thi đấu</span>
               </a>
             </Link>
           </li>
