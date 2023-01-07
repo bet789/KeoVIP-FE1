@@ -11,7 +11,6 @@ import {
 } from "../contants";
 import reverseString from "../utility/reverseString";
 import { useMemo } from "react";
-import ReactPlayer from "react-player";
 export default function LiveHome({ data, matchTheSportsLive, matchTheSports }) {
   const [livestream, setLivestream] = useState([]);
   const [linkLivestream, setLinkLivestream] = useState("");
