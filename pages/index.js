@@ -36,7 +36,7 @@ export default function Home({
   }, [matchList]);
 
   const getLiveHome = () => {
-    matchList.map((item) => {
+    matchList.forEach((item) => {
       if (item.screen === true) {
         setMatcheLive([item]);
       }
