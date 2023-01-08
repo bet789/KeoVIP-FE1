@@ -62,6 +62,7 @@ export default function Home({
   };
   return (
     <div className={styles.container}>
+      {console.log("rerender home")}
       <Headhtml />
       <Schema />
       <main id="main" className={styles.main}>
@@ -76,11 +77,6 @@ export default function Home({
           </picture>
 
           <div className="home-live">
-            {/* <a href={ADS_KEOVIP} target="_blank">
-              <div className="ads-mobile" style={{ display: "none" }}>
-                <img src={ADS_BANNER_BOTTOM} width="100%" height="70px" />
-              </div>
-            </a> */}
             <Marquee />
             <div className="main-live">
               <div className="main-live-app">
@@ -110,8 +106,8 @@ export default function Home({
               <div className=" main-card-header">
                 <PerfectScrollbar style={sampleContainer}>
                   <div className="card-top">
-                    {matchLiveHome.length > 0
-                      ? matchLiveHome.map((item) => {
+                    {matchLiveHome?.length > 0
+                      ? matchLiveHome?.map((item) => {
                           return (
                             <div
                               className="col-12 col-md-6 col-lg-12 mb-2"
@@ -147,8 +143,6 @@ export default function Home({
 
         <div className="app-live">
           <div className="container">
-            {/* <Ads /> */}
-            {/* <CountDown timer={1800} /> */}
             <HotLive />
             <div className="row">
               <div className="col-md-7 mb-3">

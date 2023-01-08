@@ -19,11 +19,13 @@ export default function LiveHome({ data, matchTheSportsLive, matchTheSports }) {
   const matchIdTheSports = useMemo(() => {
     return matchTheSports.filter((data) => data.match_id == matchID);
   }, [matchID]);
+
   const matchIdLive = useMemo(() => {
     return matchTheSportsLive?.filter(
       (data) => matchIdTheSports[0]?.thesports_uuid === data.match_id
     );
   }, [matchIdTheSports[0]?.thesports_uuid]);
+
   useEffect(() => {
     if (data.id) {
       getLiveStream(true);
