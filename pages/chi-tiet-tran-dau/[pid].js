@@ -145,7 +145,7 @@ export default function MatchDetails({
               <div className="match-details-live">
                 <div
                   className="match-live"
-                  style={{ position: "relative", marginBottom: 10 }}
+                  style={{ position: "relative" }}
                 >
                   {
                     <>

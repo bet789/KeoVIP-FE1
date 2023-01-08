@@ -526,12 +526,10 @@
 
 .box-chat-details {
   width: 100%;
-  height: 100%;
-  z-index: 99999999;
-  position: fixed;
-  bottom: 0;
   background-color: #fff;
+  position: fixed;
   height: 59%;
+  margin-bottom: 64px;
 }
 
 .match-live-chat {
@@ -740,7 +738,7 @@
   /* IP 6,7,8 */
 
   .box-chat-details {
-    height: 56%;
+    height: 51%;
   }
 
   .match-live-chat {
@@ -751,7 +749,7 @@
 /* ----------- iPhone X ----------- */
 @media only screen and (min-device-width: 375px) and (max-device-height: 812px) and (-webkit-min-device-pixel-ratio: 3) {
   .box-chat-details {
-    height: 64%;
+    height: 60%;
   }
 
   .match-live-chat {
@@ -762,7 +760,7 @@
 /* ----------- iPhone 13, 13pro ----------- */
 @media only screen and (min-device-width: 390px) and (max-device-height: 844px) and (-webkit-min-device-pixel-ratio: 3) {
   .box-chat-details {
-    height: 64%;
+    height: 61%;
   }
 
   .match-live-chat {
@@ -773,7 +771,7 @@
 /* ----------- iPhone XR ----------- */
 @media only screen and (min-device-width: 414px) and (max-device-height: 896px) and (-webkit-min-device-pixel-ratio: 2) {
   .box-chat-details {
-    height: 57%;
+    height: 65%;
   }
 
   .match-live-chat {
@@ -793,7 +791,7 @@
 
 @media only screen and (width: 320px) and (height: 568px) {
   .box-chat-details {
-    height: 52%;
+    height: 41%;
   }
 
   .match-live-chat {
