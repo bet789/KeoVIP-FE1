@@ -35,8 +35,8 @@ export default function Home({
     return matchList?.filter((data) => data.status !== "");
   }, [matchList]);
 
-  const getLiveHome = () => {
-    matchList.forEach((item) => {
+  const getLiveHome = async () => {
+    await matchList.forEach((item) => {
       if (item.screen === true) {
         setMatcheLive([item]);
       }
@@ -62,7 +62,6 @@ export default function Home({
   };
   return (
     <div className={styles.container}>
-      {console.log("rerender home")}
       <Headhtml />
       <Schema />
       <main id="main" className={styles.main}>
