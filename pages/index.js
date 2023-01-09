@@ -81,23 +81,19 @@ export default function Home({
               <div className="main-live-app">
                 <div className="action-hot-live">
                   {matchLive && matchLive.length > 0 ? (
-                    <div>
-                      <LiveHome
-                        matchTheSportsLive={matchTheSportsLive}
-                        matchTheSports={matchTheSports}
-                        data={matchLive[matchLive.length - 1]}
-                      />
-                    </div>
+                    <LiveHome
+                      matchTheSportsLive={matchTheSportsLive}
+                      matchTheSports={matchTheSports}
+                      data={matchLive[matchLive.length - 1]}
+                    />
                   ) : (
                     matchList &&
                     matchList.length > 0 && (
-                      <div>
-                        <LiveHome
-                          matchTheSportsLive={matchTheSportsLive}
-                          matchTheSports={matchTheSports}
-                          data={matchList[matchList.length - 1]}
-                        />
-                      </div>
+                      <LiveHome
+                        matchTheSportsLive={matchTheSportsLive}
+                        matchTheSports={matchTheSports}
+                        data={matchList[matchList.length - 1]}
+                      />
                     )
                   )}
                 </div>

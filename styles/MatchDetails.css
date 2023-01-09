@@ -366,11 +366,14 @@
 .action-hot-live {
   border-radius: 5px;
   position: relative;
+  height: 100%;
 }
 
 .match-live iframe,
 .action-hot-live iframe {
   border-radius: 5px;
+  position: relative;
+  height: 100%;
 }
 
 .match-live .button-odd {
