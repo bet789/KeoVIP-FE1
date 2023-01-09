@@ -121,6 +121,17 @@ export default function MatchDetails({
     setLinkLivestream(URL_VIDEO);
   };
 
+  const [chromeHeight, setChromeHeight] = useState(
+    typeof window !== "undefined" ? window.innerHeight-330 : 0
+  );
+
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      setChromeHeight(window.innerHeight-330);
+      console.log(window.innerHeight)
+    });
+  }, [typeof window !== "undefined" && window]);
+
   return (
     <div className={`${styles.container} match-detail-mobile`}>
       <Headhtml />
@@ -215,7 +226,7 @@ export default function MatchDetails({
                   }
                 </div>
                 {matches && (
-                  <Box className="box-chat-details">
+                  <Box className="box-chat-details" style={{height: chromeHeight +"px"}}>
                     <TabContext value={value}>
                       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
                         <TabList onChange={handleChange} aria-label="tabs">
