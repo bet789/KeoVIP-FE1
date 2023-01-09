@@ -108,7 +108,7 @@ export default function LiveHome({ data, matchTheSportsLive, matchTheSports }) {
           <iframe
             src={`${URL_IFRAME_THESPORTS}&uuid=${matchIdLive[0].match_id}`}
             width="100%"
-            height="700"
+            height="100%"
             allowfullscreen="allowFullScreen"
           ></iframe>
           <div className="button-live">
@@ -135,7 +135,7 @@ export default function LiveHome({ data, matchTheSportsLive, matchTheSports }) {
         <iframe
           src={`${URL_AMINATION}?matchId=${data.id}&accessKey=tEFL6ClbFnfkvmEn0xspIVQyPV9jAz9u&lang=vi&statsPanel=hide`}
           width="100%"
-          height="700"
+          height="100%"
         ></iframe>
       )}
     </>

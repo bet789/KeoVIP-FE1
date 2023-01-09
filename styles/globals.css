@@ -445,10 +445,6 @@ button:focus {
     top: 96%;
   }
 
-  .action-hot-live iframe,
-  .match-live iframe {
-    height: 240px;
-  }
 
   .action-hot-live #livePlayer {
     margin-bottom: 10px;

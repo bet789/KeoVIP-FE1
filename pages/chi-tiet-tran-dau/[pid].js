@@ -58,16 +58,32 @@ export default function MatchDetails({
     setValue(newValue);
   };
 
+  const [heightChat, setHeightChat] = useState();
+  const elementRef = useRef(null);
+
   useEffect(() => {
     if (matches) {
       document.body.style.overflow = "hidden";
       document.documentElement.style.overflow = "hidden";
+      handelHeighChat();
     }
     return () => {
       document.body.style.overflow = "auto";
       document.documentElement.style.overflow = "auto";
     };
+
+    // matches, typeof window !== "undefined" && window
   }, [matches]);
+
+  const handelHeighChat = () => {
+    const _hNav = document.getElementsByClassName("nav-site")[0].offsetHeight;
+    const _hBtnBet =
+      document.getElementsByClassName("home-news")[0].offsetHeight;
+    const _hVideo =
+      document.getElementsByClassName("match-live")[0].offsetHeight;
+
+    setHeightChat(window.innerHeight - (_hNav + _hBtnBet + _hVideo));
+  };
 
   const matchIdTheSports = useMemo(() => {
     return matchTheSports.filter((data) => data?.match_id == matchDetail?.id);
@@ -117,18 +133,9 @@ export default function MatchDetails({
   };
 
   const handleError = (e) => {
+    console.log("handleError");
     setLinkLivestream(URL_VIDEO);
   };
-
-  const [chromeHeight, setChromeHeight] = useState(
-    typeof window !== "undefined" ? window.innerHeight - 330 : 0
-  );
-
-  useEffect(() => {
-    window.addEventListener("resize", () => {
-      setChromeHeight(window.innerHeight - 330);
-    });
-  }, [typeof window !== "undefined" && window]);
 
   return (
     <div className={`${styles.container} match-detail-mobile`}>
@@ -167,9 +174,9 @@ export default function MatchDetails({
                             onNinetyFivePercent={() =>
                               console.log("95 Percent")
                             }
-                            onOneHundredPercent={() =>
-                              console.log("100 Percent")
-                            }
+                            onOneHundredPercent={() => {
+                              console.log("100 Percent");
+                            }}
                             isAutoPlay={true}
                             aspectRatio="16:9"
                             onEnterFullScreen={() => onEnterFullScreen()}
@@ -178,6 +185,14 @@ export default function MatchDetails({
                               cast: {},
                             }}
                             onError={(e) => handleError(e)}
+                            onReady={(e) => {
+                              console.log("onReady");
+                              handelHeighChat();
+                            }}
+                            onSetupError={(e) => {
+                              console.log("onSetupError");
+                              handelHeighChat();
+                            }}
                           />
                           <div className="button-odd">
                             <a target="_blank" href={URL_789BET}>
@@ -196,7 +211,7 @@ export default function MatchDetails({
                           <iframe
                             src={`${URL_IFRAME_THESPORTS}&uuid=${matchIdLive[0].match_id}`}
                             width="100%"
-                            height="670"
+                            height="100%"
                           ></iframe>
                           <div className="button-odd">
                             <a target="_blank" href={URL_789BET}>
@@ -214,7 +229,7 @@ export default function MatchDetails({
                         <iframe
                           src={`${URL_AMINATION}?matchId=${matchDetail.id}&accessKey=tEFL6ClbFnfkvmEn0xspIVQyPV9jAz9u&lang=vi&statsPanel=hide`}
                           width="100%"
-                          height="700"
+                          height="100%"
                         ></iframe>
                       )}
                     </>
@@ -223,7 +238,7 @@ export default function MatchDetails({
                 {matches && (
                   <Box
                     className="box-chat-details"
-                    style={{ height: chromeHeight - 2 + "px" }}
+                    style={{ height: heightChat - 48 + "px" }}
                   >
                     <TabContext value={value}>
                       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
@@ -250,6 +265,7 @@ export default function MatchDetails({
                           style={{
                             backgroundColor: "#fff",
                             overflow: "hidden",
+                            height: {},
                           }}
                         >
                           <iframe
@@ -355,8 +371,8 @@ export default function MatchDetails({
                             <div className="match-amination">
                               <iframe
                                 src={`${URL_AMINATION}?matchId=${pid}&accessKey=tEFL6ClbFnfkvmEn0xspIVQyPV9jAz9u&lang=vi`}
-                                width="800"
-                                height="700"
+                                width="100%"
+                                height="100%"
                               ></iframe>
                               <div className="match-stats">
                                 <h3>Sự Kiện Chính</h3>

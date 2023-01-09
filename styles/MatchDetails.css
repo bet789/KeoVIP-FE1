@@ -1,6 +1,6 @@
 .match-details-odds {
   display: flex;
-  margin-top: 30px;
+  margin-top: 20px;
   gap: 1rem;
 }
 
@@ -526,23 +526,21 @@
 
 .box-chat-details {
   width: 100%;
+  height: 100%;
   background-color: #fff;
 }
 
 .match-live-chat {
-  height: 89%;
+  width: 100%;
+  height: 100%;
 }
+
 
 .tabs-panel {
   height: 100%;
 }
 
-
-
 @media screen and (max-width: 440px) {
-  .match-live-chat {
-    height: 89%;
-  }
 
   .news-selector img {
     display: none;
@@ -633,7 +631,7 @@
 
   .match-amination iframe {
     width: 100%;
-    height: 300px;
+    height: 100%;
   }
 
   .match-amination .match-stats {
@@ -734,64 +732,17 @@
 @media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (-webkit-min-device-pixel-ratio: 2) {
   /* IP 6,7,8 */
 
-  .box-chat-details {
-    height: 51%;
-  }
-
-  .match-live-chat {
-    height: 85%;
-  }
 }
 
 /* ----------- iPhone X ----------- */
-@media only screen and (min-device-width: 375px) and (max-device-height: 812px) and (-webkit-min-device-pixel-ratio: 3) {
-  .box-chat-details {
-    height: 60%;
-  }
-
-  .match-live-chat {
-    height: 90%;
-  }
-}
+@media only screen and (min-device-width: 375px) and (max-device-height: 812px) and (-webkit-min-device-pixel-ratio: 3) {}
 
 /* ----------- iPhone 13, 13pro ----------- */
-@media only screen and (min-device-width: 390px) and (max-device-height: 844px) and (-webkit-min-device-pixel-ratio: 3) {
-  .box-chat-details {
-    height: 61%;
-  }
-
-  .match-live-chat {
-    height: 91%;
-  }
-}
+@media only screen and (min-device-width: 390px) and (max-device-height: 844px) and (-webkit-min-device-pixel-ratio: 3) {}
 
 /* ----------- iPhone XR ----------- */
-@media only screen and (min-device-width: 414px) and (max-device-height: 896px) and (-webkit-min-device-pixel-ratio: 2) {
-  .box-chat-details {
-    height: 65%;
-  }
+@media only screen and (min-device-width: 414px) and (max-device-height: 896px) and (-webkit-min-device-pixel-ratio: 2) {}
 
-  .match-live-chat {
-    height: 88%;
-  }
-}
+@media only screen and (device-width: 320px) and (device-height: 568px) {}
 
-@media only screen and (device-width: 320px) and (device-height: 568px) {
-  .box-chat-details {
-    height: 57%;
-  }
-
-  .match-live-chat {
-    height: 88%;
-  }
-}
-
-@media only screen and (width: 320px) and (height: 568px) {
-  .box-chat-details {
-    height: 41%;
-  }
-
-  .match-live-chat {
-    height: 82%;
-  }
-}
+@media only screen and (width: 320px) and (height: 568px) {}
