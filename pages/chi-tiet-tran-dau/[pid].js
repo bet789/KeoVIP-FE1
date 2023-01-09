@@ -117,18 +117,16 @@ export default function MatchDetails({
   };
 
   const handleError = (e) => {
-    console.log("🚀 ~ file: [pid].js:121 ~ handleError ~ e", e);
     setLinkLivestream(URL_VIDEO);
   };
 
   const [chromeHeight, setChromeHeight] = useState(
-    typeof window !== "undefined" ? window.innerHeight-330 : 0
+    typeof window !== "undefined" ? window.innerHeight - 330 : 0
   );
 
   useEffect(() => {
     window.addEventListener("resize", () => {
-      setChromeHeight(window.innerHeight-330);
-      console.log(window.innerHeight)
+      setChromeHeight(window.innerHeight - 330);
     });
   }, [typeof window !== "undefined" && window]);
 
@@ -154,10 +152,7 @@ export default function MatchDetails({
               </a> */}
               <Marquee />
               <div className="match-details-live">
-                <div
-                  className="match-live"
-                  style={{ position: "relative" }}
-                >
+                <div className="match-live" style={{ position: "relative" }}>
                   {
                     <>
                       {matchDetail?.livestream?.length > 0 ? (
@@ -226,7 +221,10 @@ export default function MatchDetails({
                   }
                 </div>
                 {matches && (
-                  <Box className="box-chat-details" style={{height: chromeHeight +"px"}}>
+                  <Box
+                    className="box-chat-details"
+                    style={{ height: chromeHeight - 2 + "px" }}
+                  >
                     <TabContext value={value}>
                       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
                         <TabList onChange={handleChange} aria-label="tabs">
