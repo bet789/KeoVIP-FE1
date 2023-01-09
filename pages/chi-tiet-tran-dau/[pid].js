@@ -59,7 +59,6 @@ export default function MatchDetails({
   };
 
   const [heightChat, setHeightChat] = useState();
-  const elementRef = useRef(null);
 
   useEffect(() => {
     if (matches) {
@@ -77,12 +76,12 @@ export default function MatchDetails({
 
   const handelHeighChat = () => {
     const _hNav = document.getElementsByClassName("nav-site")[0].offsetHeight;
-    const _hBtnBet =
-      document.getElementsByClassName("home-news")[0].offsetHeight;
+    // const _hBtnBet =
+    //   document.getElementsByClassName("home-news")[0].offsetHeight;
     const _hVideo =
       document.getElementsByClassName("match-live")[0].offsetHeight;
 
-    setHeightChat(window.innerHeight - (_hNav + _hBtnBet + _hVideo));
+    setHeightChat(window.innerHeight - (_hNav + _hVideo));
   };
 
   const matchIdTheSports = useMemo(() => {
@@ -133,7 +132,6 @@ export default function MatchDetails({
   };
 
   const handleError = (e) => {
-    console.log("handleError");
     setLinkLivestream(URL_VIDEO);
   };
 
@@ -163,7 +161,7 @@ export default function MatchDetails({
                   {
                     <>
                       {matchDetail?.livestream?.length > 0 ? (
-                        <div>
+                        <>
                           <ReactJWPlayer
                             playerId="livePlayer"
                             playerScript="https://cdn.jwplayer.com/libraries/m393TMt7.js"
@@ -205,7 +203,7 @@ export default function MatchDetails({
                               Jun88
                             </a>
                           </div>
-                        </div>
+                        </>
                       ) : matchIdLive?.length > 0 ? (
                         <>
                           <iframe
@@ -238,20 +236,32 @@ export default function MatchDetails({
                 {matches && (
                   <Box
                     className="box-chat-details"
-                    style={{ height: heightChat - 48 + "px" }}
+                    style={{ height: heightChat - 30 + "px" }}
                   >
                     <TabContext value={value}>
                       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-                        <TabList onChange={handleChange} aria-label="tabs">
+                        <TabList
+                          onChange={handleChange}
+                          aria-label="tabs"
+                          style={{ minHeight: 30 }}
+                        >
                           <Tab
                             label="PHÒNG CHAT"
                             value="1"
-                            style={{ padding: "5px 10px" }}
+                            style={{
+                              padding: "5px 10px",
+                              minHeight: 30,
+                              fontSize: 12,
+                            }}
                           />
                           <Tab
                             label="SỰ KIỆN CHÍNH"
                             value="2"
-                            style={{ padding: "5px 10px" }}
+                            style={{
+                              padding: "5px 10px",
+                              minHeight: 30,
+                              fontSize: 12,
+                            }}
                           />
                         </TabList>
                       </Box>

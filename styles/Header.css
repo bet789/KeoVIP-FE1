@@ -278,7 +278,6 @@ header svg {
 @media (max-width: 1250px) {
     .site-brand {
         position: relative;
-        margin: 0px auto;
         display: block;
         width: max-content;
         border-top-right-radius: 0px;
@@ -372,6 +371,7 @@ header svg {
     .nav-site .header-news {
         display: block !important;
     }
+
 }
 
 @media (max-width: 535px) {

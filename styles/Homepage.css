@@ -526,11 +526,11 @@
   }
 
   .nav-site .logo-mobile {
-    display: block;
-    float: left;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     height: 100%;
+    width: 100%;
   }
 
   #main {
@@ -701,4 +701,8 @@
   .match-time-selector {
     display: none;
   }
+}
+
+@media screen and (max-width: 767.98px) {
+  .main-live .main-live-app {}
 }

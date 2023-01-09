@@ -90,8 +90,16 @@ export default function HotLive(props) {
                   </span>
                   {(dataMenu || []).map((d) => (
                     <li key={d.key} onClick={() => setUrlMatches(d.url)}>
-                      <span className={urlMatches === d.url ? "active-title" : ""}>{d.title}</span>
-                      {Boolean(d.count) && <span className="match-time-selector-count">{d.count}</span>}
+                      <span
+                        className={urlMatches === d.url ? "active-title" : ""}
+                      >
+                        {d.title}
+                      </span>
+                      {Boolean(d.count) && (
+                        <span className="match-time-selector-count">
+                          {d.count}
+                        </span>
+                      )}
                     </li>
                   ))}
                 </ul>
@@ -107,19 +115,25 @@ export default function HotLive(props) {
           matchList &&
           matchList.length > 0 &&
           matchList
-            .filter((item, index) => page <= index + 1 && index + 1 <= page + limit - 1)
+            .filter(
+              (item, index) =>
+                page <= index + 1 && index + 1 <= page + limit - 1
+            )
             .map((item) => {
               return (
-                <div className="col-12 col-md-6 col-lg-4 mb-3" key={item.id}>
+                <div className="col-12 col-md-6 col-lg-4 mt-3" key={item.id}>
                   <MatchCard data={item} />
                 </div>
               );
             })
         )}
       </div>
-      <div className="row mb-3">
+      <div className="row mt-3">
         <div className="col-12">
-          <button className="w-100 load-more" onClick={() => setLimit(limit + 12)}>
+          <button
+            className="w-100 load-more"
+            onClick={() => setLimit(limit + 12)}
+          >
             Xem thêm lịch trực tiếp
           </button>
         </div>

@@ -136,18 +136,16 @@ export const Header = () => {
               style={{ objectFit: "contain" }}
             />
           </a>
-        </div>
-        <Box className="btn-bet" sx={{ ...style }}>
-          <Button
-            size="small"
+          <a
             href={URL_789BET}
-            variant="contained"
-            color="error"
-            style={{ fontSize: 10 }}
+            target="_blank"
+            rel="nofollow"
+            className=" btn-odds"
           >
-            ĐẶT CƯỢC
-          </Button>
-        </Box>
+            CƯỢC 789BET UY TÍN 100%
+          </a>
+        </div>
+
         {/* <div className="float-top-ad" style={{ width: "414", height: "50", display: "none" }}>
           <img src="/assets/images/banner-bito2k.gif" width="400" height="75" alt="banner mobile 789bet" />
         </div> */}

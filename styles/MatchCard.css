@@ -5,33 +5,40 @@
     border-radius: 10px;
     cursor: pointer;
 }
+
 .col-md-9 .card-top {
     display: flex;
     padding: 0;
     margin-top: 10px;
 }
-.col-md-9 .card-top .mb-4{
+
+.col-md-9 .card-top .mb-4 {
     padding-left: 0;
 }
-.col-md-9 .card-top .mb-4:nth-child(3){
+
+.col-md-9 .card-top .mb-4:nth-child(3) {
     padding-right: 0;
 }
-.card-top .card-border{
+
+.card-top .card-border {
     box-shadow: unset;
 }
+
 .card-border {
     /* background: linear-gradient(180deg, #657180 0%, #1F2225 100%); */
     background-image: url(../public/assets/images/match-even.png);
     background-size: cover;
     padding: 2px;
-    border-radius: 10px ;
+    border-radius: 10px;
     height: 150px;
     box-shadow: 0 45px 20px rgb(0 0 0 / 19%), 0 6px 6px rgb(0 0 0 / 22%);
 }
-.card-border:hover{
+
+.card-border:hover {
     background: linear-gradient(8deg, #98a720c7 0%, #dc064ab5 100%)
 }
-.match_card .match_header{
+
+.match_card .match_header {
     align-items: center;
 }
 
@@ -45,13 +52,16 @@
     color: #dbfd21;
     width: 40%;
 }
+
 .match_card .match_header .living {
     width: 33%;
 }
-.match_card .match_header .living span{
+
+.match_card .match_header .living span {
     color: #ff7e7e;
     font-weight: bold;
 }
+
 .match_card .match_header .match_time {
     font-family: "Roboto", sans-serif;
     font-weight: 400;
@@ -65,12 +75,15 @@
     margin-top: 5px;
 }
 
-.match_card .match_body>div:nth-child(1), .match_card .match_body>div:nth-child(3) {
+.match_card .match_body>div:nth-child(1),
+.match_card .match_body>div:nth-child(3) {
     width: 33%
 }
-.match_status{
+
+.match_status {
     width: 50%;
 }
+
 /* .match_card .match_body>div:nth-child(2) {
     width: 20%
 } */
@@ -88,7 +101,7 @@
     min-height: 20px;
 }
 
-.match_card .match_body .team .watch_now{
+.match_card .match_body .team .watch_now {
     background: #2A3038;
     border-radius: 2px;
     font-family: "Raleway", sans-serif;
@@ -102,7 +115,7 @@
 
 
 
-.match_card .match_body .match_status .happening .current_status{
+.match_card .match_body .match_status .happening .current_status {
     background: #009B3A;
     font-family: "Raleway", sans-serif;
     font-style: normal;
@@ -120,7 +133,7 @@
     justify-content: center;
 }
 
-.match_card .match_body .match_status .happening .current_result{
+.match_card .match_body .match_status .happening .current_result {
     display: flex;
     border-radius: 2px;
     padding: 0px 15px;
@@ -150,7 +163,7 @@
     display: block;
     margin: 0;
 }
-    
+
 
 .match_card .match_body .match_status .waiting .current_result {
     font-family: "Raleway", sans-serif;
@@ -169,78 +182,94 @@
     line-height: 22px;
     text-align: center;
 }
+
 /* .action-hot-live video{
     background: url(/assets/images/bg-live.webp);
     background-size: contain;
     background-repeat: no-repeat;
     min-height: calc(100vh - 355px);
 } */
-.card-border .match_body .match_status .happening .match_time{
+.card-border .match_body .match_status .happening .match_time {
     font-size: 14px;
 }
-/* .action-hot-live>div{
-    height: 555px;
-} */
+
 @media screen and (max-width: 440px) {
     .col-md-9 .card-top {
         display: none;
         margin-top: 35px;
     }
-    .col-md-9 .card-top .mb-4{
+
+    .col-md-9 .card-top .mb-4 {
         padding-left: 15px;
     }
-    .col-md-9 .card-top .mb-4:nth-child(3){
+
+    .col-md-9 .card-top .mb-4:nth-child(3) {
         padding-right: 15px;
     }
-    .match_time{
+
+    .match_time {
         font-size: 12px;
     }
+
     .card-border .match_body {
         display: block !important;
     }
-    .match_card .match_body .team img{
+
+    .match_card .match_body .team img {
         width: 20px;
         height: 20px;
     }
-    .card-border .match_body .team{
+
+    .card-border .match_body .team {
         display: block !important;
     }
-    .match_card .match_body>div:nth-child(1), .match_card .match_body>div:nth-child(3){
+
+    .match_card .match_body>div:nth-child(1),
+    .match_card .match_body>div:nth-child(3) {
         width: 50%;
     }
+
     .match_card .match_body>div:nth-child(2) {
         width: 50%;
     }
-    .card-border .match_body .match_status{
+
+    .card-border .match_body .match_status {
         position: absolute;
         right: 0;
         top: 45px;
     }
-    .card-border .match_body .match_status .happening{
+
+    .card-border .match_body .match_status .happening {
         display: flex;
     }
-    .card-border .match_body .match_status .happening p{
+
+    .card-border .match_body .match_status .happening p {
         display: none;
     }
-    .match_card .match_header .match_title{
+
+    .match_card .match_header .match_title {
         min-height: 0;
         color: #ffed5a;
     }
+
     .card-border {
         height: 100px;
         border-radius: 0;
     }
-    .match_card .match_body .team .team_name{
+
+    .match_card .match_body .team .team_name {
         padding-left: 8px;
         font-weight: 400;
     }
-    .match_card .match_body .match_status .happening .current_status{
+
+    .match_card .match_body .match_status .happening .current_status {
         min-height: 0px;
         padding: 0 10px;
         font-size: 11px;
         margin-bottom: 5px;
     }
-    .match_card .match_body .match_status .happening .current_result{
+
+    .match_card .match_body .match_status .happening .current_result {
         font-size: 11px;
         position: absolute;
         left: -40px;
@@ -248,10 +277,15 @@
         display: block;
         line-height: unset;
     }
+
     .main-card-header {
         display: none;
     }
-    .action-hot-live>div{
-        height: unset;
+
+}
+
+@media screen and (max-width: 767.98px) {
+    .home-news {
+        display: none;
     }
-  }
+}

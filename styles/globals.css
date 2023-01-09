@@ -445,9 +445,7 @@ button:focus {
     top: 96%;
   }
 
-
   .action-hot-live #livePlayer {
-    margin-bottom: 10px;
     border-radius: 0;
   }
 
@@ -529,15 +527,11 @@ button:focus {
   border-radius: 4px;
   font-style: normal;
   font-weight: 600;
-  font-size: 13px;
+  font-size: 12px;
   line-height: 18px;
   color: #1A1D23;
-  padding: 7px 12px;
-  padding-left: 20px;
+  padding: 5px;
   position: relative;
   border: 0px;
-
-  /* position: -webkit-sticky;
-  position: sticky;
-  top: 0; */
+  margin-right: 10px;
 }
