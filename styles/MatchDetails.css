@@ -527,9 +527,7 @@
 .box-chat-details {
   width: 100%;
   background-color: #fff;
-  position: fixed;
   height: calc(100vh - 330px) !important;
-  margin-bottom: 64px;
 }
 
 .match-live-chat {
