@@ -8,7 +8,8 @@ export async function getApiTheSports() {
 }
 
 export async function getApiTheSportsLive() {
-  const res = await fetch(`${URL_API_THESPORTS}/live`);
+  // const res = await fetch(`${URL_API_THESPORTS}/live`);
+  const res = await fetch(`${URL_API_THESPORTS}`);
   const data = await res.json();
   return data;
 }
@@ -51,7 +52,10 @@ export async function getApiMatchOdds(id) {
 
 export async function getApiMatchPaginate(params) {
   const newParams = { ...params };
-  newParams.start = !params.page || params.page <= 1 ? 0 : (params.page - 1) * (params.limit || 100);
+  newParams.start =
+    !params.page || params.page <= 1
+      ? 0
+      : (params.page - 1) * (params.limit || 100);
   //Remove un-needed key
   delete newParams.page;
 
