@@ -8,8 +8,7 @@ export async function getApiTheSports() {
 }
 
 export async function getApiTheSportsLive() {
-  // const res = await fetch(`${URL_API_THESPORTS}/live`);
-  const res = await fetch(`${URL_API_THESPORTS}`);
+  const res = await fetch(`${URL_API_THESPORTS}/live`);
   const data = await res.json();
   return data;
 }
